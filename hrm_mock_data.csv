@@ -1,501 +1,501 @@
 EmployeeID,FullName,Gender,Age,Department,JobTitle,Location,TenureYears,Salary,PerformanceRating,Attrition,TerminationType,TrainingHours
-EMP1000,Alexis Williams,Non-binary,29,Marketing,Marketing Specialist,Mombasa,0.7,72447,Needs Improvement,No,N/A,38
-EMP1001,Julia Garcia,Male,59,Engineering,Software Engineer,Mombasa,6.6,119855,Needs Improvement,No,N/A,38
-EMP1002,Molly Flores,Female,36,Marketing,Marketing Specialist,Mombasa,7.0,115010,Exceeds Expectations,No,N/A,25
-EMP1003,Brian Rhodes,Male,27,Marketing,Growth Manager,Kisumu,2.6,109242,Outstanding,No,N/A,11
-EMP1004,Mark Brown,Female,27,Operations,Operations Manager,Mombasa,3.5,94342,Needs Improvement,No,N/A,18
-EMP1005,William Cruz,Female,27,Engineering,QA Analyst,Kisumu,5.2,130925,Exceeds Expectations,No,N/A,17
-EMP1006,Derek Diaz,Non-binary,39,Operations,Operations Associate,Mombasa,10.7,105183,Meets Expectations,No,N/A,21
-EMP1007,Patricia Hartman,Non-binary,57,Marketing,Marketing Specialist,Mombasa,3.7,112696,Exceeds Expectations,No,N/A,21
-EMP1008,Kimberly Coleman,Male,35,Finance,Finance Manager,Mombasa,12.8,139393,Outstanding,No,N/A,33
-EMP1009,Mario Mcintyre,Male,38,Operations,Operations Manager,Nakuru,2.5,99958,Outstanding,No,N/A,18
-EMP1010,Ann Vaughn,Male,54,Engineering,Software Engineer,Mombasa,7.7,148661,Outstanding,No,N/A,28
-EMP1011,Patricia Adkins,Non-binary,51,Finance,Financial Analyst,Nairobi,8.2,129312,Exceeds Expectations,No,N/A,11
-EMP1012,Kevin Roberts,Female,49,Engineering,Engineering Manager,Mombasa,2.8,128506,Needs Improvement,No,N/A,23
-EMP1013,Maria Robinson,Non-binary,54,Sales,Sales Manager,Mombasa,9.3,118758,Needs Improvement,No,N/A,5
-EMP1014,Robert Cross,Male,45,Marketing,Marketing Specialist,Nairobi,13.2,108561,Needs Improvement,No,N/A,8
-EMP1015,Sara Moore,Non-binary,30,Human Resources,HR Specialist,Kisumu,1.6,87745,Outstanding,No,N/A,38
-EMP1016,Rachel Wilkinson,Non-binary,34,Human Resources,HR Manager,Nakuru,9.4,123982,Outstanding,No,N/A,8
-EMP1017,Jennifer Harper,Female,23,Sales,Business Development Rep,Mombasa,1.4,71866,Needs Improvement,Yes,Involuntary,8
-EMP1018,Chad Hanna,Male,43,Sales,Sales Manager,Nakuru,1.5,82676,Meets Expectations,No,N/A,40
-EMP1019,Jennifer Alexander,Non-binary,52,Human Resources,HR Manager,Mombasa,4.0,74244,Outstanding,No,N/A,31
-EMP1020,Christopher Ross,Female,51,Engineering,Software Engineer,Nairobi,13.0,147073,Exceeds Expectations,Yes,Voluntary,19
-EMP1021,Scott Adams,Male,34,Sales,Sales Manager,Mombasa,7.2,100205,Meets Expectations,Yes,Voluntary,32
-EMP1022,Eduardo Brooks,Non-binary,28,Finance,Financial Analyst,Nairobi,0.8,124023,Meets Expectations,No,N/A,30
-EMP1023,Courtney Sosa,Female,52,Human Resources,HR Specialist,Mombasa,3.6,86053,Outstanding,No,N/A,33
-EMP1024,Charles Brock,Female,49,Operations,Operations Manager,Mombasa,10.6,90475,Meets Expectations,No,N/A,38
-EMP1025,Warren Arellano,Male,42,Finance,Finance Manager,Mombasa,1.3,78321,Needs Improvement,Yes,Involuntary,8
-EMP1026,Michael Wang,Non-binary,26,Sales,Sales Manager,Nairobi,3.5,124771,Meets Expectations,No,N/A,6
-EMP1027,Kimberly Walsh,Non-binary,27,Finance,Finance Manager,Kisumu,2.8,90029,Exceeds Expectations,No,N/A,20
-EMP1028,Roy Brown,Female,30,Marketing,Growth Manager,Kisumu,6.2,124092,Needs Improvement,No,N/A,40
-EMP1029,Gabrielle Brown,Male,26,Finance,Finance Manager,Mombasa,2.9,129646,Needs Improvement,No,N/A,27
-EMP1030,Amanda Martin,Female,32,Finance,Finance Manager,Nairobi,5.1,120814,Exceeds Expectations,Yes,Voluntary,12
-EMP1031,Luis Hawkins,Female,29,Operations,Operations Associate,Kisumu,7.2,85833,Meets Expectations,No,N/A,20
-EMP1032,Joel Pope,Non-binary,53,Engineering,Software Engineer,Nakuru,4.1,152986,Needs Improvement,No,N/A,12
-EMP1033,Dana Benson,Non-binary,38,Human Resources,HR Manager,Nairobi,2.8,72034,Meets Expectations,No,N/A,6
-EMP1034,Timothy Wells,Female,59,Human Resources,HR Specialist,Nairobi,8.5,95121,Needs Improvement,Yes,Involuntary,19
-EMP1035,Sharon Bryant,Non-binary,28,Finance,Finance Manager,Mombasa,2.8,128991,Meets Expectations,No,N/A,15
-EMP1036,Jon Fuller,Female,23,Marketing,Growth Manager,Mombasa,0.8,78806,Needs Improvement,Yes,Involuntary,6
-EMP1037,Evan Ellis,Female,36,Human Resources,HR Manager,Kisumu,3.4,105424,Meets Expectations,No,N/A,5
-EMP1038,Kellie Allen,Non-binary,34,Marketing,Marketing Specialist,Kisumu,5.5,94605,Outstanding,No,N/A,25
-EMP1039,Debbie Young,Male,29,Marketing,Marketing Specialist,Kisumu,7.1,83586,Outstanding,No,N/A,24
-EMP1040,Terry Walker,Female,60,Engineering,QA Analyst,Mombasa,14.8,141811,Outstanding,No,N/A,16
-EMP1041,Gregory Tucker,Female,49,Operations,Operations Manager,Kisumu,1.5,87612,Needs Improvement,No,N/A,23
-EMP1042,Donald Long,Non-binary,41,Marketing,Growth Manager,Kisumu,10.2,116111,Meets Expectations,No,N/A,15
-EMP1043,Sarah Carroll,Non-binary,58,Finance,Financial Analyst,Kisumu,4.9,99743,Outstanding,No,N/A,24
-EMP1044,Tara Jenkins,Female,50,Sales,Business Development Rep,Nakuru,6.9,125730,Meets Expectations,No,N/A,36
-EMP1045,Joseph Woodard,Non-binary,43,Sales,Business Development Rep,Kisumu,1.9,84206,Meets Expectations,Yes,Voluntary,5
-EMP1046,Thomas Wheeler,Male,37,Finance,Financial Analyst,Nakuru,14.8,131379,Meets Expectations,No,N/A,35
-EMP1047,Kathy Davis,Female,37,Operations,Operations Associate,Nairobi,2.6,95193,Meets Expectations,No,N/A,37
-EMP1048,Amber Nelson,Female,25,Engineering,QA Analyst,Mombasa,2.5,147143,Exceeds Expectations,No,N/A,32
-EMP1049,Joseph Torres,Non-binary,54,Finance,Finance Manager,Mombasa,6.7,128907,Outstanding,No,N/A,19
-EMP1050,Wayne Miller MD,Non-binary,39,Finance,Finance Manager,Mombasa,11.6,115828,Needs Improvement,Yes,Involuntary,21
-EMP1051,Ronald Harvey,Female,42,Engineering,Senior Engineer,Mombasa,13.4,136763,Meets Expectations,Yes,Voluntary,30
-EMP1052,Douglas Brown,Female,43,Human Resources,HR Specialist,Mombasa,8.4,118480,Outstanding,No,N/A,5
-EMP1053,Angela Craig,Non-binary,46,Marketing,Growth Manager,Nakuru,7.4,123465,Outstanding,No,N/A,38
-EMP1054,Nicholas Wilkerson,Non-binary,36,Marketing,Growth Manager,Nakuru,7.6,84393,Exceeds Expectations,No,N/A,14
-EMP1055,Robert Garza,Female,30,Finance,Financial Analyst,Nakuru,8.8,125962,Needs Improvement,No,N/A,12
-EMP1056,Ashley Mercer,Female,33,Human Resources,HR Manager,Mombasa,1.1,83211,Exceeds Expectations,No,N/A,28
-EMP1057,Sabrina Francis,Female,48,Engineering,QA Analyst,Nairobi,4.2,147935,Needs Improvement,Yes,Involuntary,18
-EMP1058,Sharon Lee,Non-binary,26,Operations,Operations Associate,Nairobi,4.0,105883,Meets Expectations,No,N/A,13
-EMP1059,Brandon Maddox,Male,30,Engineering,Senior Engineer,Nakuru,4.5,145414,Exceeds Expectations,No,N/A,11
-EMP1060,Beverly Brown,Male,41,Engineering,Engineering Manager,Nakuru,2.1,119429,Meets Expectations,No,N/A,19
-EMP1061,Rachel Greene,Male,41,Finance,Financial Analyst,Nairobi,12.8,122749,Outstanding,No,N/A,36
-EMP1062,Aaron Hernandez,Non-binary,43,Human Resources,HR Manager,Nairobi,0.7,81258,Exceeds Expectations,No,N/A,33
-EMP1063,Eric Jackson,Non-binary,31,Operations,Operations Manager,Nakuru,4.6,87024,Exceeds Expectations,No,N/A,9
-EMP1064,Mrs. Allison White,Female,50,Human Resources,HR Manager,Kisumu,4.0,71291,Exceeds Expectations,Yes,Voluntary,35
-EMP1065,Deanna Winters,Male,44,Marketing,Growth Manager,Kisumu,12.1,120927,Meets Expectations,No,N/A,30
-EMP1066,Matthew Pena,Female,57,Operations,Operations Manager,Nakuru,11.5,103573,Needs Improvement,No,N/A,29
-EMP1067,Sheila Fleming,Non-binary,37,Finance,Finance Manager,Nakuru,4.9,114137,Exceeds Expectations,No,N/A,39
-EMP1068,Michelle Larson,Female,44,Marketing,Growth Manager,Kisumu,10.7,101815,Meets Expectations,No,N/A,38
-EMP1069,Amanda Higgins,Non-binary,33,Operations,Operations Manager,Kisumu,2.7,93182,Exceeds Expectations,No,N/A,16
-EMP1070,Kimberly Martinez,Female,36,Marketing,Marketing Specialist,Mombasa,5.7,91416,Needs Improvement,No,N/A,12
-EMP1071,Gina Kent,Non-binary,53,Engineering,Engineering Manager,Nakuru,2.0,124595,Exceeds Expectations,No,N/A,7
-EMP1072,Jamie Wise,Female,52,Engineering,QA Analyst,Nakuru,2.2,98389,Needs Improvement,Yes,Involuntary,13
-EMP1073,Stephanie Hall,Non-binary,41,Sales,Account Executive,Nakuru,1.7,103172,Meets Expectations,No,N/A,37
-EMP1074,Alejandro Johnson,Female,50,Marketing,SEO Analyst,Nakuru,13.7,112908,Needs Improvement,No,N/A,10
-EMP1075,Mark Proctor,Male,35,Engineering,Senior Engineer,Mombasa,4.1,109721,Needs Improvement,Yes,Involuntary,32
-EMP1076,Misty Stewart,Non-binary,60,Engineering,Senior Engineer,Kisumu,7.3,152909,Outstanding,No,N/A,20
-EMP1077,Patrick Carpenter,Non-binary,59,Sales,Sales Manager,Nairobi,10.1,121022,Meets Expectations,Yes,Voluntary,8
-EMP1078,Brianna Mack,Male,32,Finance,Finance Manager,Nakuru,8.8,100715,Exceeds Expectations,No,N/A,36
-EMP1079,Patrick Garcia,Non-binary,53,Finance,Financial Analyst,Nakuru,6.8,128664,Exceeds Expectations,No,N/A,40
-EMP1080,Michael Garcia,Non-binary,23,Operations,Operations Manager,Nairobi,2.0,93050,Meets Expectations,No,N/A,37
-EMP1081,Richard Gutierrez,Non-binary,50,Sales,Business Development Rep,Nakuru,13.8,134874,Outstanding,No,N/A,26
-EMP1082,Teresa Brown DVM,Female,43,Engineering,Senior Engineer,Kisumu,5.2,128168,Outstanding,No,N/A,39
-EMP1083,Connie Bennett,Male,51,Marketing,Growth Manager,Nairobi,1.8,115068,Outstanding,No,N/A,4
-EMP1084,Deanna Contreras,Non-binary,56,Engineering,Senior Engineer,Kisumu,7.2,147093,Outstanding,No,N/A,7
-EMP1085,Timothy Hall,Male,39,Marketing,Growth Manager,Nakuru,8.5,91078,Meets Expectations,No,N/A,39
-EMP1086,John Jackson,Male,57,Sales,Account Executive,Nakuru,6.4,132300,Meets Expectations,No,N/A,22
-EMP1087,Angelica Henderson,Non-binary,39,Human Resources,HR Manager,Mombasa,6.5,96805,Meets Expectations,No,N/A,36
-EMP1088,Michael Williams,Non-binary,30,Marketing,Growth Manager,Kisumu,7.8,128343,Exceeds Expectations,No,N/A,23
-EMP1089,Jamie Moore MD,Non-binary,59,Human Resources,HR Specialist,Nakuru,15.0,121736,Exceeds Expectations,No,N/A,38
-EMP1090,Mark Simpson,Female,51,Sales,Business Development Rep,Mombasa,14.0,132161,Meets Expectations,No,N/A,6
-EMP1091,Robin Jones,Female,52,Human Resources,HR Manager,Mombasa,10.7,109039,Needs Improvement,No,N/A,25
-EMP1092,Bryan Garza,Male,50,Human Resources,HR Specialist,Mombasa,1.9,83199,Meets Expectations,No,N/A,34
-EMP1093,Ana Hodge,Female,43,Human Resources,HR Specialist,Kisumu,9.5,122105,Outstanding,No,N/A,35
-EMP1094,Lisa Walker,Non-binary,24,Sales,Business Development Rep,Kisumu,2.0,123868,Needs Improvement,No,N/A,10
-EMP1095,Andrew Watson,Non-binary,28,Operations,Operations Manager,Nairobi,3.4,66431,Needs Improvement,Yes,Involuntary,26
-EMP1096,Kimberly Robinson,Female,49,Finance,Finance Manager,Mombasa,2.6,87679,Needs Improvement,No,N/A,28
-EMP1097,Larry Rush,Non-binary,37,Finance,Financial Analyst,Mombasa,7.7,116152,Exceeds Expectations,No,N/A,4
-EMP1098,Angela Scott,Female,40,Sales,Account Executive,Nakuru,10.3,141957,Exceeds Expectations,No,N/A,20
-EMP1099,Melissa Chavez,Female,41,Human Resources,HR Manager,Nairobi,3.4,79174,Exceeds Expectations,No,N/A,22
-EMP1100,Adrian Dickerson,Non-binary,40,Operations,Operations Manager,Kisumu,0.8,58340,Needs Improvement,No,N/A,35
-EMP1101,Hannah Collins,Female,36,Marketing,Marketing Specialist,Mombasa,9.3,117052,Meets Expectations,No,N/A,6
-EMP1102,Crystal Spence,Female,50,Marketing,SEO Analyst,Mombasa,1.0,70826,Exceeds Expectations,No,N/A,30
-EMP1103,Stephanie Chaney DDS,Male,34,Finance,Finance Manager,Kisumu,2.2,122345,Exceeds Expectations,No,N/A,22
-EMP1104,Victor Nelson,Non-binary,43,Human Resources,HR Specialist,Mombasa,12.2,124436,Meets Expectations,No,N/A,29
-EMP1105,Shawn Russell,Non-binary,45,Human Resources,HR Specialist,Kisumu,1.8,88645,Outstanding,No,N/A,20
-EMP1106,Stephanie James,Non-binary,46,Marketing,Marketing Specialist,Mombasa,12.4,117630,Exceeds Expectations,No,N/A,8
-EMP1107,Lindsey Brown,Non-binary,51,Marketing,SEO Analyst,Nakuru,13.7,103850,Needs Improvement,Yes,Involuntary,35
-EMP1108,Kelly Fischer,Male,28,Finance,Financial Analyst,Nakuru,2.0,101496,Outstanding,No,N/A,13
-EMP1109,Jean Singleton,Female,28,Finance,Finance Manager,Kisumu,5.9,88516,Exceeds Expectations,No,N/A,19
-EMP1110,Jennifer Huff,Female,28,Marketing,SEO Analyst,Kisumu,6.9,84156,Exceeds Expectations,No,N/A,33
-EMP1111,Sally Russo,Male,35,Finance,Financial Analyst,Nairobi,9.2,137486,Meets Expectations,No,N/A,40
-EMP1112,Jillian Bonilla,Male,26,Finance,Financial Analyst,Mombasa,4.2,126404,Meets Expectations,No,N/A,4
-EMP1113,Jacob Rivera,Female,31,Finance,Finance Manager,Mombasa,9.9,102686,Needs Improvement,No,N/A,19
-EMP1114,James Griffin,Non-binary,42,Marketing,Marketing Specialist,Mombasa,0.7,101352,Needs Improvement,No,N/A,8
-EMP1115,Ross Moore,Female,50,Finance,Financial Analyst,Nakuru,11.8,128707,Needs Improvement,No,N/A,37
-EMP1116,Lauren Acosta,Female,51,Engineering,Software Engineer,Nakuru,9.8,168421,Outstanding,No,N/A,32
-EMP1117,Morgan Jackson,Male,27,Sales,Account Executive,Mombasa,2.3,87775,Exceeds Expectations,No,N/A,37
-EMP1118,Cassandra Sanders,Female,51,Human Resources,HR Specialist,Nairobi,7.8,117875,Meets Expectations,No,N/A,30
-EMP1119,Jennifer Burch,Female,51,Operations,Operations Associate,Kisumu,6.3,89674,Exceeds Expectations,No,N/A,34
-EMP1120,John Williams,Male,27,Engineering,QA Analyst,Nairobi,5.1,149892,Exceeds Expectations,No,N/A,7
-EMP1121,Kristina Cruz,Non-binary,57,Operations,Operations Associate,Nakuru,8.6,92351,Outstanding,No,N/A,7
-EMP1122,Daniel Higgins,Female,60,Engineering,Senior Engineer,Mombasa,5.0,143844,Meets Expectations,No,N/A,39
-EMP1123,Darlene Pope DVM,Female,29,Finance,Financial Analyst,Nakuru,6.2,133138,Needs Improvement,No,N/A,21
-EMP1124,Felicia Padilla,Male,33,Marketing,Growth Manager,Kisumu,3.6,73293,Meets Expectations,No,N/A,29
-EMP1125,Patricia Hall DVM,Male,31,Engineering,Software Engineer,Mombasa,7.5,131578,Outstanding,No,N/A,23
-EMP1126,Lydia Jones,Non-binary,42,Finance,Financial Analyst,Nairobi,11.8,109901,Needs Improvement,No,N/A,32
-EMP1127,Jason Diaz,Non-binary,49,Human Resources,HR Manager,Kisumu,7.5,88450,Needs Improvement,Yes,Involuntary,22
-EMP1128,Katie Martinez,Non-binary,59,Operations,Operations Manager,Nairobi,7.6,84261,Needs Improvement,No,N/A,17
-EMP1129,Ronald Torres,Male,38,Engineering,Software Engineer,Nakuru,4.7,149052,Meets Expectations,No,N/A,18
-EMP1130,Mark Moore,Non-binary,57,Marketing,Marketing Specialist,Nakuru,12.6,136864,Needs Improvement,No,N/A,8
-EMP1131,Candice Jones,Female,58,Human Resources,HR Manager,Kisumu,6.7,81932,Needs Improvement,Yes,Involuntary,33
-EMP1132,Samantha Sanchez,Non-binary,45,Engineering,Senior Engineer,Nakuru,1.8,131365,Needs Improvement,No,N/A,23
-EMP1133,Stacie Collins,Non-binary,43,Sales,Account Executive,Nairobi,3.7,104310,Meets Expectations,No,N/A,26
-EMP1134,Amy Williams,Female,31,Sales,Sales Manager,Mombasa,2.7,83598,Meets Expectations,No,N/A,8
-EMP1135,David Gonzales,Male,53,Finance,Finance Manager,Kisumu,7.2,136669,Exceeds Expectations,No,N/A,34
-EMP1136,Margaret Butler,Female,41,Finance,Financial Analyst,Kisumu,12.0,129396,Exceeds Expectations,No,N/A,7
-EMP1137,Timothy Benjamin,Female,40,Engineering,QA Analyst,Nakuru,1.6,130301,Needs Improvement,No,N/A,40
-EMP1138,Sarah Smith,Non-binary,34,Human Resources,HR Specialist,Nairobi,4.5,91523,Exceeds Expectations,Yes,Voluntary,36
-EMP1139,Dawn Martinez,Non-binary,33,Operations,Operations Manager,Nakuru,1.0,80510,Meets Expectations,No,N/A,27
-EMP1140,Kelly Cox,Female,46,Marketing,SEO Analyst,Nairobi,6.4,117882,Exceeds Expectations,No,N/A,39
-EMP1141,Jonathan Miller,Non-binary,46,Operations,Operations Associate,Kisumu,4.6,70923,Meets Expectations,No,N/A,29
-EMP1142,Charles Williams,Male,60,Engineering,Engineering Manager,Nakuru,10.8,157470,Exceeds Expectations,No,N/A,37
-EMP1143,Brandy Harvey,Male,49,Engineering,Engineering Manager,Kisumu,7.9,119647,Meets Expectations,No,N/A,35
-EMP1144,Kayla Ramsey,Male,36,Sales,Account Executive,Kisumu,15.0,148565,Needs Improvement,No,N/A,37
-EMP1145,Jimmy Jefferson,Male,43,Finance,Financial Analyst,Nakuru,13.2,113329,Meets Expectations,No,N/A,14
-EMP1146,Donald Evans,Non-binary,50,Marketing,SEO Analyst,Mombasa,1.1,113290,Exceeds Expectations,No,N/A,32
-EMP1147,Ray Larson,Male,56,Human Resources,HR Specialist,Kisumu,4.0,100523,Outstanding,No,N/A,22
-EMP1148,Richard Campbell,Female,54,Sales,Account Executive,Mombasa,8.1,132773,Needs Improvement,No,N/A,39
-EMP1149,Carlos Palmer,Male,55,Marketing,Marketing Specialist,Mombasa,12.8,109093,Meets Expectations,Yes,Voluntary,18
-EMP1150,Bryce Smith,Female,44,Human Resources,HR Specialist,Nakuru,14.0,117590,Meets Expectations,No,N/A,27
-EMP1151,Jeffrey Sullivan,Male,23,Engineering,Engineering Manager,Mombasa,1.0,99581,Exceeds Expectations,No,N/A,12
-EMP1152,Brian Green,Non-binary,52,Engineering,Software Engineer,Nairobi,7.0,122390,Meets Expectations,No,N/A,37
-EMP1153,Shane Burke,Female,29,Sales,Sales Manager,Nairobi,6.3,86185,Outstanding,No,N/A,33
-EMP1154,Henry Osborne,Male,29,Human Resources,HR Specialist,Mombasa,6.8,109334,Exceeds Expectations,No,N/A,26
-EMP1155,Kristin Huffman,Male,58,Operations,Operations Associate,Kisumu,6.5,75092,Needs Improvement,No,N/A,6
-EMP1156,Kelly Hensley,Non-binary,46,Marketing,SEO Analyst,Nairobi,14.7,117890,Needs Improvement,No,N/A,10
-EMP1157,Erica Mcdonald,Non-binary,43,Marketing,SEO Analyst,Kisumu,2.4,109048,Meets Expectations,No,N/A,33
-EMP1158,Kathleen Peters,Non-binary,52,Sales,Account Executive,Nakuru,9.7,94136,Meets Expectations,No,N/A,6
-EMP1159,Michael Ponce,Female,41,Finance,Finance Manager,Kisumu,8.0,93977,Meets Expectations,No,N/A,7
-EMP1160,Karen Crawford,Non-binary,43,Marketing,Growth Manager,Nakuru,4.5,110928,Outstanding,No,N/A,35
-EMP1161,James Kane,Non-binary,53,Finance,Finance Manager,Nairobi,5.8,125762,Needs Improvement,Yes,Involuntary,38
-EMP1162,Larry Rhodes,Female,42,Marketing,SEO Analyst,Kisumu,2.0,83711,Outstanding,No,N/A,32
-EMP1163,Mary Thompson,Female,50,Marketing,SEO Analyst,Nakuru,1.1,79928,Needs Improvement,Yes,Involuntary,29
-EMP1164,Karen Fowler,Female,54,Operations,Operations Associate,Nairobi,12.1,92246,Outstanding,No,N/A,19
-EMP1165,Tracey Martin,Non-binary,45,Finance,Financial Analyst,Mombasa,5.8,123169,Exceeds Expectations,No,N/A,8
-EMP1166,Terri Moss,Non-binary,30,Human Resources,HR Manager,Kisumu,5.0,83732,Needs Improvement,Yes,Involuntary,35
-EMP1167,Brandon Hernandez Jr.,Non-binary,46,Engineering,Engineering Manager,Kisumu,13.7,168716,Meets Expectations,No,N/A,35
-EMP1168,Amy Williamson,Male,29,Engineering,QA Analyst,Mombasa,1.5,151062,Outstanding,No,N/A,24
-EMP1169,Amanda Mason,Non-binary,44,Finance,Finance Manager,Kisumu,10.8,144973,Meets Expectations,No,N/A,18
-EMP1170,Hannah Williams,Male,34,Sales,Sales Manager,Nairobi,10.4,112405,Exceeds Expectations,No,N/A,12
-EMP1171,Courtney Sellers,Non-binary,27,Human Resources,HR Manager,Nakuru,0.9,96862,Needs Improvement,Yes,Involuntary,24
-EMP1172,Jonathan Campbell,Non-binary,26,Operations,Operations Manager,Mombasa,2.5,99124,Meets Expectations,No,N/A,12
-EMP1173,Jonathan Smith,Female,54,Engineering,Software Engineer,Mombasa,13.7,142322,Meets Expectations,No,N/A,18
-EMP1174,Sharon Smith,Female,55,Engineering,Engineering Manager,Mombasa,13.5,163663,Exceeds Expectations,No,N/A,38
-EMP1175,Troy Schneider,Male,54,Finance,Financial Analyst,Mombasa,9.8,132071,Exceeds Expectations,No,N/A,6
-EMP1176,Devin Bradley,Male,27,Operations,Operations Manager,Mombasa,0.8,90212,Outstanding,No,N/A,5
-EMP1177,Jessica Mcclure,Female,56,Marketing,Growth Manager,Mombasa,4.7,114375,Outstanding,No,N/A,7
-EMP1178,Christine Rivera,Male,50,Human Resources,HR Specialist,Kisumu,6.5,103549,Exceeds Expectations,No,N/A,26
-EMP1179,Adrian Bennett,Female,30,Finance,Financial Analyst,Kisumu,7.0,102553,Needs Improvement,No,N/A,13
-EMP1180,Adrienne Goodman,Male,25,Human Resources,HR Manager,Mombasa,1.5,107070,Meets Expectations,No,N/A,40
-EMP1181,Angela Thomas,Non-binary,42,Sales,Sales Manager,Nakuru,3.3,101686,Exceeds Expectations,No,N/A,5
-EMP1182,Jennifer Hart,Male,47,Sales,Account Executive,Kisumu,7.8,89981,Exceeds Expectations,No,N/A,34
-EMP1183,Eric Trevino,Female,56,Engineering,QA Analyst,Mombasa,0.6,147742,Exceeds Expectations,No,N/A,29
-EMP1184,Jacob Tran,Female,24,Finance,Financial Analyst,Kisumu,1.5,105624,Needs Improvement,No,N/A,36
-EMP1185,Heather Allen,Female,57,Finance,Financial Analyst,Mombasa,4.6,136154,Outstanding,No,N/A,39
-EMP1186,Deborah Anderson,Female,31,Finance,Finance Manager,Nairobi,2.4,80446,Meets Expectations,No,N/A,25
-EMP1187,John Mckee,Female,55,Finance,Financial Analyst,Kisumu,7.1,140043,Exceeds Expectations,No,N/A,23
-EMP1188,Anthony Barber,Non-binary,43,Finance,Finance Manager,Kisumu,7.9,117394,Needs Improvement,No,N/A,11
-EMP1189,Renee Bennett,Female,59,Operations,Operations Associate,Nakuru,5.0,79652,Meets Expectations,No,N/A,34
-EMP1190,Tonya Walls,Male,55,Finance,Finance Manager,Mombasa,9.6,140369,Meets Expectations,No,N/A,11
-EMP1191,Dawn Lopez,Male,23,Human Resources,HR Specialist,Nakuru,1.2,94072,Outstanding,No,N/A,34
-EMP1192,Elizabeth Arnold,Non-binary,25,Finance,Financial Analyst,Kisumu,3.0,133398,Outstanding,No,N/A,28
-EMP1193,Eric Woodward,Female,33,Finance,Finance Manager,Kisumu,5.8,122996,Exceeds Expectations,No,N/A,19
-EMP1194,Rebecca Fernandez,Female,57,Marketing,Growth Manager,Mombasa,4.8,109131,Outstanding,No,N/A,39
-EMP1195,Michele Young,Non-binary,39,Finance,Finance Manager,Nakuru,4.7,127942,Meets Expectations,No,N/A,9
-EMP1196,Charles Odonnell,Female,50,Operations,Operations Manager,Mombasa,10.0,89486,Exceeds Expectations,No,N/A,21
-EMP1197,Heather Garcia,Male,28,Finance,Financial Analyst,Mombasa,4.5,85991,Meets Expectations,Yes,Voluntary,10
-EMP1198,Richard Campbell,Female,43,Engineering,Senior Engineer,Nairobi,10.9,178908,Meets Expectations,No,N/A,34
-EMP1199,Philip Franklin,Non-binary,34,Marketing,Growth Manager,Kisumu,9.9,119753,Needs Improvement,No,N/A,38
-EMP1200,Summer Bryant,Non-binary,24,Sales,Sales Manager,Mombasa,2.8,122630,Needs Improvement,No,N/A,35
-EMP1201,Rachel Barnes,Male,40,Engineering,Engineering Manager,Nairobi,13.2,182278,Exceeds Expectations,No,N/A,38
-EMP1202,Ashley Sanchez,Non-binary,53,Sales,Business Development Rep,Nakuru,13.4,115414,Needs Improvement,No,N/A,33
-EMP1203,Allen Bray,Non-binary,38,Engineering,Engineering Manager,Kisumu,10.9,152723,Meets Expectations,No,N/A,29
-EMP1204,Brandon West,Female,54,Human Resources,HR Specialist,Mombasa,5.3,117425,Outstanding,No,N/A,4
-EMP1205,Melinda Palmer,Female,46,Marketing,Growth Manager,Kisumu,3.9,101708,Needs Improvement,No,N/A,27
-EMP1206,Kathleen Williams,Non-binary,37,Engineering,QA Analyst,Kisumu,1.4,102041,Exceeds Expectations,No,N/A,11
-EMP1207,Victoria Lowe,Non-binary,40,Sales,Account Executive,Mombasa,5.8,106887,Outstanding,No,N/A,27
-EMP1208,Jesse Johnson,Female,57,Finance,Financial Analyst,Mombasa,13.7,142988,Needs Improvement,No,N/A,27
-EMP1209,Megan Bullock,Male,58,Finance,Financial Analyst,Mombasa,2.1,86135,Outstanding,Yes,Voluntary,17
-EMP1210,Christina Jackson,Non-binary,59,Finance,Finance Manager,Nairobi,7.6,115485,Outstanding,No,N/A,39
-EMP1211,Tom Burns,Female,41,Human Resources,HR Manager,Nairobi,11.0,121061,Needs Improvement,No,N/A,8
-EMP1212,Brandon Wilkerson,Non-binary,25,Engineering,QA Analyst,Nairobi,3.8,116447,Meets Expectations,No,N/A,12
-EMP1213,Steven Perry,Non-binary,48,Human Resources,HR Manager,Nakuru,5.9,91654,Meets Expectations,No,N/A,11
-EMP1214,Craig Shaffer,Male,56,Sales,Business Development Rep,Mombasa,6.2,126075,Needs Improvement,No,N/A,38
-EMP1215,Elizabeth George,Female,56,Sales,Account Executive,Nakuru,6.0,100654,Exceeds Expectations,No,N/A,11
-EMP1216,Caroline Clark,Male,48,Engineering,Senior Engineer,Mombasa,9.4,115941,Needs Improvement,No,N/A,7
-EMP1217,Leonard Myers,Male,24,Sales,Business Development Rep,Mombasa,1.5,110223,Needs Improvement,Yes,Involuntary,36
-EMP1218,Brenda Cooke,Female,36,Operations,Operations Manager,Kisumu,12.3,96699,Meets Expectations,No,N/A,18
-EMP1219,Julia Perkins,Female,41,Finance,Financial Analyst,Nakuru,4.5,113265,Needs Improvement,No,N/A,28
-EMP1220,Gloria Brown,Non-binary,42,Human Resources,HR Specialist,Kisumu,10.6,103440,Outstanding,No,N/A,23
-EMP1221,Sheila Craig,Non-binary,31,Engineering,QA Analyst,Nakuru,8.2,145280,Meets Expectations,No,N/A,17
-EMP1222,Stephanie Carter,Female,27,Marketing,Marketing Specialist,Mombasa,5.6,80473,Outstanding,No,N/A,6
-EMP1223,Nathaniel Compton,Male,34,Finance,Financial Analyst,Nakuru,10.6,109780,Exceeds Expectations,No,N/A,17
-EMP1224,Thomas Fletcher,Male,29,Human Resources,HR Specialist,Mombasa,6.1,93098,Meets Expectations,No,N/A,22
-EMP1225,Michael Pratt,Female,51,Marketing,Growth Manager,Kisumu,8.2,101762,Outstanding,No,N/A,34
-EMP1226,Ryan Davis,Female,35,Human Resources,HR Specialist,Mombasa,5.5,107106,Needs Improvement,No,N/A,30
-EMP1227,Kevin Moss,Female,31,Sales,Sales Manager,Mombasa,2.4,99464,Exceeds Expectations,No,N/A,35
-EMP1228,Colin Morse,Non-binary,53,Operations,Operations Manager,Mombasa,7.2,79878,Outstanding,No,N/A,7
-EMP1229,Victoria Green,Non-binary,24,Engineering,Software Engineer,Nairobi,2.6,121717,Meets Expectations,No,N/A,13
-EMP1230,Christopher Gutierrez,Male,35,Marketing,Marketing Specialist,Nakuru,7.3,113895,Needs Improvement,No,N/A,30
-EMP1231,Stephanie Howard,Male,23,Marketing,SEO Analyst,Kisumu,1.3,68072,Outstanding,Yes,Voluntary,10
-EMP1232,Danny Gilbert,Male,55,Sales,Business Development Rep,Kisumu,2.7,116325,Exceeds Expectations,No,N/A,9
-EMP1233,Hannah Franklin,Female,47,Sales,Business Development Rep,Mombasa,7.2,101298,Needs Improvement,No,N/A,6
-EMP1234,Cynthia Morton,Male,47,Finance,Finance Manager,Nairobi,6.0,121384,Meets Expectations,No,N/A,25
-EMP1235,Brandy Faulkner,Non-binary,28,Engineering,Senior Engineer,Mombasa,6.3,163234,Outstanding,No,N/A,21
-EMP1236,Maureen Oliver,Non-binary,58,Sales,Sales Manager,Nairobi,10.0,142034,Meets Expectations,No,N/A,29
-EMP1237,Brandon Johnson,Male,41,Sales,Business Development Rep,Nakuru,2.9,109778,Exceeds Expectations,No,N/A,12
-EMP1238,Brittney Richards,Non-binary,27,Marketing,Marketing Specialist,Nairobi,3.3,93230,Needs Improvement,No,N/A,29
-EMP1239,Alexis Hayes,Female,23,Human Resources,HR Manager,Mombasa,1.5,79761,Outstanding,No,N/A,15
-EMP1240,Keith Schmidt,Non-binary,59,Engineering,Engineering Manager,Mombasa,10.1,160315,Needs Improvement,No,N/A,13
-EMP1241,Daniel Norman,Non-binary,46,Engineering,Software Engineer,Nairobi,5.1,162985,Outstanding,No,N/A,10
-EMP1242,Hayley Olson DVM,Male,27,Human Resources,HR Manager,Nairobi,1.5,64931,Exceeds Expectations,No,N/A,9
-EMP1243,Jonathan Zavala,Non-binary,60,Human Resources,HR Specialist,Kisumu,11.9,108371,Needs Improvement,No,N/A,19
-EMP1244,John Carpenter PhD,Non-binary,55,Human Resources,HR Specialist,Mombasa,3.0,79601,Exceeds Expectations,No,N/A,13
-EMP1245,Rodney Rodriguez,Male,32,Human Resources,HR Manager,Nakuru,5.1,107969,Exceeds Expectations,No,N/A,35
-EMP1246,Hailey Brown,Non-binary,34,Sales,Sales Manager,Nairobi,6.2,131889,Exceeds Expectations,No,N/A,25
-EMP1247,Amy Flores,Female,43,Operations,Operations Associate,Kisumu,6.7,86217,Meets Expectations,No,N/A,29
-EMP1248,Andre Mckinney,Female,40,Operations,Operations Manager,Mombasa,11.2,97687,Exceeds Expectations,No,N/A,27
-EMP1249,Daniel Hutchinson,Male,58,Finance,Financial Analyst,Nairobi,3.4,131962,Outstanding,No,N/A,17
-EMP1250,Mr. Joseph Hernandez,Female,40,Engineering,QA Analyst,Nakuru,12.6,128685,Exceeds Expectations,No,N/A,13
-EMP1251,April Rodriguez,Non-binary,49,Engineering,QA Analyst,Nakuru,11.9,156178,Outstanding,No,N/A,38
-EMP1252,Kaitlyn Johnson,Non-binary,27,Sales,Business Development Rep,Kisumu,1.1,79233,Needs Improvement,No,N/A,29
-EMP1253,Lori Hoffman,Female,49,Engineering,Engineering Manager,Mombasa,2.0,126704,Meets Expectations,No,N/A,27
-EMP1254,Mr. Timothy Myers,Female,51,Finance,Financial Analyst,Kisumu,11.7,155125,Outstanding,No,N/A,9
-EMP1255,Alexander Haney,Male,31,Marketing,Growth Manager,Mombasa,3.8,98513,Exceeds Expectations,No,N/A,10
-EMP1256,Laurie Green,Female,50,Marketing,Marketing Specialist,Nairobi,5.1,77834,Exceeds Expectations,No,N/A,14
-EMP1257,Tyler Pennington,Non-binary,37,Finance,Financial Analyst,Kisumu,8.0,122231,Outstanding,No,N/A,15
-EMP1258,Sarah Flores,Male,49,Operations,Operations Associate,Nakuru,6.2,96372,Outstanding,No,N/A,17
-EMP1259,Tamara Mccann,Female,26,Finance,Financial Analyst,Kisumu,3.1,97353,Outstanding,No,N/A,20
-EMP1260,Rachel Cannon,Non-binary,53,Operations,Operations Manager,Nakuru,8.2,102174,Needs Improvement,No,N/A,15
-EMP1261,Samantha Bowman,Non-binary,41,Finance,Financial Analyst,Mombasa,13.8,123412,Meets Expectations,No,N/A,27
-EMP1262,Omar Hopkins,Non-binary,31,Human Resources,HR Specialist,Nakuru,5.4,92536,Outstanding,No,N/A,15
-EMP1263,Michael James,Non-binary,32,Sales,Account Executive,Kisumu,5.6,124941,Needs Improvement,Yes,Involuntary,35
-EMP1264,Brandon Johnson,Male,34,Finance,Finance Manager,Nakuru,10.7,135723,Outstanding,No,N/A,35
-EMP1265,Crystal Benjamin,Male,27,Sales,Sales Manager,Nairobi,3.6,91017,Exceeds Expectations,No,N/A,33
-EMP1266,Brenda Curry MD,Non-binary,53,Engineering,Software Engineer,Kisumu,8.5,160407,Exceeds Expectations,No,N/A,6
-EMP1267,Brian Murphy,Non-binary,50,Human Resources,HR Specialist,Mombasa,8.4,94396,Needs Improvement,No,N/A,9
-EMP1268,Anthony Casey,Female,29,Sales,Account Executive,Kisumu,6.3,127663,Outstanding,No,N/A,17
-EMP1269,Michael Carter,Male,25,Finance,Finance Manager,Mombasa,2.5,95727,Exceeds Expectations,No,N/A,40
-EMP1270,Timothy Brown,Female,54,Operations,Operations Associate,Mombasa,14.8,133436,Outstanding,No,N/A,12
-EMP1271,Jason Booker,Non-binary,30,Operations,Operations Manager,Mombasa,2.6,94481,Outstanding,No,N/A,13
-EMP1272,Kimberly Benton,Non-binary,39,Human Resources,HR Manager,Nairobi,9.6,112513,Needs Improvement,No,N/A,21
-EMP1273,Alicia Jacobson,Non-binary,45,Human Resources,HR Manager,Nairobi,7.1,116850,Needs Improvement,No,N/A,26
-EMP1274,Lindsay Sosa,Male,56,Human Resources,HR Specialist,Nakuru,6.3,87834,Exceeds Expectations,No,N/A,12
-EMP1275,Sandra Robertson,Non-binary,53,Operations,Operations Associate,Nairobi,11.9,89932,Outstanding,No,N/A,32
-EMP1276,Jennifer Nicholson,Female,22,Human Resources,HR Specialist,Mombasa,1.0,102196,Exceeds Expectations,No,N/A,21
-EMP1277,Nicole Hays,Male,45,Marketing,SEO Analyst,Mombasa,4.1,76735,Exceeds Expectations,No,N/A,18
-EMP1278,Diane Price,Female,27,Engineering,Senior Engineer,Nakuru,4.4,104143,Meets Expectations,No,N/A,4
-EMP1279,Jacob Gordon,Male,43,Human Resources,HR Specialist,Nakuru,12.3,93937,Outstanding,No,N/A,10
-EMP1280,Nathaniel Smith MD,Female,45,Sales,Sales Manager,Mombasa,13.3,133970,Meets Expectations,No,N/A,4
-EMP1281,Melissa Mendoza,Non-binary,32,Operations,Operations Associate,Mombasa,5.1,107385,Outstanding,Yes,Voluntary,10
-EMP1282,Timothy Ortiz,Male,29,Human Resources,HR Manager,Nakuru,4.9,86402,Meets Expectations,No,N/A,9
-EMP1283,Stacy Aguilar,Male,57,Operations,Operations Manager,Nairobi,9.2,114611,Exceeds Expectations,No,N/A,36
-EMP1284,Shelley Hampton,Male,47,Engineering,Senior Engineer,Nakuru,4.8,125468,Meets Expectations,No,N/A,8
-EMP1285,Julie Alvarez,Non-binary,22,Marketing,Marketing Specialist,Nakuru,1.0,107819,Outstanding,No,N/A,38
-EMP1286,Susan Lee,Non-binary,33,Engineering,Software Engineer,Nairobi,9.3,112160,Meets Expectations,No,N/A,29
-EMP1287,Ryan Arias,Non-binary,40,Finance,Finance Manager,Nakuru,9.6,133897,Needs Improvement,No,N/A,13
-EMP1288,Mrs. Linda Flowers,Female,27,Finance,Financial Analyst,Mombasa,2.2,106465,Outstanding,No,N/A,8
-EMP1289,Carl Underwood,Female,49,Sales,Account Executive,Mombasa,11.1,100146,Outstanding,No,N/A,7
-EMP1290,Yvette Robinson,Female,33,Operations,Operations Associate,Nairobi,1.9,67630,Exceeds Expectations,No,N/A,37
-EMP1291,Alicia Mitchell,Non-binary,38,Sales,Business Development Rep,Kisumu,2.9,112629,Needs Improvement,No,N/A,5
-EMP1292,Charles Anderson,Female,49,Engineering,Engineering Manager,Nairobi,4.4,131745,Exceeds Expectations,No,N/A,14
-EMP1293,Jodi Mathis,Female,32,Engineering,Software Engineer,Mombasa,3.2,144891,Needs Improvement,Yes,Involuntary,4
-EMP1294,Aaron Johnson,Male,24,Human Resources,HR Specialist,Mombasa,1.7,106152,Needs Improvement,No,N/A,30
-EMP1295,Vicki Jones,Male,42,Operations,Operations Manager,Kisumu,4.1,100941,Exceeds Expectations,No,N/A,7
-EMP1296,Jenna Rivers,Male,36,Engineering,QA Analyst,Nairobi,12.2,176381,Exceeds Expectations,No,N/A,24
-EMP1297,Francis Turner,Male,57,Marketing,Marketing Specialist,Kisumu,7.1,108812,Exceeds Expectations,No,N/A,33
-EMP1298,Laura Miller,Female,59,Sales,Business Development Rep,Mombasa,14.6,112178,Outstanding,No,N/A,26
-EMP1299,Morgan Snow,Non-binary,22,Engineering,QA Analyst,Kisumu,1.0,97360,Meets Expectations,No,N/A,35
-EMP1300,Bradley Bean,Male,31,Engineering,Software Engineer,Mombasa,7.3,165470,Outstanding,No,N/A,33
-EMP1301,Carlos Powell,Non-binary,27,Finance,Financial Analyst,Nakuru,3.7,85290,Needs Improvement,Yes,Involuntary,12
-EMP1302,Anne Thomas,Male,40,Marketing,Growth Manager,Kisumu,4.3,90016,Exceeds Expectations,No,N/A,12
-EMP1303,Willie Rodriguez,Non-binary,28,Sales,Sales Manager,Nakuru,1.5,87765,Needs Improvement,No,N/A,26
-EMP1304,Brandon Harris,Male,50,Marketing,Marketing Specialist,Nairobi,5.0,84065,Exceeds Expectations,No,N/A,6
-EMP1305,Mary Miller,Male,42,Operations,Operations Associate,Kisumu,2.7,79392,Needs Improvement,No,N/A,23
-EMP1306,Carmen Fox,Female,33,Human Resources,HR Manager,Mombasa,0.9,66512,Needs Improvement,Yes,Involuntary,11
-EMP1307,Jenny Baker,Male,25,Sales,Account Executive,Mombasa,3.4,118507,Exceeds Expectations,No,N/A,9
-EMP1308,Gregg Flores,Non-binary,59,Engineering,Software Engineer,Nairobi,4.3,111801,Outstanding,Yes,Voluntary,25
-EMP1309,Bradley Molina,Male,24,Engineering,Senior Engineer,Nakuru,2.9,149481,Outstanding,No,N/A,5
-EMP1310,Leslie Rice,Female,49,Sales,Account Executive,Kisumu,3.0,89772,Meets Expectations,No,N/A,19
-EMP1311,Angela Patrick,Non-binary,40,Finance,Finance Manager,Nairobi,7.7,95986,Outstanding,No,N/A,37
-EMP1312,Katie Barnett,Male,56,Human Resources,HR Manager,Nakuru,12.0,114503,Outstanding,No,N/A,36
-EMP1313,Elizabeth Miller,Female,46,Engineering,Engineering Manager,Mombasa,4.4,100934,Exceeds Expectations,No,N/A,37
-EMP1314,Bailey Richardson,Female,59,Sales,Account Executive,Mombasa,15.0,139000,Exceeds Expectations,No,N/A,7
-EMP1315,Christine Armstrong,Male,58,Human Resources,HR Manager,Mombasa,12.8,99924,Exceeds Expectations,No,N/A,26
-EMP1316,Amanda Kelley,Non-binary,23,Marketing,SEO Analyst,Mombasa,1.6,95029,Meets Expectations,No,N/A,38
-EMP1317,Joyce Parks,Female,33,Engineering,Software Engineer,Mombasa,6.1,142959,Needs Improvement,Yes,Involuntary,25
-EMP1318,Cynthia Collier,Non-binary,34,Marketing,SEO Analyst,Mombasa,10.6,134601,Exceeds Expectations,No,N/A,13
-EMP1319,Sarah Cortez,Male,55,Engineering,Engineering Manager,Nakuru,13.0,159177,Exceeds Expectations,No,N/A,14
-EMP1320,Ashley Johnson,Non-binary,49,Human Resources,HR Manager,Mombasa,12.0,121823,Exceeds Expectations,No,N/A,15
-EMP1321,Deborah Gordon,Female,41,Marketing,Marketing Specialist,Mombasa,11.1,126733,Outstanding,No,N/A,40
-EMP1322,Lisa Hill,Male,33,Finance,Financial Analyst,Nairobi,7.4,141081,Meets Expectations,No,N/A,19
-EMP1323,Diana Curry,Female,42,Engineering,Engineering Manager,Nakuru,2.9,96002,Meets Expectations,Yes,Voluntary,8
-EMP1324,Elijah Foster,Female,38,Operations,Operations Associate,Nairobi,11.9,101959,Outstanding,No,N/A,35
-EMP1325,Andrew Walters,Female,44,Engineering,QA Analyst,Mombasa,8.4,119735,Needs Improvement,Yes,Involuntary,22
-EMP1326,Carolyn Irwin,Male,42,Engineering,Software Engineer,Kisumu,4.3,109976,Outstanding,Yes,Voluntary,39
-EMP1327,Daniel House,Male,43,Finance,Finance Manager,Nairobi,9.1,118041,Meets Expectations,No,N/A,14
-EMP1328,Stephen Gonzalez,Male,28,Sales,Sales Manager,Kisumu,2.7,108440,Exceeds Expectations,No,N/A,10
-EMP1329,Megan Boyd,Male,47,Human Resources,HR Specialist,Nairobi,8.8,98237,Outstanding,No,N/A,34
-EMP1330,Donald Torres,Male,28,Sales,Business Development Rep,Kisumu,0.7,119579,Outstanding,No,N/A,23
-EMP1331,Alexandria Wood,Female,52,Operations,Operations Manager,Nairobi,7.6,101958,Outstanding,No,N/A,27
-EMP1332,Christopher Hoffman,Male,50,Human Resources,HR Manager,Kisumu,1.1,72930,Exceeds Expectations,No,N/A,7
-EMP1333,Eddie Stevens,Male,28,Marketing,SEO Analyst,Nakuru,1.1,113343,Meets Expectations,No,N/A,7
-EMP1334,Aaron Cantrell,Female,55,Finance,Finance Manager,Mombasa,6.6,114218,Needs Improvement,No,N/A,6
-EMP1335,Robert Villarreal,Non-binary,58,Finance,Financial Analyst,Nairobi,13.6,157259,Outstanding,No,N/A,17
-EMP1336,Ms. Tiffany Williams,Male,30,Engineering,QA Analyst,Mombasa,0.9,156069,Meets Expectations,No,N/A,20
-EMP1337,Brian Smith,Female,26,Finance,Finance Manager,Kisumu,0.9,120507,Outstanding,No,N/A,37
-EMP1338,Stacey Brown,Female,29,Sales,Business Development Rep,Nairobi,3.6,124171,Needs Improvement,No,N/A,22
-EMP1339,Cameron Torres,Non-binary,44,Marketing,Growth Manager,Nakuru,13.2,124457,Outstanding,No,N/A,29
-EMP1340,Andrew Porter,Male,60,Human Resources,HR Specialist,Nakuru,10.4,126030,Exceeds Expectations,No,N/A,34
-EMP1341,Parker Wells,Female,45,Marketing,Growth Manager,Kisumu,0.8,106456,Needs Improvement,No,N/A,12
-EMP1342,Thomas Graves,Female,50,Marketing,Growth Manager,Nakuru,11.7,122288,Needs Improvement,No,N/A,30
-EMP1343,Anthony Rios,Non-binary,53,Marketing,Marketing Specialist,Mombasa,11.5,95899,Outstanding,No,N/A,40
-EMP1344,Kara Odonnell,Male,33,Sales,Account Executive,Mombasa,2.7,76436,Needs Improvement,Yes,Involuntary,16
-EMP1345,Sharon Brown,Female,45,Finance,Finance Manager,Nairobi,12.4,139783,Meets Expectations,No,N/A,32
-EMP1346,Betty Hale,Male,52,Marketing,Growth Manager,Mombasa,9.0,126707,Exceeds Expectations,No,N/A,9
-EMP1347,Matthew Francis,Female,23,Sales,Business Development Rep,Mombasa,1.1,114462,Meets Expectations,No,N/A,17
-EMP1348,Katie Everett,Female,48,Operations,Operations Associate,Nakuru,7.9,114033,Meets Expectations,No,N/A,18
-EMP1349,Megan Gonzalez,Female,60,Marketing,SEO Analyst,Kisumu,12.2,114842,Outstanding,No,N/A,20
-EMP1350,Kathleen Peterson,Male,51,Finance,Finance Manager,Nairobi,4.9,84646,Exceeds Expectations,No,N/A,22
-EMP1351,Barbara Berry,Female,28,Marketing,Growth Manager,Kisumu,3.6,114351,Exceeds Expectations,No,N/A,23
-EMP1352,Dr. Sarah Bryan,Male,31,Sales,Account Executive,Nakuru,5.4,115187,Meets Expectations,No,N/A,35
-EMP1353,Amanda Brock,Female,38,Human Resources,HR Manager,Nairobi,13.7,120486,Meets Expectations,No,N/A,18
-EMP1354,Dr. Craig Benson,Non-binary,56,Human Resources,HR Manager,Kisumu,9.8,122543,Meets Expectations,No,N/A,12
-EMP1355,Brad Foster,Non-binary,38,Finance,Financial Analyst,Kisumu,11.0,134839,Meets Expectations,No,N/A,23
-EMP1356,Beth Anderson,Female,43,Finance,Finance Manager,Nakuru,5.9,132715,Outstanding,No,N/A,8
-EMP1357,Brandon Ortiz MD,Female,34,Operations,Operations Manager,Kisumu,6.8,90350,Meets Expectations,No,N/A,25
-EMP1358,James Gibson,Female,58,Human Resources,HR Specialist,Kisumu,13.4,132307,Meets Expectations,No,N/A,25
-EMP1359,Melissa Vasquez,Non-binary,33,Engineering,Software Engineer,Nakuru,4.1,116302,Meets Expectations,No,N/A,35
-EMP1360,Joseph Hood MD,Male,30,Operations,Operations Manager,Nakuru,5.7,88269,Outstanding,No,N/A,38
-EMP1361,Danielle Wilson,Male,45,Marketing,SEO Analyst,Mombasa,14.3,100609,Needs Improvement,No,N/A,18
-EMP1362,Michael Lynch,Non-binary,44,Engineering,QA Analyst,Kisumu,5.0,111523,Needs Improvement,No,N/A,33
-EMP1363,Jose Pearson,Non-binary,55,Marketing,Growth Manager,Mombasa,9.1,103201,Outstanding,No,N/A,14
-EMP1364,Gene Lee,Female,23,Operations,Operations Associate,Mombasa,0.8,88831,Meets Expectations,No,N/A,27
-EMP1365,Kristin Kent,Non-binary,24,Operations,Operations Manager,Nairobi,1.4,84444,Needs Improvement,No,N/A,10
-EMP1366,William Wheeler,Non-binary,23,Engineering,QA Analyst,Nakuru,0.6,114596,Exceeds Expectations,No,N/A,13
-EMP1367,Caroline Lopez,Male,22,Operations,Operations Associate,Kisumu,0.7,83907,Meets Expectations,No,N/A,10
-EMP1368,Javier Jennings,Non-binary,29,Engineering,QA Analyst,Mombasa,2.6,134694,Exceeds Expectations,No,N/A,16
-EMP1369,Brian Gomez,Female,48,Engineering,QA Analyst,Mombasa,4.8,145421,Outstanding,No,N/A,4
-EMP1370,Brandon Rivas,Non-binary,27,Finance,Finance Manager,Mombasa,5.5,137020,Needs Improvement,Yes,Involuntary,20
-EMP1371,Lindsay Schultz,Non-binary,36,Marketing,Growth Manager,Nakuru,7.1,84153,Meets Expectations,No,N/A,27
-EMP1372,Teresa James,Non-binary,42,Engineering,Software Engineer,Nairobi,6.7,105388,Meets Expectations,Yes,Voluntary,25
-EMP1373,Michelle Campbell,Female,50,Marketing,SEO Analyst,Nairobi,14.3,117635,Exceeds Expectations,No,N/A,29
-EMP1374,Lisa Williams,Female,39,Operations,Operations Manager,Nakuru,12.6,114751,Meets Expectations,No,N/A,7
-EMP1375,Travis Ferguson,Male,28,Finance,Finance Manager,Nakuru,3.2,89788,Outstanding,No,N/A,26
-EMP1376,Eric Bryan,Non-binary,23,Operations,Operations Associate,Nakuru,1.8,99156,Needs Improvement,No,N/A,32
-EMP1377,John Hart,Male,26,Marketing,Marketing Specialist,Mombasa,1.7,115188,Exceeds Expectations,No,N/A,37
-EMP1378,Jeffrey Jones,Non-binary,28,Operations,Operations Associate,Nakuru,3.3,78771,Outstanding,No,N/A,39
-EMP1379,Elizabeth Lewis,Non-binary,25,Sales,Business Development Rep,Nakuru,0.5,112695,Meets Expectations,No,N/A,35
-EMP1380,Dana Murray,Female,37,Marketing,Marketing Specialist,Mombasa,5.3,103673,Outstanding,No,N/A,9
-EMP1381,Keith Arellano,Female,50,Human Resources,HR Specialist,Nakuru,12.1,110368,Needs Improvement,No,N/A,5
-EMP1382,Zachary Sanchez,Male,47,Finance,Financial Analyst,Nairobi,6.5,131006,Exceeds Expectations,No,N/A,17
-EMP1383,Patricia Simpson,Non-binary,51,Marketing,Marketing Specialist,Mombasa,14.3,140277,Exceeds Expectations,No,N/A,34
-EMP1384,Yolanda Hill,Non-binary,45,Engineering,Software Engineer,Mombasa,10.9,115394,Exceeds Expectations,No,N/A,39
-EMP1385,John Larson,Non-binary,45,Engineering,Senior Engineer,Nakuru,10.7,124019,Outstanding,No,N/A,16
-EMP1386,James Gilbert,Male,29,Human Resources,HR Specialist,Nakuru,7.5,115854,Meets Expectations,Yes,Voluntary,30
-EMP1387,Lori Mitchell,Male,59,Human Resources,HR Manager,Mombasa,2.3,109123,Needs Improvement,No,N/A,7
-EMP1388,Erin Campbell,Non-binary,49,Human Resources,HR Specialist,Mombasa,12.7,124622,Meets Expectations,No,N/A,24
-EMP1389,Mr. Kevin Hayes,Non-binary,46,Finance,Financial Analyst,Kisumu,6.6,109984,Exceeds Expectations,No,N/A,12
-EMP1390,Audrey Schwartz,Male,48,Operations,Operations Manager,Kisumu,9.2,108898,Meets Expectations,No,N/A,22
-EMP1391,Cassandra Proctor,Non-binary,44,Sales,Business Development Rep,Mombasa,13.9,128448,Exceeds Expectations,No,N/A,26
-EMP1392,Peter Tapia,Non-binary,52,Operations,Operations Manager,Kisumu,9.0,115354,Outstanding,No,N/A,10
-EMP1393,Joseph Burns,Male,46,Operations,Operations Associate,Mombasa,2.6,73713,Meets Expectations,No,N/A,20
-EMP1394,Kyle Schultz,Male,25,Marketing,Marketing Specialist,Nairobi,2.9,88466,Outstanding,No,N/A,39
-EMP1395,David Cantu,Male,57,Finance,Finance Manager,Nairobi,6.1,137280,Outstanding,No,N/A,24
-EMP1396,Jacob Deleon,Non-binary,25,Marketing,Marketing Specialist,Nakuru,0.5,105089,Exceeds Expectations,No,N/A,38
-EMP1397,Maria Bryan,Non-binary,60,Operations,Operations Associate,Kisumu,3.3,83100,Needs Improvement,Yes,Involuntary,15
-EMP1398,Raymond Flores,Non-binary,54,Engineering,QA Analyst,Kisumu,2.2,130235,Meets Expectations,No,N/A,20
-EMP1399,Melissa Collins,Male,43,Sales,Account Executive,Mombasa,7.3,133610,Needs Improvement,No,N/A,23
-EMP1400,Heather Singleton,Female,58,Engineering,Engineering Manager,Mombasa,8.5,172411,Needs Improvement,Yes,Involuntary,30
-EMP1401,Glenda Watkins,Non-binary,56,Marketing,Marketing Specialist,Mombasa,6.3,111590,Exceeds Expectations,No,N/A,37
-EMP1402,Sarah Boyer,Female,57,Operations,Operations Associate,Nairobi,12.4,115095,Outstanding,No,N/A,19
-EMP1403,Harold Morales,Male,42,Engineering,QA Analyst,Kisumu,6.0,138655,Exceeds Expectations,No,N/A,27
-EMP1404,Taylor Kim,Non-binary,54,Engineering,Engineering Manager,Mombasa,7.0,126640,Needs Improvement,Yes,Involuntary,38
-EMP1405,Michael King,Non-binary,22,Sales,Business Development Rep,Mombasa,0.8,114112,Outstanding,No,N/A,17
-EMP1406,Jordan Harris,Non-binary,49,Engineering,Senior Engineer,Nairobi,9.9,143058,Exceeds Expectations,No,N/A,7
-EMP1407,Gregory Colon,Male,38,Finance,Financial Analyst,Kisumu,8.6,115512,Outstanding,No,N/A,24
-EMP1408,Kimberly Levy,Male,46,Finance,Financial Analyst,Nairobi,10.3,138571,Needs Improvement,Yes,Involuntary,26
-EMP1409,Matthew Woods,Non-binary,28,Operations,Operations Manager,Nairobi,2.4,73823,Outstanding,No,N/A,29
-EMP1410,Katie Holloway,Non-binary,23,Finance,Financial Analyst,Mombasa,1.2,115324,Exceeds Expectations,No,N/A,13
-EMP1411,Katherine Harris,Female,45,Engineering,Senior Engineer,Nairobi,14.4,126757,Outstanding,No,N/A,23
-EMP1412,Mary Pena,Male,44,Operations,Operations Associate,Mombasa,3.6,72727,Exceeds Expectations,No,N/A,11
-EMP1413,Brooke Cook,Male,58,Finance,Finance Manager,Nairobi,12.9,119945,Needs Improvement,No,N/A,35
-EMP1414,Ruben Daniel,Female,44,Operations,Operations Associate,Nairobi,2.4,73975,Needs Improvement,Yes,Involuntary,24
-EMP1415,Dawn Baker,Female,50,Operations,Operations Manager,Mombasa,5.3,93003,Exceeds Expectations,No,N/A,14
-EMP1416,Christopher Lawrence,Male,42,Sales,Business Development Rep,Nakuru,4.1,92360,Exceeds Expectations,No,N/A,25
-EMP1417,Sara Mathis,Female,51,Marketing,Growth Manager,Nairobi,7.0,89936,Needs Improvement,Yes,Involuntary,38
-EMP1418,Rodney Nichols,Male,38,Operations,Operations Associate,Nairobi,11.1,121218,Needs Improvement,No,N/A,29
-EMP1419,Priscilla Moore,Non-binary,35,Finance,Finance Manager,Nakuru,12.7,139061,Meets Expectations,No,N/A,22
-EMP1420,John Huynh,Male,51,Engineering,QA Analyst,Kisumu,7.8,140643,Meets Expectations,No,N/A,14
-EMP1421,Donald Vaughn,Non-binary,30,Sales,Business Development Rep,Mombasa,4.3,116281,Outstanding,Yes,Voluntary,18
-EMP1422,Kimberly Smith,Female,36,Marketing,Marketing Specialist,Nairobi,1.4,99592,Exceeds Expectations,No,N/A,34
-EMP1423,Carla Cruz,Female,24,Operations,Operations Manager,Nairobi,0.6,87056,Exceeds Expectations,No,N/A,20
-EMP1424,James Richardson,Non-binary,56,Human Resources,HR Manager,Kisumu,8.8,108445,Needs Improvement,No,N/A,18
-EMP1425,Sarah Ramirez,Non-binary,47,Marketing,Growth Manager,Nakuru,5.6,120584,Needs Improvement,Yes,Involuntary,32
-EMP1426,Jessica Kemp,Male,36,Operations,Operations Manager,Mombasa,1.6,66310,Meets Expectations,No,N/A,11
-EMP1427,Lynn Suarez,Non-binary,36,Marketing,SEO Analyst,Nairobi,6.5,103362,Outstanding,No,N/A,14
-EMP1428,Luis Shah,Non-binary,48,Engineering,Senior Engineer,Mombasa,0.8,98891,Needs Improvement,No,N/A,13
-EMP1429,Meghan Powell,Male,32,Sales,Business Development Rep,Nakuru,3.2,106567,Needs Improvement,No,N/A,22
-EMP1430,Latoya Thompson,Male,35,Human Resources,HR Manager,Mombasa,6.6,86371,Outstanding,No,N/A,15
-EMP1431,Teresa Doyle DVM,Non-binary,54,Operations,Operations Manager,Nakuru,4.3,91804,Needs Improvement,No,N/A,12
-EMP1432,Lisa Sloan,Male,23,Finance,Finance Manager,Mombasa,0.8,106697,Meets Expectations,No,N/A,6
-EMP1433,Melinda Lynn,Non-binary,54,Engineering,QA Analyst,Mombasa,11.4,176030,Needs Improvement,No,N/A,31
-EMP1434,Benjamin Moreno,Non-binary,48,Engineering,QA Analyst,Mombasa,5.9,164685,Outstanding,No,N/A,26
-EMP1435,Amy Coleman,Non-binary,58,Sales,Sales Manager,Nakuru,1.9,111808,Needs Improvement,No,N/A,38
-EMP1436,Pamela Schultz,Female,38,Operations,Operations Associate,Nairobi,3.2,85829,Outstanding,No,N/A,17
-EMP1437,Heather Humphrey,Non-binary,42,Engineering,Senior Engineer,Nakuru,6.4,147004,Exceeds Expectations,No,N/A,31
-EMP1438,Anthony Barr,Non-binary,45,Operations,Operations Manager,Mombasa,9.4,96855,Outstanding,No,N/A,39
-EMP1439,Daisy Lopez,Female,38,Finance,Finance Manager,Nakuru,14.8,148732,Needs Improvement,No,N/A,14
-EMP1440,Alicia Marshall,Male,35,Marketing,SEO Analyst,Nairobi,7.4,90215,Needs Improvement,Yes,Involuntary,34
-EMP1441,Robin Bryan,Non-binary,49,Marketing,Marketing Specialist,Kisumu,1.8,72341,Needs Improvement,No,N/A,28
-EMP1442,Daniel Mccall,Female,55,Finance,Financial Analyst,Mombasa,4.7,118325,Outstanding,No,N/A,37
-EMP1443,Darin Long,Female,34,Finance,Financial Analyst,Mombasa,0.9,110647,Exceeds Expectations,No,N/A,4
-EMP1444,Justin Galloway,Male,27,Human Resources,HR Manager,Nakuru,6.0,93245,Meets Expectations,No,N/A,8
-EMP1445,Dawn Fuentes,Male,57,Finance,Finance Manager,Kisumu,4.6,135517,Exceeds Expectations,No,N/A,33
-EMP1446,Lindsay Kelley,Female,58,Sales,Sales Manager,Nairobi,0.6,97990,Exceeds Expectations,No,N/A,11
-EMP1447,Rachel Gonzalez,Non-binary,38,Finance,Finance Manager,Nakuru,13.2,157166,Outstanding,No,N/A,25
-EMP1448,Krystal Smith,Female,51,Engineering,QA Analyst,Nairobi,13.5,138766,Outstanding,No,N/A,18
-EMP1449,Allen Gonzales,Female,48,Finance,Financial Analyst,Kisumu,14.4,121405,Needs Improvement,No,N/A,25
-EMP1450,Steven Castaneda,Male,57,Human Resources,HR Manager,Kisumu,14.0,104835,Exceeds Expectations,No,N/A,16
-EMP1451,John Tucker,Female,34,Sales,Sales Manager,Mombasa,3.4,88189,Meets Expectations,No,N/A,26
-EMP1452,Sharon Harvey,Male,28,Engineering,QA Analyst,Nairobi,1.3,141690,Needs Improvement,No,N/A,27
-EMP1453,Paul Bishop,Non-binary,42,Finance,Finance Manager,Nakuru,7.6,100875,Exceeds Expectations,No,N/A,40
-EMP1454,Luis Booth,Male,25,Human Resources,HR Manager,Nairobi,2.3,88361,Outstanding,No,N/A,15
-EMP1455,Brian Wagner,Female,29,Human Resources,HR Manager,Nairobi,5.7,74781,Meets Expectations,Yes,Voluntary,24
-EMP1456,Mr. Jim Burton DVM,Female,38,Marketing,Marketing Specialist,Kisumu,3.2,94624,Exceeds Expectations,No,N/A,15
-EMP1457,Shirley Elliott,Female,49,Operations,Operations Manager,Kisumu,3.6,100881,Exceeds Expectations,No,N/A,15
-EMP1458,Daniel Smith,Non-binary,30,Operations,Operations Associate,Nairobi,8.8,108274,Meets Expectations,No,N/A,16
-EMP1459,Dawn White,Male,31,Engineering,Senior Engineer,Nakuru,5.0,133473,Exceeds Expectations,No,N/A,20
-EMP1460,Andrew Norris,Non-binary,58,Engineering,Senior Engineer,Nairobi,1.2,105220,Exceeds Expectations,No,N/A,10
-EMP1461,Meagan Wood,Female,43,Marketing,SEO Analyst,Kisumu,4.3,91268,Outstanding,No,N/A,16
-EMP1462,Jennifer Brooks,Non-binary,58,Finance,Financial Analyst,Kisumu,9.9,115925,Outstanding,No,N/A,9
-EMP1463,Jeffrey Mendez,Female,40,Sales,Account Executive,Kisumu,7.2,107512,Outstanding,Yes,Voluntary,9
-EMP1464,Terry Wall,Male,43,Marketing,SEO Analyst,Kisumu,3.8,107600,Outstanding,No,N/A,32
-EMP1465,Tina Lewis,Female,59,Human Resources,HR Manager,Mombasa,8.1,88524,Needs Improvement,No,N/A,20
-EMP1466,Emily Jackson,Non-binary,27,Human Resources,HR Specialist,Nairobi,1.7,67120,Outstanding,No,N/A,7
-EMP1467,Johnny Kelley,Male,47,Engineering,Software Engineer,Kisumu,8.1,149044,Needs Improvement,No,N/A,23
-EMP1468,Austin Williams,Male,37,Human Resources,HR Specialist,Mombasa,11.2,111703,Meets Expectations,No,N/A,26
-EMP1469,James Simon,Female,52,Finance,Finance Manager,Nakuru,7.3,97546,Meets Expectations,No,N/A,40
-EMP1470,Joseph Mays,Female,55,Finance,Finance Manager,Kisumu,9.8,122509,Meets Expectations,No,N/A,23
-EMP1471,Jeremy Thomas,Female,48,Marketing,Marketing Specialist,Nairobi,4.3,99869,Meets Expectations,No,N/A,38
-EMP1472,Sara Williams,Male,53,Human Resources,HR Manager,Nairobi,14.2,129964,Exceeds Expectations,No,N/A,39
-EMP1473,Michael Rogers,Female,34,Finance,Finance Manager,Nakuru,5.6,99494,Outstanding,No,N/A,20
-EMP1474,Christine Ward,Male,49,Finance,Finance Manager,Kisumu,9.6,131016,Exceeds Expectations,No,N/A,15
-EMP1475,Kevin Dickson,Male,40,Human Resources,HR Manager,Kisumu,2.1,96771,Outstanding,No,N/A,24
-EMP1476,Bryce Kirby,Male,31,Finance,Financial Analyst,Mombasa,1.0,127005,Exceeds Expectations,No,N/A,12
-EMP1477,Jennifer Stuart,Non-binary,50,Sales,Account Executive,Mombasa,11.0,96250,Meets Expectations,No,N/A,35
-EMP1478,Connie Chapman,Female,51,Engineering,Engineering Manager,Nairobi,10.6,170174,Meets Expectations,No,N/A,29
-EMP1479,Jasmine Thomas,Male,56,Sales,Sales Manager,Nakuru,7.3,128490,Needs Improvement,No,N/A,19
-EMP1480,Carl Reese,Female,50,Engineering,Senior Engineer,Nakuru,4.1,146781,Needs Improvement,No,N/A,34
-EMP1481,Andrew Rodriguez,Female,41,Sales,Business Development Rep,Nairobi,14.1,141230,Needs Improvement,No,N/A,23
-EMP1482,Ruth Bowman,Male,45,Operations,Operations Associate,Nairobi,13.4,99410,Outstanding,No,N/A,21
-EMP1483,Jon Gordon,Non-binary,29,Sales,Account Executive,Nairobi,3.5,106384,Outstanding,No,N/A,13
-EMP1484,Kathy Roberson,Female,27,Human Resources,HR Specialist,Kisumu,1.9,106638,Needs Improvement,Yes,Involuntary,26
-EMP1485,Gabriel Lewis,Non-binary,31,Engineering,Senior Engineer,Nakuru,7.2,121356,Exceeds Expectations,No,N/A,16
-EMP1486,Matthew Tran,Male,46,Sales,Sales Manager,Nairobi,5.7,107000,Outstanding,No,N/A,35
-EMP1487,Jeffrey Bush,Male,58,Marketing,Growth Manager,Nakuru,3.2,85215,Meets Expectations,No,N/A,37
-EMP1488,Crystal Mathews,Male,50,Marketing,SEO Analyst,Kisumu,4.8,97795,Outstanding,Yes,Voluntary,27
-EMP1489,Denise Mills,Non-binary,37,Engineering,QA Analyst,Mombasa,5.2,135588,Outstanding,Yes,Voluntary,22
-EMP1490,Kevin Johnson,Female,48,Engineering,Software Engineer,Nairobi,9.8,115389,Meets Expectations,No,N/A,16
-EMP1491,Julie Dalton,Male,53,Engineering,QA Analyst,Nakuru,3.3,130954,Exceeds Expectations,No,N/A,27
-EMP1492,Frederick Gonzalez,Male,60,Engineering,Senior Engineer,Nakuru,10.9,176524,Needs Improvement,No,N/A,7
-EMP1493,Craig Fischer,Female,57,Human Resources,HR Manager,Nairobi,11.3,125313,Exceeds Expectations,No,N/A,8
-EMP1494,Teresa Williams,Female,26,Finance,Financial Analyst,Nairobi,4.8,123159,Outstanding,No,N/A,19
-EMP1495,Michelle Morrison,Non-binary,33,Finance,Finance Manager,Nairobi,6.9,130629,Exceeds Expectations,No,N/A,31
-EMP1496,Spencer Oneal,Male,32,Finance,Finance Manager,Kisumu,8.8,129506,Outstanding,No,N/A,39
-EMP1497,Mrs. Mary Williams,Female,45,Operations,Operations Manager,Kisumu,6.5,97803,Meets Expectations,No,N/A,20
-EMP1498,Jessica Harris,Female,50,Human Resources,HR Specialist,Nairobi,7.0,121733,Needs Improvement,No,N/A,4
-EMP1499,Brandy Berger,Female,36,Marketing,Marketing Specialist,Kisumu,3.6,117117,Meets Expectations,No,N/A,6
+EMP1000,Mulwa Mohamed,Non-binary,29,Marketing,Marketing Specialist,Mombasa,0.7,72447,Needs Improvement,No,N/A,38
+EMP1001,Benard Omar,Male,59,Engineering,Software Engineer,Mombasa,6.6,129251,Needs Improvement,No,N/A,38
+EMP1002,Munene Gitau,Female,36,Marketing,Marketing Specialist,Mombasa,7.0,115010,Exceeds Expectations,No,N/A,25
+EMP1003,Alice Njoroge,Male,27,Marketing,Growth Manager,Kisumu,2.6,109242,Outstanding,No,N/A,11
+EMP1004,Irine Nkatha,Female,27,Operations,Operations Manager,Mombasa,3.5,94342,Needs Improvement,No,N/A,18
+EMP1005,Elizabeth Awuor,Female,27,Engineering,QA Analyst,Kisumu,5.2,141645,Exceeds Expectations,No,N/A,17
+EMP1006,Kimani Akinyi,Non-binary,39,Operations,Operations Associate,Mombasa,10.7,105183,Meets Expectations,No,N/A,21
+EMP1007,Hussein Mohamed,Non-binary,57,Marketing,Marketing Specialist,Mombasa,3.7,112696,Exceeds Expectations,No,N/A,21
+EMP1008,Brian Kanyi,Male,35,Finance,Finance Manager,Mombasa,12.8,145360,Outstanding,No,N/A,33
+EMP1009,Kelvin Charo,Male,38,Operations,Operations Manager,Nakuru,2.5,99958,Outstanding,No,N/A,18
+EMP1010,Njiru Omolo,Male,54,Engineering,Software Engineer,Mombasa,7.7,160426,Outstanding,No,N/A,28
+EMP1011,Peter Wekesa,Non-binary,51,Finance,Financial Analyst,Nairobi,8.2,135357,Exceeds Expectations,No,N/A,11
+EMP1012,Nicholas Wangari,Female,49,Engineering,Engineering Manager,Mombasa,2.8,139553,Needs Improvement,No,N/A,23
+EMP1013,Dorcas Mutugi,Non-binary,54,Sales,Sales Manager,Mombasa,9.3,118758,Needs Improvement,No,N/A,5
+EMP1014,Florence Wambui,Male,45,Marketing,Marketing Specialist,Nairobi,13.2,108561,Needs Improvement,No,N/A,8
+EMP1015,Evans Omondi,Non-binary,30,Human Resources,HR Specialist,Kisumu,1.6,87745,Outstanding,No,N/A,38
+EMP1016,Salim Wanje,Non-binary,34,Human Resources,HR Manager,Nakuru,9.4,123982,Outstanding,No,N/A,8
+EMP1017,Isaiah Chepkwony,Female,23,Sales,Business Development Rep,Mombasa,1.4,71866,Needs Improvement,Yes,Involuntary,8
+EMP1018,Odhiambo Wairimu,Male,43,Sales,Sales Manager,Nakuru,1.5,82676,Meets Expectations,No,N/A,40
+EMP1019,Njeri Kamau,Non-binary,52,Human Resources,HR Manager,Mombasa,4.0,74244,Outstanding,No,N/A,31
+EMP1020,Elizabeth Simiyu,Female,51,Engineering,Software Engineer,Nairobi,13.0,157488,Exceeds Expectations,Yes,Voluntary,19
+EMP1021,Kelvin Mohamed,Male,34,Sales,Sales Manager,Mombasa,7.2,100205,Meets Expectations,Yes,Voluntary,32
+EMP1022,Ochieng Kajuju,Non-binary,28,Finance,Financial Analyst,Nairobi,0.8,130802,Meets Expectations,No,N/A,30
+EMP1023,Mercy Nekesa,Female,52,Human Resources,HR Specialist,Mombasa,3.6,86053,Outstanding,No,N/A,33
+EMP1024,Stanley Wambui,Female,49,Operations,Operations Manager,Mombasa,10.6,90475,Meets Expectations,No,N/A,38
+EMP1025,Harriet Nyaga,Male,42,Finance,Finance Manager,Mombasa,1.3,82492,Needs Improvement,Yes,Involuntary,8
+EMP1026,Mercy Simon,Non-binary,26,Sales,Sales Manager,Nairobi,3.5,124771,Meets Expectations,No,N/A,6
+EMP1027,Benjamin Kiplagat,Non-binary,27,Finance,Finance Manager,Kisumu,2.8,94642,Exceeds Expectations,Yes,Voluntary,20
+EMP1028,Susan Wambui,Female,30,Marketing,Growth Manager,Kisumu,6.2,124092,Needs Improvement,No,N/A,40
+EMP1029,Caroline Murithi,Male,26,Finance,Finance Manager,Mombasa,2.9,136445,Needs Improvement,No,N/A,27
+EMP1030,Nicholus Maina,Female,32,Finance,Finance Manager,Nairobi,5.1,126818,Exceeds Expectations,Yes,Voluntary,12
+EMP1031,Millicent Chepkurui,Female,29,Operations,Operations Associate,Kisumu,7.2,85833,Meets Expectations,No,N/A,20
+EMP1032,Linus Auma,Non-binary,53,Engineering,Software Engineer,Nakuru,4.1,165963,Needs Improvement,No,N/A,12
+EMP1033,Mary Ruto,Non-binary,38,Human Resources,HR Manager,Nairobi,2.8,72034,Meets Expectations,No,N/A,6
+EMP1034,Deborah Njenga,Female,59,Human Resources,HR Specialist,Nairobi,8.5,95121,Needs Improvement,Yes,Involuntary,19
+EMP1035,Silas Kimeu,Non-binary,28,Finance,Finance Manager,Mombasa,2.8,135768,Meets Expectations,No,N/A,15
+EMP1036,Florence Mutuku,Female,23,Marketing,Growth Manager,Mombasa,0.8,78806,Needs Improvement,Yes,Involuntary,6
+EMP1037,Karimi Wanyama,Female,36,Human Resources,HR Manager,Kisumu,3.4,105424,Meets Expectations,No,N/A,5
+EMP1038,Caroline Kilonzo,Non-binary,34,Marketing,Marketing Specialist,Kisumu,5.5,94605,Outstanding,No,N/A,25
+EMP1039,Alex Nyaga,Male,29,Marketing,Marketing Specialist,Kisumu,7.1,83586,Outstanding,No,N/A,24
+EMP1040,Austine Abdow,Female,60,Engineering,QA Analyst,Mombasa,14.8,151340,Outstanding,No,N/A,16
+EMP1041,Dennis Ouko,Female,49,Operations,Operations Manager,Kisumu,1.5,87612,Needs Improvement,No,N/A,23
+EMP1042,Antony Ndegwa,Non-binary,41,Marketing,Growth Manager,Kisumu,10.2,116111,Meets Expectations,No,N/A,15
+EMP1043,Judy Hassan,Non-binary,58,Finance,Financial Analyst,Kisumu,4.9,104604,Outstanding,No,N/A,24
+EMP1044,Wanjiru Hassan,Female,50,Sales,Business Development Rep,Nakuru,6.9,125730,Meets Expectations,No,N/A,36
+EMP1045,Deborah Kipchumba,Non-binary,43,Sales,Business Development Rep,Kisumu,1.9,84206,Meets Expectations,Yes,Voluntary,5
+EMP1046,Nancy Mwangi,Male,37,Finance,Financial Analyst,Nakuru,14.8,136623,Meets Expectations,No,N/A,35
+EMP1047,Philip Kimani,Female,37,Operations,Operations Associate,Nairobi,2.6,95193,Meets Expectations,No,N/A,37
+EMP1048,Anthony Kemboi,Female,25,Engineering,QA Analyst,Mombasa,2.5,159951,Exceeds Expectations,No,N/A,32
+EMP1049,Collins Ismail,Non-binary,54,Finance,Finance Manager,Mombasa,6.7,135138,Outstanding,No,N/A,19
+EMP1050,Sam Saitoti,Non-binary,39,Finance,Finance Manager,Mombasa,11.6,120652,Needs Improvement,Yes,Involuntary,21
+EMP1051,Ken Abdullahi,Female,42,Engineering,Senior Engineer,Mombasa,13.4,146150,Meets Expectations,Yes,Voluntary,30
+EMP1052,Wanjala Karanja,Female,43,Human Resources,HR Specialist,Mombasa,8.4,118480,Outstanding,No,N/A,5
+EMP1053,Sheila Juma,Non-binary,46,Marketing,Growth Manager,Nakuru,7.4,123465,Outstanding,No,N/A,38
+EMP1054,Elias Mwangi,Non-binary,36,Marketing,Growth Manager,Nakuru,7.6,84393,Exceeds Expectations,No,N/A,14
+EMP1055,Celestine Kiema,Female,30,Finance,Financial Analyst,Nakuru,8.8,131737,Needs Improvement,No,N/A,12
+EMP1056,Clinton Korir,Female,33,Human Resources,HR Manager,Mombasa,1.1,83211,Exceeds Expectations,No,N/A,28
+EMP1057,Elijah Wanjiku,Female,48,Engineering,QA Analyst,Nairobi,4.2,160429,Needs Improvement,Yes,Involuntary,18
+EMP1058,Abdalla Philip,Non-binary,26,Operations,Operations Associate,Nairobi,4.0,105883,Meets Expectations,No,N/A,13
+EMP1059,Mwangi Mohamed,Male,30,Engineering,Senior Engineer,Nakuru,4.5,157611,Exceeds Expectations,No,N/A,11
+EMP1060,Jerotich Mwangi,Male,41,Engineering,Engineering Manager,Nakuru,2.1,129809,Meets Expectations,No,N/A,19
+EMP1061,Alice Orina,Male,41,Finance,Financial Analyst,Nairobi,12.8,127790,Outstanding,No,N/A,36
+EMP1062,Omari Dahir,Non-binary,43,Human Resources,HR Manager,Nairobi,0.7,81258,Exceeds Expectations,No,N/A,33
+EMP1063,Grace Musyoki,Non-binary,31,Operations,Operations Manager,Nakuru,4.6,87024,Exceeds Expectations,No,N/A,9
+EMP1064,Caleb Jemutai,Female,50,Human Resources,HR Manager,Kisumu,4.0,71291,Exceeds Expectations,Yes,Voluntary,35
+EMP1065,Reuben Wanjiku,Male,44,Marketing,Growth Manager,Kisumu,12.1,120927,Meets Expectations,No,N/A,30
+EMP1066,Kyalo Chepngetich,Female,57,Operations,Operations Manager,Nakuru,11.5,103573,Needs Improvement,No,N/A,29
+EMP1067,Khadija Makori,Non-binary,37,Finance,Finance Manager,Nakuru,4.9,119797,Exceeds Expectations,No,N/A,39
+EMP1068,Joan Kimutai,Female,44,Marketing,Growth Manager,Kisumu,10.7,101815,Meets Expectations,No,N/A,38
+EMP1069,Mwangi Too,Non-binary,33,Operations,Operations Manager,Kisumu,2.7,93182,Exceeds Expectations,No,N/A,16
+EMP1070,Joan Mwadime,Female,36,Marketing,Marketing Specialist,Mombasa,5.7,91416,Needs Improvement,No,N/A,12
+EMP1071,Lilian Ngari,Non-binary,53,Engineering,Engineering Manager,Nakuru,2.0,135467,Exceeds Expectations,No,N/A,7
+EMP1072,Sharon Chepkwony,Female,52,Engineering,QA Analyst,Nakuru,2.2,106833,Needs Improvement,Yes,Involuntary,13
+EMP1073,Belinda Njoki,Non-binary,41,Sales,Account Executive,Nakuru,1.7,103172,Meets Expectations,No,N/A,37
+EMP1074,Wafula Kipyegon,Female,50,Marketing,SEO Analyst,Nakuru,13.7,112908,Needs Improvement,No,N/A,10
+EMP1075,Hassan Munyua,Male,35,Engineering,Senior Engineer,Mombasa,4.1,118764,Needs Improvement,Yes,Involuntary,32
+EMP1076,Jane Ali,Non-binary,60,Engineering,Senior Engineer,Kisumu,7.3,165150,Outstanding,No,N/A,20
+EMP1077,Dan Gichohi,Non-binary,59,Sales,Sales Manager,Nairobi,10.1,121022,Meets Expectations,Yes,Voluntary,8
+EMP1078,Erick Ngetich,Male,32,Finance,Finance Manager,Nakuru,8.8,105088,Exceeds Expectations,No,N/A,36
+EMP1079,Dancan Mutanu,Non-binary,53,Finance,Financial Analyst,Nakuru,6.8,134868,Exceeds Expectations,No,N/A,40
+EMP1080,Mary Bett,Non-binary,23,Operations,Operations Manager,Nairobi,2.0,93050,Meets Expectations,No,N/A,37
+EMP1081,Joseph Onyango,Non-binary,50,Sales,Business Development Rep,Nakuru,13.8,134874,Outstanding,No,N/A,26
+EMP1082,Emilly Otieno,Female,43,Engineering,Senior Engineer,Kisumu,5.2,138638,Outstanding,No,N/A,39
+EMP1083,Wilson Dahir,Male,51,Marketing,Growth Manager,Nairobi,1.8,115068,Outstanding,No,N/A,4
+EMP1084,Nduku Aluoch,Non-binary,56,Engineering,Senior Engineer,Kisumu,7.2,158829,Outstanding,No,N/A,7
+EMP1085,Moureen Musila,Male,39,Marketing,Growth Manager,Nakuru,8.5,91078,Meets Expectations,No,N/A,39
+EMP1086,Hamisi Ali,Male,57,Sales,Account Executive,Nakuru,6.4,132300,Meets Expectations,No,N/A,22
+EMP1087,Margaret Wangui,Non-binary,39,Human Resources,HR Manager,Mombasa,6.5,96805,Meets Expectations,No,N/A,36
+EMP1088,Jane Kariuki,Non-binary,30,Marketing,Growth Manager,Kisumu,7.8,128343,Exceeds Expectations,No,N/A,23
+EMP1089,Stellah Chepkurui,Non-binary,59,Human Resources,HR Specialist,Nakuru,15.0,121736,Exceeds Expectations,No,N/A,38
+EMP1090,Sheilah Mbuvi,Female,51,Sales,Business Development Rep,Mombasa,14.0,132161,Meets Expectations,No,N/A,6
+EMP1091,Isaiah Juma,Female,52,Human Resources,HR Manager,Mombasa,10.7,109039,Needs Improvement,No,N/A,25
+EMP1092,Mike Muchoki,Male,50,Human Resources,HR Specialist,Mombasa,1.9,83199,Meets Expectations,No,N/A,34
+EMP1093,Maureen Kitonga,Female,43,Human Resources,HR Specialist,Kisumu,9.5,122105,Outstanding,No,N/A,35
+EMP1094,Kioko Mutwiri,Non-binary,24,Sales,Business Development Rep,Kisumu,2.0,123868,Needs Improvement,No,N/A,10
+EMP1095,Judy Wanjala,Non-binary,28,Operations,Operations Manager,Nairobi,3.4,66431,Needs Improvement,Yes,Involuntary,26
+EMP1096,Naomi Mwangi,Female,49,Finance,Finance Manager,Mombasa,2.6,92189,Needs Improvement,No,N/A,28
+EMP1097,Mueni Hussein,Non-binary,37,Finance,Financial Analyst,Mombasa,7.7,121535,Exceeds Expectations,No,N/A,4
+EMP1098,Lewis Otieno,Female,40,Sales,Account Executive,Nakuru,10.3,141957,Exceeds Expectations,No,N/A,20
+EMP1099,David Gitonga,Female,41,Human Resources,HR Manager,Nairobi,3.4,79174,Exceeds Expectations,No,N/A,22
+EMP1100,Joseph Hussein,Non-binary,40,Operations,Operations Manager,Kisumu,0.8,58340,Needs Improvement,No,N/A,35
+EMP1101,Dominic Mutio,Female,36,Marketing,Marketing Specialist,Mombasa,9.3,117052,Meets Expectations,No,N/A,6
+EMP1102,Diana Adan,Female,50,Marketing,SEO Analyst,Mombasa,1.0,70826,Exceeds Expectations,No,N/A,30
+EMP1103,Ndegwa Wangui,Male,34,Finance,Finance Manager,Kisumu,2.2,128836,Exceeds Expectations,No,N/A,22
+EMP1104,Daisy Kibiwott,Non-binary,43,Human Resources,HR Specialist,Mombasa,12.2,124436,Meets Expectations,No,N/A,29
+EMP1105,Nyanchama Hamisi,Non-binary,45,Human Resources,HR Specialist,Kisumu,1.8,88645,Outstanding,No,N/A,20
+EMP1106,Valentine Macharia,Non-binary,46,Marketing,Marketing Specialist,Mombasa,12.4,117630,Exceeds Expectations,No,N/A,8
+EMP1107,Irene Mwikali,Non-binary,51,Marketing,SEO Analyst,Nakuru,13.7,103850,Needs Improvement,Yes,Involuntary,35
+EMP1108,Bonface Wanjiku,Male,28,Finance,Financial Analyst,Nakuru,2.0,106857,Outstanding,No,N/A,13
+EMP1109,Christopher Salim,Female,28,Finance,Finance Manager,Kisumu,5.9,92614,Exceeds Expectations,No,N/A,19
+EMP1110,William Kahindi,Female,28,Marketing,SEO Analyst,Kisumu,6.9,84156,Exceeds Expectations,No,N/A,33
+EMP1111,Gladys Ndirangu,Male,35,Finance,Financial Analyst,Nairobi,9.2,143847,Meets Expectations,No,N/A,40
+EMP1112,Ezekiel Odhiambo,Male,26,Finance,Financial Analyst,Mombasa,4.2,132844,Meets Expectations,No,N/A,4
+EMP1113,Everlyne Muasya,Female,31,Finance,Finance Manager,Mombasa,9.9,107015,Needs Improvement,No,N/A,19
+EMP1114,Nganga Njoroge,Non-binary,42,Marketing,Marketing Specialist,Mombasa,0.7,101352,Needs Improvement,No,N/A,8
+EMP1115,Mary Ouma,Female,50,Finance,Financial Analyst,Nakuru,11.8,134218,Needs Improvement,No,N/A,37
+EMP1116,Austine Kimanzi,Female,51,Engineering,Software Engineer,Nakuru,9.8,181505,Outstanding,No,N/A,32
+EMP1117,Achieng Nyaga,Male,27,Sales,Account Executive,Mombasa,2.3,87775,Exceeds Expectations,No,N/A,37
+EMP1118,Kipkemboi Kinyua,Female,51,Human Resources,HR Specialist,Nairobi,7.8,117875,Meets Expectations,No,N/A,30
+EMP1119,Kibet Ahmed,Female,51,Operations,Operations Associate,Kisumu,6.3,89674,Exceeds Expectations,No,N/A,34
+EMP1120,Simon Ochieng,Male,27,Engineering,QA Analyst,Nairobi,5.1,162360,Exceeds Expectations,No,N/A,7
+EMP1121,Hilda Muthoni,Non-binary,57,Operations,Operations Associate,Nakuru,8.6,92351,Outstanding,No,N/A,7
+EMP1122,David Charles,Female,60,Engineering,Senior Engineer,Mombasa,5.0,155785,Meets Expectations,No,N/A,39
+EMP1123,Michael Kaingu,Female,29,Finance,Financial Analyst,Nakuru,6.2,139673,Needs Improvement,No,N/A,21
+EMP1124,Samuel Wafula,Male,33,Marketing,Growth Manager,Kisumu,3.6,73293,Meets Expectations,No,N/A,29
+EMP1125,Cyrus Ndanu,Male,31,Engineering,Software Engineer,Mombasa,7.5,141835,Outstanding,No,N/A,23
+EMP1126,Daniel Juma,Non-binary,42,Finance,Financial Analyst,Nairobi,11.8,114368,Needs Improvement,No,N/A,32
+EMP1127,Kevin Nthenya,Non-binary,49,Human Resources,HR Manager,Kisumu,7.5,88450,Needs Improvement,Yes,Involuntary,22
+EMP1128,Gideon Odero,Non-binary,59,Operations,Operations Manager,Nairobi,7.6,84261,Needs Improvement,No,N/A,17
+EMP1129,Erick Sheikh,Male,38,Engineering,Software Engineer,Nakuru,4.7,161535,Meets Expectations,No,N/A,18
+EMP1130,Victor Mumbi,Non-binary,57,Marketing,Marketing Specialist,Nakuru,12.6,136864,Needs Improvement,No,N/A,8
+EMP1131,Wamalwa Rono,Female,58,Human Resources,HR Manager,Kisumu,6.7,81932,Needs Improvement,Yes,Involuntary,33
+EMP1132,Jacinta Francis,Non-binary,45,Engineering,Senior Engineer,Nakuru,1.8,142898,Needs Improvement,No,N/A,23
+EMP1133,Paul Wangari,Non-binary,43,Sales,Account Executive,Nairobi,3.7,104310,Meets Expectations,No,N/A,26
+EMP1134,Ibrahim Jeruto,Female,31,Sales,Sales Manager,Mombasa,2.7,83598,Meets Expectations,No,N/A,8
+EMP1135,Mary Karwitha,Male,53,Finance,Finance Manager,Kisumu,7.2,143262,Exceeds Expectations,No,N/A,34
+EMP1136,David Oloo,Female,41,Finance,Financial Analyst,Kisumu,12.0,134918,Exceeds Expectations,No,N/A,7
+EMP1137,Jepkemoi Oloo,Female,40,Engineering,QA Analyst,Nakuru,1.6,141783,Needs Improvement,No,N/A,40
+EMP1138,Naomi Chepngeno,Non-binary,34,Human Resources,HR Specialist,Nairobi,4.5,91523,Exceeds Expectations,Yes,Voluntary,36
+EMP1139,Eugene Mohamed,Non-binary,33,Operations,Operations Manager,Nakuru,1.0,80510,Meets Expectations,No,N/A,27
+EMP1140,Kemunto Kipchirchir,Female,46,Marketing,SEO Analyst,Nairobi,6.4,117882,Exceeds Expectations,No,N/A,39
+EMP1141,Fatuma Akoth,Non-binary,46,Operations,Operations Associate,Kisumu,4.6,70923,Meets Expectations,No,N/A,29
+EMP1142,Ibrahim Wabwire,Male,60,Engineering,Engineering Manager,Nakuru,10.8,169331,Exceeds Expectations,No,N/A,37
+EMP1143,Ivy Waswa,Male,49,Engineering,Engineering Manager,Kisumu,7.9,128728,Meets Expectations,No,N/A,35
+EMP1144,Joan Ali,Male,36,Sales,Account Executive,Kisumu,15.0,148565,Needs Improvement,No,N/A,37
+EMP1145,Ian Kitheka,Male,43,Finance,Financial Analyst,Nakuru,13.2,117792,Meets Expectations,No,N/A,14
+EMP1146,Njuguna Waruguru,Non-binary,50,Marketing,SEO Analyst,Mombasa,1.1,113290,Exceeds Expectations,No,N/A,32
+EMP1147,Chebet Chepchumba,Male,56,Human Resources,HR Specialist,Kisumu,4.0,100523,Outstanding,No,N/A,22
+EMP1148,Jennifer Munene,Female,54,Sales,Account Executive,Mombasa,8.1,132773,Needs Improvement,No,N/A,39
+EMP1149,Mary Onyango,Male,55,Marketing,Marketing Specialist,Mombasa,12.8,109093,Meets Expectations,Yes,Voluntary,18
+EMP1150,Brenda Ndiritu,Female,44,Human Resources,HR Specialist,Nakuru,14.0,117590,Meets Expectations,No,N/A,27
+EMP1151,Peter Kimani,Male,23,Engineering,Engineering Manager,Mombasa,1.0,108407,Exceeds Expectations,No,N/A,12
+EMP1152,Margaret Ngugi,Non-binary,52,Engineering,Software Engineer,Nairobi,7.0,131926,Meets Expectations,No,N/A,37
+EMP1153,Onesmus Ngugi,Female,29,Sales,Sales Manager,Nairobi,6.3,86185,Outstanding,No,N/A,33
+EMP1154,Samuel Odero,Male,29,Human Resources,HR Specialist,Mombasa,6.8,109334,Exceeds Expectations,No,N/A,26
+EMP1155,Josphine Kiilu,Male,58,Operations,Operations Associate,Kisumu,6.5,75092,Needs Improvement,No,N/A,6
+EMP1156,Milcah Simiyu,Non-binary,46,Marketing,SEO Analyst,Nairobi,14.7,117890,Needs Improvement,No,N/A,10
+EMP1157,Cynthia Akoth,Non-binary,43,Marketing,SEO Analyst,Kisumu,2.4,109048,Meets Expectations,No,N/A,33
+EMP1158,Christopher Mwangi,Non-binary,52,Sales,Account Executive,Nakuru,9.7,94136,Meets Expectations,No,N/A,6
+EMP1159,Michael Ochieng,Female,41,Finance,Finance Manager,Kisumu,8.0,98087,Meets Expectations,No,N/A,7
+EMP1160,Mark Cheptoo,Non-binary,43,Marketing,Growth Manager,Nakuru,4.5,110928,Outstanding,No,N/A,35
+EMP1161,Michael Chepngetich,Non-binary,53,Finance,Finance Manager,Nairobi,5.8,131943,Needs Improvement,Yes,Involuntary,38
+EMP1162,Wilson Kimani,Female,42,Marketing,SEO Analyst,Kisumu,2.0,83711,Outstanding,No,N/A,32
+EMP1163,Naomi Owino,Female,50,Marketing,SEO Analyst,Nakuru,1.1,79928,Needs Improvement,Yes,Involuntary,29
+EMP1164,Onyango Aluoch,Female,54,Operations,Operations Associate,Nairobi,12.1,92246,Outstanding,No,N/A,19
+EMP1165,Wanja Warui,Non-binary,45,Finance,Financial Analyst,Mombasa,5.8,129206,Exceeds Expectations,No,N/A,8
+EMP1166,Collins Maina,Non-binary,30,Human Resources,HR Manager,Kisumu,5.0,83732,Needs Improvement,Yes,Involuntary,35
+EMP1167,Ibrahim Nyaga,Non-binary,46,Engineering,Engineering Manager,Kisumu,13.7,180940,Meets Expectations,No,N/A,35
+EMP1168,Omondi Wanyama,Male,29,Engineering,QA Analyst,Mombasa,1.5,164454,Outstanding,No,N/A,24
+EMP1169,Paul Mwangi,Non-binary,44,Finance,Finance Manager,Kisumu,10.8,151527,Meets Expectations,No,N/A,18
+EMP1170,Ochieng Kibe,Male,34,Sales,Sales Manager,Nairobi,10.4,112405,Exceeds Expectations,No,N/A,12
+EMP1171,Josephine Wamalwa,Non-binary,27,Human Resources,HR Manager,Nakuru,0.9,96862,Needs Improvement,Yes,Involuntary,24
+EMP1172,Idris Kamau,Non-binary,26,Operations,Operations Manager,Mombasa,2.5,99124,Meets Expectations,No,N/A,12
+EMP1173,George Kiplangat,Female,54,Engineering,Software Engineer,Mombasa,13.7,152146,Meets Expectations,No,N/A,18
+EMP1174,Joyce Njeri,Female,55,Engineering,Engineering Manager,Mombasa,13.5,175474,Exceeds Expectations,No,N/A,38
+EMP1175,Linda Muriungi,Male,54,Finance,Financial Analyst,Mombasa,9.8,138047,Exceeds Expectations,No,N/A,6
+EMP1176,Dorcas Musembi,Male,27,Operations,Operations Manager,Mombasa,0.8,90212,Outstanding,No,N/A,5
+EMP1177,Betty Otieno,Female,56,Marketing,Growth Manager,Mombasa,4.7,114375,Outstanding,No,N/A,7
+EMP1178,Thomas Musyimi,Male,50,Human Resources,HR Specialist,Kisumu,6.5,103549,Exceeds Expectations,No,N/A,26
+EMP1179,Njuguna Rashid,Female,30,Finance,Financial Analyst,Kisumu,7.0,107279,Needs Improvement,No,N/A,13
+EMP1180,Janet Rop,Male,25,Human Resources,HR Manager,Mombasa,1.5,107070,Meets Expectations,No,N/A,40
+EMP1181,Margaret Ojiambo,Non-binary,42,Sales,Sales Manager,Nakuru,3.3,101686,Exceeds Expectations,No,N/A,5
+EMP1182,Bakari Koskei,Male,47,Sales,Account Executive,Kisumu,7.8,89981,Exceeds Expectations,No,N/A,34
+EMP1183,Alvin Joseph,Female,56,Engineering,QA Analyst,Mombasa,0.6,161036,Exceeds Expectations,No,N/A,29
+EMP1184,David Ng'ang'a,Female,24,Finance,Financial Analyst,Kisumu,1.5,111283,Needs Improvement,No,N/A,36
+EMP1185,Irungu Kiplagat,Female,57,Finance,Financial Analyst,Mombasa,4.6,143079,Outstanding,No,N/A,39
+EMP1186,Lucy Ndunge,Female,31,Finance,Finance Manager,Nairobi,2.4,84582,Meets Expectations,No,N/A,25
+EMP1187,Kerubo Kawira,Female,55,Finance,Financial Analyst,Kisumu,7.1,146838,Exceeds Expectations,No,N/A,23
+EMP1188,Nelson Musyoka,Non-binary,43,Finance,Finance Manager,Kisumu,7.9,122818,Needs Improvement,No,N/A,11
+EMP1189,Caren Onyango,Female,59,Operations,Operations Associate,Nakuru,5.0,79652,Meets Expectations,No,N/A,34
+EMP1190,Naomi Guyo,Male,55,Finance,Finance Manager,Mombasa,9.6,146834,Meets Expectations,No,N/A,11
+EMP1191,Simon Kendi,Male,23,Human Resources,HR Specialist,Nakuru,1.2,94072,Outstanding,No,N/A,34
+EMP1192,Ibrahim Mong'are,Non-binary,25,Finance,Financial Analyst,Kisumu,3.0,140393,Outstanding,No,N/A,28
+EMP1193,Moses Sifuna,Female,33,Finance,Finance Manager,Kisumu,5.8,129024,Exceeds Expectations,No,N/A,19
+EMP1194,Mercy Mohamed,Female,57,Marketing,Growth Manager,Mombasa,4.8,109131,Outstanding,No,N/A,39
+EMP1195,Salome Ahmed,Non-binary,39,Finance,Finance Manager,Nakuru,4.7,134397,Meets Expectations,No,N/A,9
+EMP1196,Philip Ouma,Female,50,Operations,Operations Manager,Mombasa,10.0,89486,Exceeds Expectations,No,N/A,21
+EMP1197,Purity Mohamed,Male,28,Finance,Financial Analyst,Mombasa,4.5,90143,Meets Expectations,Yes,Voluntary,10
+EMP1198,Jepkorir Kipkoech,Female,43,Engineering,Senior Engineer,Nairobi,10.9,192695,Meets Expectations,No,N/A,34
+EMP1199,Mungai Njuguna,Non-binary,34,Marketing,Growth Manager,Kisumu,9.9,119753,Needs Improvement,No,N/A,38
+EMP1200,Zacharia Awino,Non-binary,24,Sales,Sales Manager,Mombasa,2.8,122630,Needs Improvement,No,N/A,35
+EMP1201,Wanjala Mohamed,Male,40,Engineering,Engineering Manager,Nairobi,13.2,195848,Exceeds Expectations,No,N/A,38
+EMP1202,Harrison Chirchir,Non-binary,53,Sales,Business Development Rep,Nakuru,13.4,115414,Needs Improvement,No,N/A,33
+EMP1203,Esther Njuguna,Non-binary,38,Engineering,Engineering Manager,Kisumu,10.9,164130,Meets Expectations,No,N/A,29
+EMP1204,Daniel Tonui,Female,54,Human Resources,HR Specialist,Mombasa,5.3,117425,Outstanding,No,N/A,4
+EMP1205,Felister Salat,Female,46,Marketing,Growth Manager,Kisumu,3.9,101708,Needs Improvement,No,N/A,27
+EMP1206,Michael Juma,Non-binary,37,Engineering,QA Analyst,Kisumu,1.4,110999,Exceeds Expectations,No,N/A,11
+EMP1207,Wanjiku Kibiwot,Non-binary,40,Sales,Account Executive,Mombasa,5.8,106887,Outstanding,No,N/A,27
+EMP1208,Mohammed Mwangi,Female,57,Finance,Financial Analyst,Mombasa,13.7,149029,Needs Improvement,No,N/A,27
+EMP1209,Sheilah Omondi,Male,58,Finance,Financial Analyst,Mombasa,2.1,90628,Outstanding,Yes,Voluntary,17
+EMP1210,Joseph Njeru,Non-binary,59,Finance,Finance Manager,Nairobi,7.6,120845,Outstanding,No,N/A,39
+EMP1211,Kelvin Ndambuki,Female,41,Human Resources,HR Manager,Nairobi,11.0,121061,Needs Improvement,No,N/A,8
+EMP1212,Wilson Salim,Non-binary,25,Engineering,QA Analyst,Nairobi,3.8,126170,Meets Expectations,No,N/A,12
+EMP1213,Mutisya Ouma,Non-binary,48,Human Resources,HR Manager,Nakuru,5.9,91654,Meets Expectations,No,N/A,11
+EMP1214,Kariuki Atieno,Male,56,Sales,Business Development Rep,Mombasa,6.2,126075,Needs Improvement,No,N/A,38
+EMP1215,Otieno John,Female,56,Sales,Account Executive,Nakuru,6.0,100654,Exceeds Expectations,No,N/A,11
+EMP1216,John Bii,Male,48,Engineering,Senior Engineer,Mombasa,9.4,124344,Needs Improvement,No,N/A,7
+EMP1217,Sarah Ndambuki,Male,24,Sales,Business Development Rep,Mombasa,1.5,110223,Needs Improvement,Yes,Involuntary,36
+EMP1218,Maina Omar,Female,36,Operations,Operations Manager,Kisumu,12.3,96699,Meets Expectations,No,N/A,18
+EMP1219,Carren Said,Female,41,Finance,Financial Analyst,Nakuru,4.5,118933,Needs Improvement,No,N/A,28
+EMP1220,Anne Maina,Non-binary,42,Human Resources,HR Specialist,Kisumu,10.6,103440,Outstanding,No,N/A,23
+EMP1221,Joseph Naliaka,Non-binary,31,Engineering,QA Analyst,Nakuru,8.2,156624,Meets Expectations,No,N/A,17
+EMP1222,Moses Hussein,Female,27,Marketing,Marketing Specialist,Mombasa,5.6,80473,Outstanding,No,N/A,6
+EMP1223,Edward Maina,Male,34,Finance,Financial Analyst,Nakuru,10.6,114406,Exceeds Expectations,No,N/A,17
+EMP1224,Bernard Chacha,Male,29,Human Resources,HR Specialist,Mombasa,6.1,93098,Meets Expectations,No,N/A,22
+EMP1225,Stella Ahmed,Female,51,Marketing,Growth Manager,Kisumu,8.2,101762,Outstanding,No,N/A,34
+EMP1226,Denis Nyale,Female,35,Human Resources,HR Specialist,Mombasa,5.5,107106,Needs Improvement,No,N/A,30
+EMP1227,Joseph Anyango,Female,31,Sales,Sales Manager,Mombasa,2.4,99464,Exceeds Expectations,No,N/A,35
+EMP1228,Jesse Owino,Non-binary,53,Operations,Operations Manager,Mombasa,7.2,79878,Outstanding,No,N/A,7
+EMP1229,Augustine Korir,Non-binary,24,Engineering,Software Engineer,Nairobi,2.6,132192,Meets Expectations,No,N/A,13
+EMP1230,Alphonce Njoroge,Male,35,Marketing,Marketing Specialist,Nakuru,7.3,113895,Needs Improvement,No,N/A,30
+EMP1231,Martin Kimutai,Male,23,Marketing,SEO Analyst,Kisumu,1.3,68072,Outstanding,Yes,Voluntary,10
+EMP1232,Benard David,Male,55,Sales,Business Development Rep,Kisumu,2.7,116325,Exceeds Expectations,No,N/A,9
+EMP1233,Dorothy Odinga,Female,47,Sales,Business Development Rep,Mombasa,7.2,101298,Needs Improvement,No,N/A,6
+EMP1234,Reuben Musili,Male,47,Finance,Finance Manager,Nairobi,6.0,127294,Meets Expectations,No,N/A,25
+EMP1235,Ruth Wanyama,Non-binary,28,Engineering,Senior Engineer,Mombasa,6.3,176641,Outstanding,No,N/A,21
+EMP1236,Gitonga Awuor,Non-binary,58,Sales,Sales Manager,Nairobi,10.0,142034,Meets Expectations,No,N/A,29
+EMP1237,Esther Ochieng,Male,41,Sales,Business Development Rep,Nakuru,2.9,109778,Exceeds Expectations,No,N/A,12
+EMP1238,Kiplangat Orwa,Non-binary,27,Marketing,Marketing Specialist,Nairobi,3.3,93230,Needs Improvement,No,N/A,29
+EMP1239,Stephen Mogeni,Female,23,Human Resources,HR Manager,Mombasa,1.5,79761,Outstanding,No,N/A,15
+EMP1240,Betty Waweru,Non-binary,59,Engineering,Engineering Manager,Mombasa,10.1,172593,Needs Improvement,No,N/A,13
+EMP1241,Samuel Kiprop,Non-binary,46,Engineering,Software Engineer,Nairobi,5.1,176643,Outstanding,No,N/A,10
+EMP1242,Esther Akinyi,Male,27,Human Resources,HR Manager,Nairobi,1.5,64931,Exceeds Expectations,No,N/A,9
+EMP1243,Otieno Githinji,Non-binary,60,Human Resources,HR Specialist,Kisumu,11.9,108371,Needs Improvement,No,N/A,19
+EMP1244,Robert Mageto,Non-binary,55,Human Resources,HR Specialist,Mombasa,3.0,79601,Exceeds Expectations,No,N/A,13
+EMP1245,Amina Maina,Male,32,Human Resources,HR Manager,Nakuru,5.1,107969,Exceeds Expectations,No,N/A,35
+EMP1246,Peris Achieng,Non-binary,34,Sales,Sales Manager,Nairobi,6.2,131889,Exceeds Expectations,No,N/A,25
+EMP1247,Shadrack Ngetich,Female,43,Operations,Operations Associate,Kisumu,6.7,86217,Meets Expectations,No,N/A,29
+EMP1248,Osman Cheruiyot,Female,40,Operations,Operations Manager,Mombasa,11.2,97687,Exceeds Expectations,No,N/A,27
+EMP1249,Jared Maina,Male,58,Finance,Financial Analyst,Nairobi,3.4,138821,Outstanding,No,N/A,17
+EMP1250,Benard Kimutai,Female,40,Engineering,QA Analyst,Nakuru,12.6,137520,Exceeds Expectations,No,N/A,13
+EMP1251,Hafsa Wesonga,Non-binary,49,Engineering,QA Analyst,Nakuru,11.9,167671,Outstanding,No,N/A,38
+EMP1252,Carolyne Mutuku,Non-binary,27,Sales,Business Development Rep,Kisumu,1.1,79233,Needs Improvement,No,N/A,29
+EMP1253,Mohammed Kioko,Female,49,Engineering,Engineering Manager,Mombasa,2.0,137768,Meets Expectations,No,N/A,27
+EMP1254,Faith Mwiti,Female,51,Finance,Financial Analyst,Kisumu,11.7,162119,Outstanding,No,N/A,9
+EMP1255,Joram Gitonga,Male,31,Marketing,Growth Manager,Mombasa,3.8,98513,Exceeds Expectations,No,N/A,10
+EMP1256,Erick Minayo,Female,50,Marketing,Marketing Specialist,Nairobi,5.1,77834,Exceeds Expectations,No,N/A,14
+EMP1257,Wambua Kipkirui,Non-binary,37,Finance,Financial Analyst,Kisumu,8.0,127911,Outstanding,No,N/A,15
+EMP1258,Michael Wanyonyi,Male,49,Operations,Operations Associate,Nakuru,6.2,96372,Outstanding,No,N/A,17
+EMP1259,Mutua Ntinyari,Female,26,Finance,Financial Analyst,Kisumu,3.1,102331,Outstanding,No,N/A,20
+EMP1260,Esther Onyango,Non-binary,53,Operations,Operations Manager,Nakuru,8.2,102174,Needs Improvement,No,N/A,15
+EMP1261,Damaris Waswa,Non-binary,41,Finance,Financial Analyst,Mombasa,13.8,128351,Meets Expectations,No,N/A,27
+EMP1262,Patrick Karambu,Non-binary,31,Human Resources,HR Specialist,Nakuru,5.4,92536,Outstanding,No,N/A,15
+EMP1263,Viola Langat,Non-binary,32,Sales,Account Executive,Kisumu,5.6,124941,Needs Improvement,Yes,Involuntary,35
+EMP1264,Kipngetich Auma,Male,34,Finance,Finance Manager,Nakuru,10.7,141777,Outstanding,No,N/A,35
+EMP1265,Peter Akinyi,Male,27,Sales,Sales Manager,Nairobi,3.6,91017,Exceeds Expectations,No,N/A,33
+EMP1266,Edwin Owuor,Non-binary,53,Engineering,Software Engineer,Kisumu,8.5,173058,Exceeds Expectations,No,N/A,6
+EMP1267,Stephen Rono,Non-binary,50,Human Resources,HR Specialist,Mombasa,8.4,94396,Needs Improvement,No,N/A,9
+EMP1268,Juma Okoth,Female,29,Sales,Account Executive,Kisumu,6.3,127663,Outstanding,No,N/A,17
+EMP1269,Martin Kipkorir,Male,25,Finance,Finance Manager,Mombasa,2.5,100698,Exceeds Expectations,No,N/A,40
+EMP1270,Albert Kazungu,Female,54,Operations,Operations Associate,Mombasa,14.8,133436,Outstanding,No,N/A,12
+EMP1271,Margret Kadzo,Non-binary,30,Operations,Operations Manager,Mombasa,2.6,94481,Outstanding,No,N/A,13
+EMP1272,Wambui Stephen,Non-binary,39,Human Resources,HR Manager,Nairobi,9.6,112513,Needs Improvement,No,N/A,21
+EMP1273,Wangari Githaiga,Non-binary,45,Human Resources,HR Manager,Nairobi,7.1,116850,Needs Improvement,No,N/A,26
+EMP1274,Amina Mutiso,Male,56,Human Resources,HR Specialist,Nakuru,6.3,87834,Exceeds Expectations,No,N/A,12
+EMP1275,Willy Mutuku,Non-binary,53,Operations,Operations Associate,Nairobi,11.9,89932,Outstanding,No,N/A,32
+EMP1276,Mohamed Ochieng,Female,22,Human Resources,HR Specialist,Mombasa,1.0,102196,Exceeds Expectations,No,N/A,21
+EMP1277,Hassan Joshua,Male,45,Marketing,SEO Analyst,Mombasa,4.1,76735,Exceeds Expectations,No,N/A,18
+EMP1278,Ibrahim Kimtai,Female,27,Engineering,Senior Engineer,Nakuru,4.4,112611,Meets Expectations,No,N/A,4
+EMP1279,Beryl Barasa,Male,43,Human Resources,HR Specialist,Nakuru,12.3,93937,Outstanding,No,N/A,10
+EMP1280,Erick Wangari,Female,45,Sales,Sales Manager,Mombasa,13.3,133970,Meets Expectations,No,N/A,4
+EMP1281,Ruth Wanja,Non-binary,32,Operations,Operations Associate,Mombasa,5.1,107385,Outstanding,Yes,Voluntary,10
+EMP1282,Abdalla Wangari,Male,29,Human Resources,HR Manager,Nakuru,4.9,86402,Meets Expectations,No,N/A,9
+EMP1283,Evance Wekesa,Male,57,Operations,Operations Manager,Nairobi,9.2,114611,Exceeds Expectations,No,N/A,36
+EMP1284,William Mwangi,Male,47,Engineering,Senior Engineer,Nakuru,4.8,135783,Meets Expectations,No,N/A,8
+EMP1285,David Juma,Non-binary,22,Marketing,Marketing Specialist,Nakuru,1.0,107819,Outstanding,No,N/A,38
+EMP1286,Abdi Ali,Non-binary,33,Engineering,Software Engineer,Nairobi,9.3,120243,Meets Expectations,No,N/A,29
+EMP1287,Kevin Nyaga,Non-binary,40,Finance,Finance Manager,Nakuru,9.6,140003,Needs Improvement,No,N/A,13
+EMP1288,Stephen Cherono,Female,27,Finance,Financial Analyst,Mombasa,2.2,112074,Outstanding,No,N/A,8
+EMP1289,Silvester Ondieki,Female,49,Sales,Account Executive,Mombasa,11.1,100146,Outstanding,No,N/A,7
+EMP1290,Peter Kiiru,Female,33,Operations,Operations Associate,Nairobi,1.9,67630,Exceeds Expectations,No,N/A,37
+EMP1291,Owino Abdullahi,Non-binary,38,Sales,Business Development Rep,Kisumu,2.9,112629,Needs Improvement,No,N/A,5
+EMP1292,Timothy Kung'u,Female,49,Engineering,Engineering Manager,Nairobi,4.4,142722,Exceeds Expectations,No,N/A,14
+EMP1293,Tabitha Peter,Female,32,Engineering,Software Engineer,Mombasa,3.2,157336,Needs Improvement,Yes,Involuntary,4
+EMP1294,Kwamboka Kiplangat,Male,24,Human Resources,HR Specialist,Mombasa,1.7,106152,Needs Improvement,No,N/A,30
+EMP1295,Kilonzo Cheruiyot,Male,42,Operations,Operations Manager,Kisumu,4.1,100941,Exceeds Expectations,No,N/A,7
+EMP1296,Michael Mwanzia,Male,36,Engineering,QA Analyst,Nairobi,12.2,189643,Exceeds Expectations,No,N/A,24
+EMP1297,Christine Wekesa,Male,57,Marketing,Marketing Specialist,Kisumu,7.1,108812,Exceeds Expectations,No,N/A,33
+EMP1298,Cyrus Kamau,Female,59,Sales,Business Development Rep,Mombasa,14.6,112178,Outstanding,No,N/A,26
+EMP1299,Mary Oduor,Non-binary,22,Engineering,QA Analyst,Kisumu,1.0,105984,Meets Expectations,No,N/A,35
+EMP1300,Moraa Rono,Male,31,Engineering,Software Engineer,Mombasa,7.3,178854,Outstanding,No,N/A,33
+EMP1301,Wycliffe Wekesa,Non-binary,27,Finance,Financial Analyst,Nakuru,3.7,89515,Needs Improvement,Yes,Involuntary,12
+EMP1302,Amos Were,Male,40,Marketing,Growth Manager,Kisumu,4.3,90016,Exceeds Expectations,No,N/A,12
+EMP1303,John Koskei,Non-binary,28,Sales,Sales Manager,Nakuru,1.5,87765,Needs Improvement,No,N/A,26
+EMP1304,Ahmed Achieng,Male,50,Marketing,Marketing Specialist,Nairobi,5.0,84065,Exceeds Expectations,No,N/A,6
+EMP1305,Sifuna Masai,Male,42,Operations,Operations Associate,Kisumu,2.7,79392,Needs Improvement,No,N/A,23
+EMP1306,Evalyne Kibet,Female,33,Human Resources,HR Manager,Mombasa,0.9,66512,Needs Improvement,Yes,Involuntary,11
+EMP1307,Clement Nyabuto,Male,25,Sales,Account Executive,Mombasa,3.4,118507,Exceeds Expectations,No,N/A,9
+EMP1308,Samuel Mwenda,Non-binary,59,Engineering,Software Engineer,Nairobi,4.3,120988,Outstanding,Yes,Voluntary,25
+EMP1309,Benson Gichohi,Male,24,Engineering,Senior Engineer,Nakuru,2.9,162411,Outstanding,No,N/A,5
+EMP1310,Margaret Mumbi,Female,49,Sales,Account Executive,Kisumu,3.0,89772,Meets Expectations,No,N/A,19
+EMP1311,Simon Ibrahim,Non-binary,40,Finance,Finance Manager,Nairobi,7.7,100250,Outstanding,No,N/A,37
+EMP1312,Reuben Chepngetich,Male,56,Human Resources,HR Manager,Nakuru,12.0,114503,Outstanding,No,N/A,36
+EMP1313,Muriuki Chepngetich,Female,46,Engineering,Engineering Manager,Mombasa,4.4,109109,Exceeds Expectations,No,N/A,37
+EMP1314,Ndung'u Adan,Female,59,Sales,Account Executive,Mombasa,15.0,139000,Exceeds Expectations,No,N/A,7
+EMP1315,Peter Chepkorir,Male,58,Human Resources,HR Manager,Mombasa,12.8,99924,Exceeds Expectations,No,N/A,26
+EMP1316,Nicholas Ngugi,Non-binary,23,Marketing,SEO Analyst,Mombasa,1.6,95029,Meets Expectations,No,N/A,38
+EMP1317,David Njeru,Female,33,Engineering,Software Engineer,Mombasa,6.1,154569,Needs Improvement,Yes,Involuntary,25
+EMP1318,Edna Macharia,Non-binary,34,Marketing,SEO Analyst,Mombasa,10.6,134601,Exceeds Expectations,No,N/A,13
+EMP1319,Collins Muktar,Male,55,Engineering,Engineering Manager,Nakuru,13.0,170693,Exceeds Expectations,No,N/A,14
+EMP1320,Brian Karanja,Non-binary,49,Human Resources,HR Manager,Mombasa,12.0,121823,Exceeds Expectations,No,N/A,15
+EMP1321,Wambui Barasa,Female,41,Marketing,Marketing Specialist,Mombasa,11.1,126733,Outstanding,No,N/A,40
+EMP1322,Alice Mauti,Male,33,Finance,Financial Analyst,Nairobi,7.4,147891,Meets Expectations,No,N/A,19
+EMP1323,Pamela Koech,Female,42,Engineering,Engineering Manager,Nakuru,2.9,104070,Meets Expectations,Yes,Voluntary,8
+EMP1324,Ernest Anyona,Female,38,Operations,Operations Associate,Nairobi,11.9,101959,Outstanding,No,N/A,35
+EMP1325,Elijah Kinuthia,Female,44,Engineering,QA Analyst,Mombasa,8.4,128711,Needs Improvement,Yes,Involuntary,22
+EMP1326,Kariuki Waithira,Male,42,Engineering,Software Engineer,Kisumu,4.3,118997,Outstanding,Yes,Voluntary,39
+EMP1327,William Adan,Male,43,Finance,Finance Manager,Nairobi,9.1,123335,Meets Expectations,No,N/A,14
+EMP1328,Edwin Waithira,Male,28,Sales,Sales Manager,Kisumu,2.7,108440,Exceeds Expectations,No,N/A,10
+EMP1329,Joyce Mohamud,Male,47,Human Resources,HR Specialist,Nairobi,8.8,98237,Outstanding,No,N/A,34
+EMP1330,Brian Bare,Male,28,Sales,Business Development Rep,Kisumu,0.7,119579,Outstanding,No,N/A,23
+EMP1331,Lydiah Ruto,Female,52,Operations,Operations Manager,Nairobi,7.6,101958,Outstanding,No,N/A,27
+EMP1332,Mildred Mwangi,Male,50,Human Resources,HR Manager,Kisumu,1.1,72930,Exceeds Expectations,No,N/A,7
+EMP1333,Gerald Mulongo,Male,28,Marketing,SEO Analyst,Nakuru,1.1,113343,Meets Expectations,No,N/A,7
+EMP1334,Nyambura Ochieng,Female,55,Finance,Finance Manager,Mombasa,6.6,119646,Needs Improvement,No,N/A,6
+EMP1335,Job Atieno,Non-binary,58,Finance,Financial Analyst,Nairobi,13.6,164107,Outstanding,No,N/A,17
+EMP1336,Christine Aden,Male,30,Engineering,QA Analyst,Mombasa,0.9,170053,Meets Expectations,No,N/A,20
+EMP1337,Roseline Kemboi,Female,26,Finance,Finance Manager,Kisumu,0.9,127077,Outstanding,No,N/A,37
+EMP1338,Dominic Yegon,Female,29,Sales,Business Development Rep,Nairobi,3.6,124171,Needs Improvement,No,N/A,22
+EMP1339,Onesmus Nthiga,Non-binary,44,Marketing,Growth Manager,Nakuru,13.2,124457,Outstanding,No,N/A,29
+EMP1340,Thomas Abdirahman,Male,60,Human Resources,HR Specialist,Nakuru,10.4,126030,Exceeds Expectations,No,N/A,34
+EMP1341,Joy Mwangi,Female,45,Marketing,Growth Manager,Kisumu,0.8,106456,Needs Improvement,No,N/A,12
+EMP1342,Ibrahim Wangari,Female,50,Marketing,Growth Manager,Nakuru,11.7,122288,Needs Improvement,No,N/A,30
+EMP1343,Ochieng Akinyi,Non-binary,53,Marketing,Marketing Specialist,Mombasa,11.5,95899,Outstanding,No,N/A,40
+EMP1344,Nyanchama Wanjiru,Male,33,Sales,Account Executive,Mombasa,2.7,76436,Needs Improvement,Yes,Involuntary,16
+EMP1345,Felix Mangale,Female,45,Finance,Finance Manager,Nairobi,12.4,145826,Meets Expectations,No,N/A,32
+EMP1346,Rose Chepkurui,Male,52,Marketing,Growth Manager,Mombasa,9.0,126707,Exceeds Expectations,No,N/A,9
+EMP1347,Beryl Krop,Female,23,Sales,Business Development Rep,Mombasa,1.1,114462,Meets Expectations,No,N/A,17
+EMP1348,Alice Ali,Female,48,Operations,Operations Associate,Nakuru,7.9,114033,Meets Expectations,No,N/A,18
+EMP1349,Ronald Muthee,Female,60,Marketing,SEO Analyst,Kisumu,12.2,114842,Outstanding,No,N/A,20
+EMP1350,Martin Muthui,Male,51,Finance,Finance Manager,Nairobi,4.9,88668,Exceeds Expectations,No,N/A,22
+EMP1351,Maina Chelangat,Female,28,Marketing,Growth Manager,Kisumu,3.6,114351,Exceeds Expectations,No,N/A,23
+EMP1352,Mirriam Auma,Male,31,Sales,Account Executive,Nakuru,5.4,115187,Meets Expectations,No,N/A,35
+EMP1353,Vincent Yussuf,Female,38,Human Resources,HR Manager,Nairobi,13.7,120486,Meets Expectations,No,N/A,18
+EMP1354,Esther Mundia,Non-binary,56,Human Resources,HR Manager,Kisumu,9.8,122543,Meets Expectations,No,N/A,12
+EMP1355,Nancy Owino,Non-binary,38,Finance,Financial Analyst,Kisumu,11.0,140802,Meets Expectations,No,N/A,23
+EMP1356,David Chege,Female,43,Finance,Finance Manager,Nakuru,5.9,139269,Outstanding,No,N/A,8
+EMP1357,Dominic Wamalwa,Female,34,Operations,Operations Manager,Kisumu,6.8,90350,Meets Expectations,No,N/A,25
+EMP1358,Kevin Mutuku,Female,58,Human Resources,HR Specialist,Kisumu,13.4,132307,Meets Expectations,No,N/A,25
+EMP1359,Boniface Kassim,Non-binary,33,Engineering,Software Engineer,Nakuru,4.1,125944,Meets Expectations,No,N/A,35
+EMP1360,Rose Ouko,Male,30,Operations,Operations Manager,Nakuru,5.7,88269,Outstanding,No,N/A,38
+EMP1361,Katana Kahindi,Male,45,Marketing,SEO Analyst,Mombasa,14.3,100609,Needs Improvement,No,N/A,18
+EMP1362,Martin Kiema,Non-binary,44,Engineering,QA Analyst,Kisumu,5.0,120525,Needs Improvement,No,N/A,33
+EMP1363,Suleiman Maina,Non-binary,55,Marketing,Growth Manager,Mombasa,9.1,103201,Outstanding,No,N/A,14
+EMP1364,Dalmas Ngunjiri,Female,23,Operations,Operations Associate,Mombasa,0.8,88831,Meets Expectations,No,N/A,27
+EMP1365,Anastacia Mahamud,Non-binary,24,Operations,Operations Manager,Nairobi,1.4,84444,Needs Improvement,No,N/A,10
+EMP1366,Okumu Charo,Non-binary,23,Engineering,QA Analyst,Nakuru,0.6,124878,Exceeds Expectations,No,N/A,13
+EMP1367,Fidel Mbae,Male,22,Operations,Operations Associate,Kisumu,0.7,83907,Meets Expectations,No,N/A,10
+EMP1368,Christine Onyango,Non-binary,29,Engineering,QA Analyst,Mombasa,2.6,146348,Exceeds Expectations,No,N/A,16
+EMP1369,Jackline Nyagaka,Female,48,Engineering,QA Analyst,Mombasa,4.8,157550,Outstanding,No,N/A,4
+EMP1370,Michael Yussuf,Non-binary,27,Finance,Finance Manager,Mombasa,5.5,143868,Needs Improvement,Yes,Involuntary,20
+EMP1371,Ibrahim Ahmed,Non-binary,36,Marketing,Growth Manager,Nakuru,7.1,84153,Meets Expectations,No,N/A,27
+EMP1372,Daudi Juma,Non-binary,42,Engineering,Software Engineer,Nairobi,6.7,113446,Meets Expectations,Yes,Voluntary,25
+EMP1373,Ezra Muthui,Female,50,Marketing,SEO Analyst,Nairobi,14.3,117635,Exceeds Expectations,No,N/A,29
+EMP1374,Wanyama Mwaka,Female,39,Operations,Operations Manager,Nakuru,12.6,114751,Meets Expectations,No,N/A,7
+EMP1375,Faith Mohamed,Male,28,Finance,Finance Manager,Nakuru,3.2,94331,Outstanding,No,N/A,26
+EMP1376,Mutisya Mumbe,Non-binary,23,Operations,Operations Associate,Nakuru,1.8,99156,Needs Improvement,No,N/A,32
+EMP1377,Dalmas Kamau,Male,26,Marketing,Marketing Specialist,Mombasa,1.7,115188,Exceeds Expectations,No,N/A,37
+EMP1378,Nanjala Muriungi,Non-binary,28,Operations,Operations Associate,Nakuru,3.3,78771,Outstanding,No,N/A,39
+EMP1379,Felix Ndiema,Non-binary,25,Sales,Business Development Rep,Nakuru,0.5,112695,Meets Expectations,No,N/A,35
+EMP1380,Stephen Mwaniki,Female,37,Marketing,Marketing Specialist,Mombasa,5.3,103673,Outstanding,No,N/A,9
+EMP1381,Zacharia Maritim,Female,50,Human Resources,HR Specialist,Nakuru,12.1,110368,Needs Improvement,No,N/A,5
+EMP1382,Festus Korir,Male,47,Finance,Financial Analyst,Nairobi,6.5,137381,Exceeds Expectations,No,N/A,17
+EMP1383,Bramwel Karisa,Non-binary,51,Marketing,Marketing Specialist,Mombasa,14.3,140277,Exceeds Expectations,No,N/A,34
+EMP1384,Catherine Mwangi,Non-binary,45,Engineering,Software Engineer,Mombasa,10.9,123408,Exceeds Expectations,No,N/A,39
+EMP1385,Evans Wachira,Non-binary,45,Engineering,Senior Engineer,Nakuru,10.7,132862,Outstanding,No,N/A,16
+EMP1386,Pamela Kipngeno,Male,29,Human Resources,HR Specialist,Nakuru,7.5,115854,Meets Expectations,Yes,Voluntary,30
+EMP1387,Jacinta Kiplangat,Male,59,Human Resources,HR Manager,Mombasa,2.3,109123,Needs Improvement,No,N/A,7
+EMP1388,Susan Mohamed,Non-binary,49,Human Resources,HR Specialist,Mombasa,12.7,124622,Meets Expectations,No,N/A,24
+EMP1389,Wambui Mutheu,Non-binary,46,Finance,Financial Analyst,Kisumu,6.6,115178,Exceeds Expectations,No,N/A,12
+EMP1390,Mohamed Yakub,Male,48,Operations,Operations Manager,Kisumu,9.2,108898,Meets Expectations,No,N/A,22
+EMP1391,Lucy Macharia,Non-binary,44,Sales,Business Development Rep,Mombasa,13.9,128448,Exceeds Expectations,No,N/A,26
+EMP1392,Richard Atieno,Non-binary,52,Operations,Operations Manager,Kisumu,9.0,115354,Outstanding,No,N/A,10
+EMP1393,James Nyokabi,Male,46,Operations,Operations Associate,Mombasa,2.6,73713,Meets Expectations,No,N/A,20
+EMP1394,Erick Njiru,Male,25,Marketing,Marketing Specialist,Nairobi,2.9,88466,Outstanding,No,N/A,39
+EMP1395,Donald Okoth,Male,57,Finance,Finance Manager,Nairobi,6.1,144059,Outstanding,No,N/A,24
+EMP1396,Victoria Aoko,Non-binary,25,Marketing,Marketing Specialist,Nakuru,0.5,105089,Exceeds Expectations,No,N/A,38
+EMP1397,Valentine Adhiambo,Non-binary,60,Operations,Operations Associate,Kisumu,3.3,83100,Needs Improvement,Yes,Involuntary,15
+EMP1398,Jackline Owino,Non-binary,54,Engineering,QA Analyst,Kisumu,2.2,141575,Meets Expectations,No,N/A,20
+EMP1399,Mohamed Mwangi,Male,43,Sales,Account Executive,Mombasa,7.3,133610,Needs Improvement,No,N/A,23
+EMP1400,Ahmed Njuguna,Female,58,Engineering,Engineering Manager,Mombasa,8.5,186153,Needs Improvement,Yes,Involuntary,30
+EMP1401,Otieno Mukoya,Non-binary,56,Marketing,Marketing Specialist,Mombasa,6.3,111590,Exceeds Expectations,No,N/A,37
+EMP1402,Abubakar Mohamed,Female,57,Operations,Operations Associate,Nairobi,12.4,115095,Outstanding,No,N/A,19
+EMP1403,Nanjala Chepchirchir,Male,42,Engineering,QA Analyst,Kisumu,6.0,149897,Exceeds Expectations,No,N/A,27
+EMP1404,David Moraa,Non-binary,54,Engineering,Engineering Manager,Mombasa,7.0,136562,Needs Improvement,Yes,Involuntary,38
+EMP1405,Ruth Abdi,Non-binary,22,Sales,Business Development Rep,Mombasa,0.8,114112,Outstanding,No,N/A,17
+EMP1406,Caleb Cherutich,Non-binary,49,Engineering,Senior Engineer,Nairobi,9.9,153814,Exceeds Expectations,No,N/A,7
+EMP1407,Akinyi Waweru,Male,38,Finance,Financial Analyst,Kisumu,8.6,120735,Outstanding,No,N/A,24
+EMP1408,Wesonga Macharia,Male,46,Finance,Financial Analyst,Nairobi,10.3,144839,Needs Improvement,Yes,Involuntary,26
+EMP1409,David Ngari,Non-binary,28,Operations,Operations Manager,Nairobi,2.4,73823,Outstanding,No,N/A,29
+EMP1410,Hussein Hussein,Non-binary,23,Finance,Financial Analyst,Mombasa,1.2,121564,Exceeds Expectations,No,N/A,13
+EMP1411,Cynthia Mutuku,Female,45,Engineering,Senior Engineer,Nairobi,14.4,135007,Outstanding,No,N/A,23
+EMP1412,Shadrack Ndungu,Male,44,Operations,Operations Associate,Mombasa,3.6,72727,Exceeds Expectations,No,N/A,11
+EMP1413,Daniel Nyaga,Male,58,Finance,Finance Manager,Nairobi,12.9,124817,Needs Improvement,No,N/A,35
+EMP1414,Sharon Chepkorir,Female,44,Operations,Operations Associate,Nairobi,2.4,73975,Needs Improvement,Yes,Involuntary,24
+EMP1415,Jacob Kahindi,Female,50,Operations,Operations Manager,Mombasa,5.3,93003,Exceeds Expectations,No,N/A,14
+EMP1416,Kennedy Ali,Male,42,Sales,Business Development Rep,Nakuru,4.1,92360,Exceeds Expectations,No,N/A,25
+EMP1417,Esther Njoroge,Female,51,Marketing,Growth Manager,Nairobi,7.0,89936,Needs Improvement,Yes,Involuntary,38
+EMP1418,Wangari Maina,Male,38,Operations,Operations Associate,Nairobi,11.1,121218,Needs Improvement,No,N/A,29
+EMP1419,Amos Wambui,Non-binary,35,Finance,Finance Manager,Nakuru,12.7,145022,Meets Expectations,No,N/A,22
+EMP1420,Maureen Wanyama,Male,51,Engineering,QA Analyst,Kisumu,7.8,151656,Meets Expectations,No,N/A,14
+EMP1421,Maxwel Chepkemoi,Non-binary,30,Sales,Business Development Rep,Mombasa,4.3,116281,Outstanding,Yes,Voluntary,18
+EMP1422,Jackline Ngugi,Female,36,Marketing,Marketing Specialist,Nairobi,1.4,99592,Exceeds Expectations,No,N/A,34
+EMP1423,Ruth Kibet,Female,24,Operations,Operations Manager,Nairobi,0.6,87056,Exceeds Expectations,No,N/A,20
+EMP1424,Patrick Bulle,Non-binary,56,Human Resources,HR Manager,Kisumu,8.8,108445,Needs Improvement,No,N/A,18
+EMP1425,Beatrice Mongare,Non-binary,47,Marketing,Growth Manager,Nakuru,5.6,120584,Needs Improvement,Yes,Involuntary,32
+EMP1426,Mwangi Muteti,Male,36,Operations,Operations Manager,Mombasa,1.6,66310,Meets Expectations,No,N/A,11
+EMP1427,William Hassan,Non-binary,36,Marketing,SEO Analyst,Nairobi,6.5,103362,Outstanding,No,N/A,14
+EMP1428,Alex Muchiri,Non-binary,48,Engineering,Senior Engineer,Mombasa,0.8,107700,Needs Improvement,No,N/A,13
+EMP1429,Sylvia Onyango,Male,32,Sales,Business Development Rep,Nakuru,3.2,106567,Needs Improvement,No,N/A,22
+EMP1430,Benson Ndungu,Male,35,Human Resources,HR Manager,Mombasa,6.6,86371,Outstanding,No,N/A,15
+EMP1431,Brenda Abdirahman,Non-binary,54,Operations,Operations Manager,Nakuru,4.3,91804,Needs Improvement,No,N/A,12
+EMP1432,David Mwita,Male,23,Finance,Finance Manager,Mombasa,0.8,112514,Meets Expectations,No,N/A,6
+EMP1433,Brian Ondiek,Non-binary,54,Engineering,QA Analyst,Mombasa,11.4,189442,Needs Improvement,No,N/A,31
+EMP1434,Gilbert Korir,Non-binary,48,Engineering,QA Analyst,Mombasa,5.9,178316,Outstanding,No,N/A,26
+EMP1435,Nelima Wangui,Non-binary,58,Sales,Sales Manager,Nakuru,1.9,111808,Needs Improvement,No,N/A,38
+EMP1436,William Menza,Female,38,Operations,Operations Associate,Nairobi,3.2,85829,Outstanding,No,N/A,17
+EMP1437,Winfred Oyoo,Non-binary,42,Engineering,Senior Engineer,Nakuru,6.4,158913,Exceeds Expectations,No,N/A,31
+EMP1438,Harun Mohamed,Non-binary,45,Operations,Operations Manager,Mombasa,9.4,96855,Outstanding,No,N/A,39
+EMP1439,Charity Munyao,Female,38,Finance,Finance Manager,Nakuru,14.8,154939,Needs Improvement,No,N/A,14
+EMP1440,Paul Irungu,Male,35,Marketing,SEO Analyst,Nairobi,7.4,90215,Needs Improvement,Yes,Involuntary,34
+EMP1441,Peter Wanjau,Non-binary,49,Marketing,Marketing Specialist,Kisumu,1.8,72341,Needs Improvement,No,N/A,28
+EMP1442,Henry Karanja,Female,55,Finance,Financial Analyst,Mombasa,4.7,124246,Outstanding,No,N/A,37
+EMP1443,Nickson Kariuki,Female,34,Finance,Financial Analyst,Mombasa,0.9,116669,Exceeds Expectations,No,N/A,4
+EMP1444,Yvonne Kung'u,Male,27,Human Resources,HR Manager,Nakuru,6.0,93245,Meets Expectations,No,N/A,8
+EMP1445,Simiyu Yussuf,Male,57,Finance,Finance Manager,Kisumu,4.6,142407,Exceeds Expectations,No,N/A,33
+EMP1446,Peter Kimaiyo,Female,58,Sales,Sales Manager,Nairobi,0.6,97990,Exceeds Expectations,No,N/A,11
+EMP1447,Njue Auma,Non-binary,38,Finance,Finance Manager,Nakuru,13.2,164065,Outstanding,No,N/A,25
+EMP1448,Kemboi Mwangi,Female,51,Engineering,QA Analyst,Nairobi,13.5,148313,Outstanding,No,N/A,18
+EMP1449,Julius Ndolo,Female,48,Finance,Financial Analyst,Kisumu,14.4,126150,Needs Improvement,No,N/A,25
+EMP1450,Daisy Maina,Male,57,Human Resources,HR Manager,Kisumu,14.0,104835,Exceeds Expectations,No,N/A,16
+EMP1451,Lynn Chepkorir,Female,34,Sales,Sales Manager,Mombasa,3.4,88189,Meets Expectations,No,N/A,26
+EMP1452,Abigael Atieno,Male,28,Engineering,QA Analyst,Nairobi,1.3,154275,Needs Improvement,No,N/A,27
+EMP1453,Pius Nzioki,Non-binary,42,Finance,Finance Manager,Nakuru,7.6,105423,Exceeds Expectations,No,N/A,40
+EMP1454,Felistus Ndoro,Male,25,Human Resources,HR Manager,Nairobi,2.3,88361,Outstanding,No,N/A,15
+EMP1455,Vitalis Wangui,Female,29,Human Resources,HR Manager,Nairobi,5.7,74781,Meets Expectations,Yes,Voluntary,24
+EMP1456,Geoffrey Cheruiyot,Female,38,Marketing,Marketing Specialist,Kisumu,3.2,94624,Exceeds Expectations,No,N/A,15
+EMP1457,Jackline Mwangi,Female,49,Operations,Operations Manager,Kisumu,3.6,100881,Exceeds Expectations,No,N/A,15
+EMP1458,Mercy Gitau,Non-binary,30,Operations,Operations Associate,Nairobi,8.8,108274,Meets Expectations,No,N/A,16
+EMP1459,Nyongesa Akinyi,Male,31,Engineering,Senior Engineer,Nakuru,5.0,144471,Exceeds Expectations,No,N/A,20
+EMP1460,Allan Njau,Non-binary,58,Engineering,Senior Engineer,Nairobi,1.2,114513,Exceeds Expectations,No,N/A,10
+EMP1461,Atieno Were,Female,43,Marketing,SEO Analyst,Kisumu,4.3,91268,Outstanding,No,N/A,16
+EMP1462,James Karimi,Non-binary,58,Finance,Financial Analyst,Kisumu,9.9,120991,Outstanding,No,N/A,9
+EMP1463,David Ndegwa,Female,40,Sales,Account Executive,Kisumu,7.2,107512,Outstanding,Yes,Voluntary,9
+EMP1464,Patrick Halake,Male,43,Marketing,SEO Analyst,Kisumu,3.8,107600,Outstanding,No,N/A,32
+EMP1465,Otieno Wanjiku,Female,59,Human Resources,HR Manager,Mombasa,8.1,88524,Needs Improvement,No,N/A,20
+EMP1466,Ann Muriungi,Non-binary,27,Human Resources,HR Specialist,Nairobi,1.7,67120,Outstanding,No,N/A,7
+EMP1467,Leah Ndunge,Male,47,Engineering,Software Engineer,Kisumu,8.1,160753,Needs Improvement,No,N/A,23
+EMP1468,Akoth Barasa,Male,37,Human Resources,HR Specialist,Mombasa,11.2,111703,Meets Expectations,No,N/A,26
+EMP1469,Paul Ekidor,Female,52,Finance,Finance Manager,Nakuru,7.3,101951,Meets Expectations,No,N/A,40
+EMP1470,Koech Odhiambo,Female,55,Finance,Finance Manager,Kisumu,9.8,127954,Meets Expectations,No,N/A,23
+EMP1471,Gilbert Mwangi,Female,48,Marketing,Marketing Specialist,Nairobi,4.3,99869,Meets Expectations,No,N/A,38
+EMP1472,Wanjiku Muchoki,Male,53,Human Resources,HR Manager,Nairobi,14.2,129964,Exceeds Expectations,No,N/A,39
+EMP1473,Sharon Wanjiku,Female,34,Finance,Finance Manager,Nakuru,5.6,104244,Outstanding,No,N/A,20
+EMP1474,John Achieng,Male,49,Finance,Finance Manager,Kisumu,9.6,136962,Exceeds Expectations,No,N/A,15
+EMP1475,David Nelima,Male,40,Human Resources,HR Manager,Kisumu,2.1,96771,Outstanding,No,N/A,24
+EMP1476,Stella Achieng,Male,31,Finance,Financial Analyst,Mombasa,1.0,133922,Exceeds Expectations,No,N/A,12
+EMP1477,Mark Muli,Non-binary,50,Sales,Account Executive,Mombasa,11.0,96250,Meets Expectations,No,N/A,35
+EMP1478,Mustafa Omar,Female,51,Engineering,Engineering Manager,Nairobi,10.6,183235,Meets Expectations,No,N/A,29
+EMP1479,Danson Wangui,Male,56,Sales,Sales Manager,Nakuru,7.3,128490,Needs Improvement,No,N/A,19
+EMP1480,Stephen Njoroge,Female,50,Engineering,Senior Engineer,Nakuru,4.1,159193,Needs Improvement,No,N/A,34
+EMP1481,Magdaline Macharia,Female,41,Sales,Business Development Rep,Nairobi,14.1,141230,Needs Improvement,No,N/A,23
+EMP1482,Nyambura John,Male,45,Operations,Operations Associate,Nairobi,13.4,99410,Outstanding,No,N/A,21
+EMP1483,Brenda Kwamboka,Non-binary,29,Sales,Account Executive,Nairobi,3.5,106384,Outstanding,No,N/A,13
+EMP1484,Paul Akinyi,Female,27,Human Resources,HR Specialist,Kisumu,1.9,106638,Needs Improvement,Yes,Involuntary,26
+EMP1485,Hamisi Chege,Non-binary,31,Engineering,Senior Engineer,Nakuru,7.2,130752,Exceeds Expectations,No,N/A,16
+EMP1486,Hussein Kaingu,Male,46,Sales,Sales Manager,Nairobi,5.7,107000,Outstanding,No,N/A,35
+EMP1487,Philemon Okoth,Male,58,Marketing,Growth Manager,Nakuru,3.2,85215,Meets Expectations,No,N/A,37
+EMP1488,Joyce Safari,Male,50,Marketing,SEO Analyst,Kisumu,4.8,97795,Outstanding,Yes,Voluntary,27
+EMP1489,Joshua Otieno,Non-binary,37,Engineering,QA Analyst,Mombasa,5.2,146733,Outstanding,Yes,Voluntary,22
+EMP1490,Fancy Nyakundi,Female,48,Engineering,Software Engineer,Nairobi,9.8,123651,Meets Expectations,No,N/A,16
+EMP1491,Mary Kiplagat,Male,53,Engineering,QA Analyst,Nakuru,3.3,142109,Exceeds Expectations,No,N/A,27
+EMP1492,Marion Wangeci,Male,60,Engineering,Senior Engineer,Nakuru,10.9,190095,Needs Improvement,No,N/A,7
+EMP1493,Paul Maina,Female,57,Human Resources,HR Manager,Nairobi,11.3,125313,Exceeds Expectations,No,N/A,8
+EMP1494,Prudence Samuel,Female,26,Finance,Financial Analyst,Nairobi,4.8,129334,Outstanding,No,N/A,19
+EMP1495,Steven Otieno,Non-binary,33,Finance,Finance Manager,Nairobi,6.9,136928,Exceeds Expectations,No,N/A,31
+EMP1496,Nekesa Wangari,Male,32,Finance,Finance Manager,Kisumu,8.8,135479,Outstanding,No,N/A,39
+EMP1497,Joshua Kariuki,Female,45,Operations,Operations Manager,Kisumu,6.5,97803,Meets Expectations,No,N/A,20
+EMP1498,Robert Mogaka,Female,50,Human Resources,HR Specialist,Nairobi,7.0,121733,Needs Improvement,No,N/A,4
+EMP1499,Peninah Kithome,Female,36,Marketing,Marketing Specialist,Kisumu,3.6,117117,Meets Expectations,No,N/A,6
