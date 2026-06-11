@@ -3,8 +3,8 @@ import numpy as np
 from faker import Faker
 import random
 
-# Initialize Faker and set seed for reproducibility
-fake = Faker()
+# Initialize Faker with Kenyan localization and set seed for reproducibility
+fake = Faker('en_KE')
 np.random.seed(42)
 random.seed(42)
 
@@ -21,7 +21,6 @@ job_titles = {
     'Operations': ['Operations Associate', 'Operations Manager']
 }
 locations = ['Nairobi', 'Mombasa', 'Kisumu', 'Nakuru']
-education_fields = ['Computer Science', 'Business Administration', 'Marketing', 'Human Resources', 'Finance', 'General Studies']
 
 data = []
 
@@ -39,10 +38,10 @@ for i in range(num_employees):
     role = random.choice(job_titles[dept])
     location = random.choice(locations)
     
-    # Base salary mapping by department
+    # Base salary mapping by department (scaled to typical professional ranges)
     base_salary_map = {
-        'Engineering': 110000, 'Sales': 85000, 'Marketing': 80000,
-        'Finance': 90000, 'Human Resources': 75000, 'Operations': 70000
+        'Engineering': 120000, 'Sales': 85000, 'Marketing': 80000,
+        'Finance': 95000, 'Human Resources': 75000, 'Operations': 70000
     }
     # Add randomness and experience scaling to the salary
     salary = int(base_salary_map[dept] * random.uniform(0.8, 1.4) + (tenure_years * 2500))
@@ -82,4 +81,4 @@ for i in range(num_employees):
 # Convert to DataFrame and save
 df = pd.DataFrame(data)
 df.to_csv('hrm_mock_data.csv', index=False)
-print(f"Successfully generated {num_employees} rows of realistic HR data at 'hrm_mock_data.csv'!")
+print(f"Successfully generated {num_employees} rows of localized Kenyan HR data at 'hrm_mock_data.csv'!")
