@@ -2,7 +2,7 @@
 
 A real-time Human Resource Management (HRM) web application built to deliver operational insights and workforce analytics for regional hubs across Kenya.
 
-👉 **[Live Project Demo](https://streamlit.app)**
+👉 **[Live Project Demo](https://lawrenceotieno-hrm-executive-dashboard-app-wggi3y.streamlit.app/)**
 
 ---
 
