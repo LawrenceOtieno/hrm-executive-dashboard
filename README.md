@@ -9,7 +9,7 @@ A real-time Human Resource Management (HRM) web application built to deliver ope
 ## 🌓 Theme Customization
 The interface includes a responsive theme toggle feature at the top-right corner to allow stakeholders to adjust display configurations based on lighting environments for maximum clarity and high visibility. It supports seamless transitions across System, Light, and Dark mode baselines:
 
-![HRM Dashboard Dual Theme Toggle Comparison](assets/screenshots/theme-toggle.png)
+![HRM Dashboard Dual Theme Toggle Comparison](assets/screenshots/theme-toggle.PNG)
 
 ---
 
@@ -51,7 +51,7 @@ Data matrices sliceable via the multi-select filter controls panel:
 ### Interactive Filters Panel
 Users can slice data on the fly by selecting or removing targets inside the regional control widget:
 
-![Filter by Regional Hub Widget Panel](assets/screenshots/regional-hub-filters.png)
+![Filter by Regional Hub Widget Panel](assets/screenshots/regional-hub-filters.PNG)
 
 ---
 
