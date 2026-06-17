@@ -16,7 +16,7 @@ The interface includes a responsive theme toggle feature at the top-right corner
 ## 📊 Core High-Level Metrics
 The dashboard aggregates organizational metrics globally or filters down by specific regional hubs:
 * **Total Headcount:** 500 Staff
-* **Overall Turnover Rate:** 11.6% *(📉 1% Left)*
+* **Overall Turnover Rate:** 11.6% *(📉 58 Left)*
 * **Average Annual Salary:** KES 115,517
 
 ---
