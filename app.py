@@ -98,7 +98,7 @@ st.markdown("---")
 # ========================================================
 # 6. REGIONAL OPERATIONAL METRICS COMPONENT (THE VISUALS)
 # ========================================================
-st.markdown("### 🏢 Regional Operational Metrics")
+st.markdown("### Regional Operational Metrics")
 
 if total_headcount > 0:
     regional_data = active_workforce.groupby('Location').agg(
@@ -213,7 +213,7 @@ else:
 st.markdown("---")
 
 # 7. GRANULAR LAYER: ACTIVE ROSTER REFERENCE
-st.subheader("🔍 Active Employee Roster Reference")
+st.subheader("Active Employee Roster Reference")
 display_df = active_workforce[['EmployeeID', 'FullName', 'Gender', 'Age', 'Department', 'JobTitle', 'Location', 'Salary']].copy()
 display_df.columns = ['Employee ID', 'Employee Name', 'Gender', 'Age', 'Department', 'Designation', 'Regional Hub', 'Annual Salary (KES)']
 
@@ -228,7 +228,7 @@ st.markdown("---")
 # ========================================================
 # 📊 8. AT THE BOTTOM: WORKFORCE STATUS BREAKDOWN TABLE
 # ========================================================
-st.subheader("📋 Workforce Status Breakdown")
+st.subheader("Workforce Status Breakdown")
 
 if 'Status' in filtered_df.columns:
     status_summary = filtered_df.groupby('Status').size().reset_index(name='Employee Count')
