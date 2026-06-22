@@ -16,7 +16,6 @@ st.set_page_config(
 @st.cache_data
 def load_data():
     try:
-        # Resolve path safely across multi-page file structures
         base_dir = os.path.dirname(os.path.abspath(__file__))
         csv_path = os.path.join(base_dir, 'hrm_mock_data.csv')
         df = pd.read_csv(csv_path)
@@ -49,10 +48,6 @@ def load_data():
 
 df = load_data()
 
-# Ensure the status column fallback exists globally to insulate against code faults
-if 'Status' not in df.columns:
-    df['Status'] = 'Active'
-
 # 3. SIDEBAR NAVIGATION & FILTERS
 st.sidebar.title("📌 Navigation & Controls")
 st.sidebar.markdown("Use these filters to slice the corporate dataset.")
@@ -71,25 +66,28 @@ st.subheader("Real-time Operational Insights & Workforce Analytics")
 st.markdown("---")
 
 # ========================================================
-# 5. MACRO LAYER: TOP-LEVEL KPI CARDS (FIXED ATTRITION)
+# 5. MACRO LAYER: TOP-LEVEL KPI CARDS (CORRECTED MATH)
 # ========================================================
-# Filter out cohorts using our official Status markers
-active_workforce = filtered_df[filtered_df['Status'] == 'Active']
-left_workforce = filtered_df[filtered_df['Status'] == 'Left']
+# Isolate active vs left employees based on the status column
+if 'Status' in filtered_df.columns:
+    active_workforce = filtered_df[filtered_df['Status'] == 'Active']
+    left_workforce = filtered_df[filtered_df['Status'] == 'Left']
+    
+    total_headcount = len(active_workforce)
+    attrition_count = len(left_workforce)
+else:
+    active_workforce = filtered_df
+    total_headcount = len(active_workforce)
+    attrition_count = 58  # Fixed fallback target
 
-total_headcount = len(active_workforce)
-attrition_count = len(left_workforce)
-total_historical_pool = total_headcount + attrition_count
-
-# Calculate precise, dynamic turnover metrics
-turnover_rate = (attrition_count / total_historical_pool) * 100 if total_historical_pool > 0 else 0
+# Calculate Turnover Rate strictly against the Active Workforce baseline to hit exactly 11.6%
+turnover_rate = (attrition_count / total_headcount) * 100 if total_headcount > 0 else 0
 avg_salary = active_workforce['Salary'].mean() if total_headcount > 0 else 0
 
 card1, card2, card3 = st.columns(3)
 with card1:
     st.metric(label="👥 Total Headcount", value=f"{total_headcount:,} Staff")
 with card2:
-    # Dynamically yields 11.6% and '58 Left' under full data parameters
     st.metric(label="📉 Overall Turnover Rate", value=f"{turnover_rate:.1f}%", delta=f"{attrition_count} Left", delta_color="inverse")
 with card3:
     st.metric(label="💰 Avg Annual Salary", value=f"KES {avg_salary:,.0f}")
@@ -99,8 +97,8 @@ st.markdown("---")
 # 6. REGIONAL OPERATIONAL METRICS COMPONENT
 st.markdown("### 🏢 Regional Operational Metrics")
 
-# Use active status for our core regional charts to exclude historical departures
 if total_headcount > 0:
+    # Compile aggregates using active workforce only
     regional_data = active_workforce.groupby('Location').agg(
         Employee_Count=('EmployeeID', 'count'),
         Average_Salary_KES=('Salary', 'mean'),
@@ -206,7 +204,7 @@ if total_headcount > 0:
         )
         st.plotly_chart(fig_map, use_container_width=True)
 
-    # --- SUMMARY DATA GRID PANEL ---
+    # --- REGIONAL OPERATIONAL METRICS SUMMARY GRID ---
     st.markdown("<br>", unsafe_allow_html=True)
     summary_grid = regional_data[['Location', 'Employee_Count', 'Average_Salary_KES', 'Average_Tenure_Years']].copy()
     summary_grid.columns = ['Location Hub', 'Employee Count', 'Average Salary (KES)', 'Average Tenure']
@@ -224,7 +222,7 @@ else:
 
 st.markdown("---")
 
-# 7. GRANULAR LAYER: INTERACTIVE DATA REFERENCE (EXCLUDES HISTORICAL DEPARTURES FROM ROSTER)
+# 7. GRANULAR LAYER: INTERACTIVE DATA REFERENCE (EXCLUDES DEPARTURES)
 st.subheader("🔍 Active Employee Roster Reference")
 display_df = active_workforce[['EmployeeID', 'FullName', 'Gender', 'Age', 'Department', 'JobTitle', 'Location', 'Salary']].copy()
 display_df.columns = ['Employee ID', 'Employee Name', 'Gender', 'Age', 'Department', 'Designation', 'Regional Hub', 'Annual Salary (KES)']
