@@ -171,7 +171,7 @@ if not active_df.empty:
     fig_salary.update_layout(xaxis_title=f"Average {salary_col} (KES)", yaxis_title="Department", yaxis={'categoryorder':'total ascending'})
     st.plotly_chart(fig_salary, use_container_width=True)
 
-    st.subheader("📋 Granular Salary Summary Table")
+    st.subheader("Granular Salary Summary Table")
     salary_summary_table = active_df.groupby('Department').agg(
         Highest_Salary=(salary_col, 'max'),
         Average_Salary=(salary_col, 'mean'),
@@ -201,7 +201,7 @@ if not left_df.empty:
     # Calculate global contextual metrics
     total_departures_shown = attrition_dept['Departures Count'].sum()
     
-    st.markdown(f"**Historical Turnover Tracking:** Showing **{total_departures_shown} Total Departures** matching your sidebar geography choices.")
+    st.markdown(f"**Historical Turnover Tracking:** Showing **{total_departures_shown} Total Departures** matching the turnover patterns.")
     
     fig_attrition = px.bar(
         attrition_dept,
@@ -221,7 +221,7 @@ if not left_df.empty:
     st.plotly_chart(fig_attrition, use_container_width=True)
     
     # Render detailed data summary frame for audit purposes
-    st.subheader("📋 Turnover Count by Department")
+    st.subheader("Turnover Count by Department")
     st.dataframe(
         attrition_dept.style.format({"Departures Count": "{:,}"}),
         use_container_width=True,
