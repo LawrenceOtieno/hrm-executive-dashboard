@@ -89,7 +89,37 @@ with card2:
 with card3:
     st.metric(label="💰 Avg Annual Salary", value=f"KES {avg_salary:,.0f}")
 
+
+# ========================================================
+# 📊 NEW ADDITION: WORKFORCE STATUS BREAKDOWN TABLE
+# ========================================================
+st.subheader("📋 Workforce Status Breakdown")
+
+# Generate the breakdown safely using your Status column
+if 'Status' in filtered_df.columns:
+    # Build summary dataframe grouping active vs inactive rows
+    status_summary = filtered_df.groupby('Status').size().reset_index(name='Employee Count')
+    
+    # Clean table headers for the UI display
+    status_summary.columns = ['Employment Status', 'Total Staff Count']
+    
+    # Map 'Left' explicitly to show as 'Inactive (Left)' for clarity
+    status_summary['Employment Status'] = status_summary['Employment Status'].map({
+        'Active': 'Active Employees',
+        'Left': 'Inactive (Left)'
+    }).fillna(status_summary['Employment Status'])
+    
+    # Display the clean framework grid
+    st.dataframe(
+        status_summary.style.format({"Total Staff Count": "{:,}"}),
+        use_container_width=True,
+        hide_index=True
+    )
+else:
+    st.warning("The 'Status' column was not found in your data parameters.")
+
 st.markdown("---")
+
 
 # 6. REGIONAL OPERATIONAL METRICS COMPONENT
 st.markdown("### 🏢 Regional Operational Metrics")
