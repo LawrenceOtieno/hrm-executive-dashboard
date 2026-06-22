@@ -4,7 +4,16 @@ import plotly.express as px
 import plotly.graph_objects as go
 import os
 
-# 1. PAGE CONFIGURATION
+# 1. DEFINE MULTI-PAGE STRUCTURE NATIVELY
+# Since this file (app.py) contains the main dashboard code, we target "app.py" as the main page.
+pg_main = st.Page("app.py", title="📊 HRM General", default=True)
+pg_dept = st.Page("pages/Departmental_Insights.py", title="🏢 Departmental Insights")
+pg_regional = st.Page("pages/Regional_Pay_Analysis.py", title="📍 Regional Pay Analysis")
+
+# Initialize navigation
+pg = st.navigation([pg_main, pg_dept, pg_regional])
+
+# 2. RUN NAVIGATION AND PAGE CONFIGURATION
 st.set_page_config(
     page_title="HRM Executive Dashboard",
     page_icon="📊",
@@ -12,7 +21,16 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# 2. CACHED DATA LOADING
+# If the user is navigating to a sub-page, let Streamlit handle routing and exit early.
+# Otherwise, if they are on the default page, the rest of this file executes below!
+if pg != pg_main:
+    pg.run()
+    st.stop()
+
+# -------------------------------------------------------------------------
+# 3. MAIN DASHBOARD CONTENT (Only runs when "📊 HRM General" is active)
+# -------------------------------------------------------------------------
+
 @st.cache_data
 def load_data():
     try:
@@ -50,7 +68,6 @@ df = load_data()
 if "Status" not in df.columns:
     df["Status"] = "Active"
 
-# 3. SIDEBAR CONTROLS
 st.sidebar.title("📌 Navigation & Controls")
 st.sidebar.markdown("Use these filters to slice the corporate dataset.")
 
@@ -62,12 +79,10 @@ selected_location = st.sidebar.multiselect(
 
 filtered_df = df[df["Location"].isin(selected_location)]
 
-# 4. APP TITLE & HEADER
 st.title("📊 HRM Executive Dashboard")
 st.subheader("Real-time Operational Insights & Workforce Analytics")
 st.markdown("---")
 
-# 5. KPI METRICS
 active_workforce = filtered_df[filtered_df["Status"] == "Active"]
 total_headcount = len(active_workforce)
 attrition_count = 58
@@ -142,3 +157,6 @@ st.subheader("Active Employee Roster Reference")
 display_df = active_workforce[["EmployeeID", "FullName", "Gender", "Age", "Department", "JobTitle", "Location", "Salary"]].copy()
 display_df.columns = ["Employee ID", "Employee Name", "Gender", "Age", "Department", "Designation", "Regional Hub", "Annual Salary (KES)"]
 st.dataframe(display_df.style.format({"Annual Salary (KES)": "KES {:,.0f}"}), use_container_width=True, hide_index=True)
+
+# Trigger explicit fallback routing run
+pg.run()
