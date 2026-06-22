@@ -25,7 +25,6 @@ except Exception as e:
     st.stop()
 
 # --- DYNAMIC COLUMN CHECKER ---
-# This automatically maps column names to prevent KeyErrors
 columns = list(df.columns)
 
 # 1. Detect Location Column
@@ -35,13 +34,26 @@ for col in ['Location Hub', 'Location', 'location_hub', 'hub', 'Hub']:
         loc_col = col
         break
 if not loc_col:
-    # Fallback to the first column containing 'loc' or 'hub' if no exact match
     for col in columns:
         if 'loc' in col.lower() or 'hub' in col.lower():
             loc_col = col
             break
     if not loc_col:
-        loc_col = columns[0] # Default fallback
+        loc_col = columns[0]
+
+# 2. Detect Salary Column (Fixes the KeyError)
+salary_col = None
+for col in ['Annual Salary', 'Salary', 'annual_salary', 'salary', 'Base Salary']:
+    if col in columns:
+        salary_col = col
+        break
+if not salary_col:
+    for col in columns:
+        if 'sal' in col.lower():
+            salary_col = col
+            break
+    if not salary_col:
+        salary_col = columns[1] # Ultimate fallback
 
 # --- REUSABLE COMPONENT: Sidebar Filter ---
 st.sidebar.header("Filter Options")
@@ -102,27 +114,28 @@ st.markdown("---")
 st.header("2. Departmental Salary Benchmarks")
 
 if not filtered_df.empty:
-    salary_dept = filtered_df.groupby('Department')['Annual Salary'].mean().reset_index()
-    salary_dept = salary_dept.sort_values(by='Annual Salary', ascending=False)
+    # Using the dynamically resolved salary column name
+    salary_dept = filtered_df.groupby('Department')[salary_col].mean().reset_index()
+    salary_dept = salary_dept.sort_values(by=salary_col, ascending=False)
 
     fig_salary = px.bar(
         salary_dept,
-        x='Annual Salary',
+        x=salary_col,
         y='Department',
         orientation='h',
-        title="Average Annual Salary Segment by Department (KES)",
-        color='Annual Salary',
+        title=f"Average {salary_col} Segment by Department (KES)",
+        color=salary_col,
         color_continuous_scale=px.colors.sequential.GnBu, 
         text_auto='.2s'
     )
-    fig_salary.update_layout(xaxis_title="Average Salary (KES)", yaxis_title="Department", yaxis={'categoryorder':'total ascending'})
+    fig_salary.update_layout(xaxis_title=f"Average {salary_col} (KES)", yaxis_title="Department", yaxis={'categoryorder':'total ascending'})
     st.plotly_chart(fig_salary, use_container_width=True)
 
     st.subheader("📋 Granular Salary Summary Table")
     salary_summary_table = filtered_df.groupby('Department').agg(
-        Highest_Salary=('Annual Salary', 'max'),
-        Average_Salary=('Annual Salary', 'mean'),
-        Lowest_Salary=('Annual Salary', 'min')
+        Highest_Salary=(salary_col, 'max'),
+        Average_Salary=(salary_col, 'mean'),
+        Lowest_Salary=(salary_col, 'min')
     ).reset_index()
 
     formatted_table = salary_summary_table.copy()
