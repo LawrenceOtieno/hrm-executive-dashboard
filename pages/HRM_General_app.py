@@ -152,7 +152,7 @@ else:
 st.markdown("---")
 
 # 4. COMPREHENSIVE EMPLOYEE STATUS ROSTER (Shows Active vs Left)
-st.subheader("📋 Comprehensive Employee Roster Reference")
+st.subheader("Comprehensive Employee Roster Reference")
 st.markdown("This reference log tracks both current active staff and historical attrition records.")
 
 # Allow interactive status filtering directly above the table view
