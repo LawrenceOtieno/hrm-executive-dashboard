@@ -71,6 +71,11 @@ if not active_df.empty:
         "Nairobi": "#78909c"   
     }
 
+    # Generate custom labels to force '110k+' style text string on the visual
+    hub_pay['Display_Label'] = hub_pay['Average Salary'].apply(
+        lambda val: "110k+" if val >= 110000 else f"{val/1000:.0f}k"
+    )
+
     # Chart: Average Salary Comparison
     fig_avg = px.bar(
         hub_pay,
@@ -80,9 +85,15 @@ if not active_df.empty:
         title="Ranked Average Base Compensation by Hub (KES)",
         color='Region',
         color_discrete_map=hub_color_map,
-        text_auto='.2s'
+        text='Display_Label'  # Use our explicit custom label column
     )
-    fig_avg.update_layout(xaxis_title="Average Salary (KES)", yaxis_title="Regional Hub", showlegend=False)
+    fig_avg.update_layout(
+        xaxis_title="Average Salary (KES)", 
+        yaxis_title="Regional Hub", 
+        showlegend=False
+    )
+    # Style text inside bars to make it clean and visible
+    fig_avg.update_traces(textposition='inside', textfont=dict(size=12, color='white'))
     st.plotly_chart(fig_avg, use_container_width=True)
 
     # Display Top-Level Metrics for Highest and Lowest Paying Regions
@@ -137,7 +148,7 @@ if not active_df.empty:
     for col in ['Average Salary', 'Highest Salary', 'Lowest Salary']:
         formatted_hub_pay[col] = formatted_hub_pay[col].apply(lambda x: f"KES {x:,.0f}")
         
-    st.dataframe(formatted_hub_pay, use_container_width=True, hide_index=True)
+    st.dataframe(formatted_hub_pay[['Region', 'Average Salary', 'Highest Salary', 'Lowest Salary']], use_container_width=True, hide_index=True)
     
 st.markdown("---")
 
@@ -150,7 +161,7 @@ st.markdown("Select an investment hub to review specific team member records sit
 selected_hub = st.selectbox("Select Regional Hub for Payroll Audit:", options=sorted(active_df[loc_col].unique()))
 
 if selected_hub:
-    hub_specific_df = active_workforce = active_df[active_df[loc_col] == selected_hub]
+    hub_specific_df = active_df[active_df[loc_col] == selected_hub]
     
     # Extract Max and Min boundary rows for the selected hub
     max_salary = hub_specific_df[salary_col].max()
