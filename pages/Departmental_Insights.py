@@ -10,17 +10,13 @@ st.title("🏢 Departmental Demographics & Compensation Analysis")
 st.markdown("Deep-dive evaluation of gender distributions and salary benchmarks across corporate departments.")
 
 # 2. Robust Multi-Page Path Resolver
-# This calculates the exact location of your project's root folder at runtime
+# Dynamically calculates the project's root folder at runtime
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 @st.cache_data
 def load_data():
-    # If your file is sitting directly in the root directory:
-    csv_path = os.path.join(BASE_DIR, "hrm_v2_dataset.csv")
-    
-    # NOTE: If your file is inside a 'data' folder instead, uncomment the line below and comment the one above:
-    # csv_path = os.path.join(BASE_DIR, "data", "hrm_v2_dataset.csv")
-    
+    # Targeted directly at your specific file name in the root directory
+    csv_path = os.path.join(BASE_DIR, "hrm_mock_data.csv")
     df = pd.read_csv(csv_path) 
     return df
 
