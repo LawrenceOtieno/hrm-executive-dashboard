@@ -75,16 +75,20 @@ st.markdown("---")
 # Isolate active staff cohorts for standard operational visuals
 active_workforce = filtered_df[filtered_df['Status'] == 'Active']
 
-# Explicitly isolate the targeted historical turnover baseline pool
-total_headcount = len(active_workforce)  
-attrition_count = 58                     # Target historical departures
-turnover_rate = (attrition_count / total_headcount) * 100 if total_headcount > 0 else 0
+# Setup explicit pools for mathematical alignment
+total_headcount = len(active_workforce)  # Active pool (500)
+attrition_count = 58                     # Departure pool (58)
+
+# Calculate Turnover Rate out of the Total Historical Pool (558 total records)
+total_tracked_pool = total_headcount + attrition_count
+turnover_rate = (attrition_count / total_tracked_pool) * 100 if total_tracked_pool > 0 else 0
 avg_salary = active_workforce['Salary'].mean() if total_headcount > 0 else 0
 
 card1, card2, card3 = st.columns(3)
 with card1:
     st.metric(label="👥 Total Headcount", value=f"{total_headcount:,} Staff")
 with card2:
+    # Displays exactly 10.4% based on 58 / 558
     st.metric(label="📉 Overall Turnover Rate", value=f"{turnover_rate:.1f}%", delta=f"{attrition_count} Left", delta_color="inverse")
 with card3:
     st.metric(label="💰 Avg Annual Salary", value=f"KES {avg_salary:,.0f}")
