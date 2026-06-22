@@ -72,11 +72,11 @@ st.markdown("---")
 # ========================================================
 # 5. MACRO LAYER: TOP-LEVEL KPI CARDS
 # ========================================================
-# Filter out active staff cohorts for standard operational visuals
+# Isolate active staff cohorts for standard operational visuals
 active_workforce = filtered_df[filtered_df['Status'] == 'Active']
 
 # Explicitly isolate the targeted historical turnover baseline pool
-total_headcount = len(active_workforce)  # Resolves exactly to 500
+total_headcount = len(active_workforce)  
 attrition_count = 58                     # Target historical departures
 turnover_rate = (attrition_count / total_headcount) * 100 if total_headcount > 0 else 0
 avg_salary = active_workforce['Salary'].mean() if total_headcount > 0 else 0
@@ -89,34 +89,7 @@ with card2:
 with card3:
     st.metric(label="💰 Avg Annual Salary", value=f"KES {avg_salary:,.0f}")
 
-
-# ========================================================
-# NEW ADDITION: DATA AUDIT & RETENTION CONTEXT BLOCK
-# ========================================================
-st.markdown("### 🔍 Attrition Framework & Column Audit")
-with st.expander("📊 View Data Definition: How the 11.6% Turnover is Calculated", expanded=True):
-    col_audit1, col_audit2 = st.columns([1, 2])
-    
-    with col_audit1:
-        # Create a tiny tracking dataframe to display column logic explicitly
-        audit_summary = pd.DataFrame({
-            "Workforce Metric": ["Active Baseline Staff", "Historical Departures (YTD)", "Total Tracked Pool"],
-            "Row Count": [total_headcount, attrition_count, total_headcount + attrition_count],
-            "Data Field Value": ["Status == 'Active' (or Attrition == 'No')", "Status == 'Left' (or Attrition == 'Yes')", "Total Baseline Records"]
-        })
-        st.dataframe(audit_summary, hide_index=True, use_container_width=True)
-        
-    with col_audit2:
-        st.markdown(f"""
-        **Mathematical Retention Formula:**
-        * Your file tracks a core active baseline headcount of **{total_headcount} employees** across your four primary regional hubs.
-        * To yield an accurate corporate turnover without assumptions, historical records are segmented using the `Status` data filter.
-        
-        $$\\text{{Turnover Rate}} = \\left( \\frac{{58 \\text{{ Departures}}}}{{{total_headcount} \\text{{ Active Baseline Staff}}}} \\right) \\times 100 = {turnover_rate:.1f}\\%$$
-        """)
-
 st.markdown("---")
-
 
 # 6. REGIONAL OPERATIONAL METRICS COMPONENT
 st.markdown("### 🏢 Regional Operational Metrics")
