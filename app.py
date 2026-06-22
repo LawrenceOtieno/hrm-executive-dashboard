@@ -1,1 +1,1 @@
-import os; os.system("streamlit run HRM_General_app.py")
+import runpy; runpy.run_path("HRM_General_app.py")
