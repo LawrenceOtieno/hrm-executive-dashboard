@@ -143,7 +143,7 @@ if not active_df.empty:
     st.plotly_chart(fig_extremes, use_container_width=True)
     
     # Grid Data Layout Panel
-    st.subheader("📋 Regional Salary Boundaries Table")
+    st.subheader("Regional Salary Boundaries Table")
     formatted_hub_pay = hub_pay.copy()
     for col in ['Average Salary', 'Highest Salary', 'Lowest Salary']:
         formatted_hub_pay[col] = formatted_hub_pay[col].apply(lambda x: f"KES {x:,.0f}")
