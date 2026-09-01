@@ -19,13 +19,13 @@ def load_data():
         csv_path = os.path.join(base_dir, "hrm_mock_data.csv")
         df = pd.read_csv(csv_path)
     except:
-        # Fallback generation matching exactly 500 Active and 58 Attrition/Left staff
+        # Fallback generation matching active and attrition staff with annual salary figures
         data = []
         hubs = {
-            "Mombasa": (156, 116075.1, 6.2),
-            "Kisumu": (120, 111381.3, 6.0),
-            "Nakuru": (115, 118649.9, 6.8),
-            "Nairobi": (109, 115964.5, 7.0)
+            "Mombasa": (156, 116075.1 * 12, 6.2),
+            "Kisumu": (120, 111381.3 * 12, 6.0),
+            "Nakuru": (115, 118649.9 * 12, 6.8),
+            "Nairobi": (109, 115964.5 * 12, 7.0)
         }
         # Generate the 500 active employees
         for hub, (count, sal, ten) in hubs.items():
@@ -48,7 +48,7 @@ def load_data():
                 "EmployeeID": f"EMP-{len(data)+1000}",
                 "FullName": f"Ex-Employee {i+1}",
                 "Location": "Nairobi" if i % 2 == 0 else "Mombasa",
-                "Salary": 95000.0,
+                "Salary": 95000.0 * 12,
                 "TenureYears": 2.4,
                 "Status": "Left",
                 "Department": "Logistics",
@@ -142,8 +142,27 @@ if total_headcount > 0:
         geo_coords = {"Nairobi": {"lat": -1.2921, "lon": 36.8219}, "Mombasa": {"lat": -4.0435, "lon": 39.6682}, "Kisumu": {"lat": -0.1022, "lon": 34.7617}, "Nakuru": {"lat": -0.3031, "lon": 36.0800}}
         regional_data["lat"] = regional_data["Location"].map(lambda x: geo_coords.get(x, {}).get("lat", 0.0))
         regional_data["lon"] = regional_data["Location"].map(lambda x: geo_coords.get(x, {}).get("lon", 0.0))
-        fig_map = px.scatter_mapbox(regional_data, lat="lat", lon="lon", text="Location", size="Employee_Count", color="Location", color_discrete_map=hub_color_map, size_max=30, zoom=5.0)
-        fig_map.update_layout(mapbox_style="carto-darkmatter", mapbox_center={"lat": -2.1, "lon": 37.3}, height=320, showlegend=False, margin=dict(l=0, r=0, t=0, b=0), paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
+        
+        # Fixed Plotly Express scatter map implementation
+        fig_map = px.scatter_map(
+            regional_data,
+            lat="lat",
+            lon="lon",
+            text="Location",
+            size="Employee_Count",
+            color="Location",
+            color_discrete_map=hub_color_map,
+            zoom=5
+        )
+        fig_map.update_layout(
+            map_style="carto-darkmatter",
+            map_center={"lat": -2.1, "lon": 37.3},
+            height=320,
+            showlegend=False,
+            margin=dict(l=0, r=0, t=0, b=0),
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)"
+        )
         st.plotly_chart(fig_map, use_container_width=True)
 
 else:
@@ -151,7 +170,7 @@ else:
 
 st.markdown("---")
 
-# 4. COMPREHENSIVE EMPLOYEE STATUS ROSTER (Shows Active vs Left)
+# COMPREHENSIVE EMPLOYEE STATUS ROSTER (Shows Active vs Left)
 st.subheader("Comprehensive Employee Roster Reference")
 st.markdown("This reference log tracks both current active staff and historical attrition records.")
 
