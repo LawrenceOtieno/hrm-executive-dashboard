@@ -1,0 +1,213 @@
+import sys
+import os
+import pandas as pd
+import plotly.express as px
+import streamlit as st
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import theme
+
+st.set_page_config(page_title="Who's Leaving & Why", layout="wide")
+theme.inject_css()
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+@st.cache_data
+def load_data():
+    df = pd.read_csv(os.path.join(BASE_DIR, "hrm_mock_data.csv"))
+    if "Status" not in df.columns:
+        df["Status"] = "Active"
+    return df
+
+
+df = load_data()
+
+st.markdown("<div class='section-kicker'>Chapter 1</div>", unsafe_allow_html=True)
+st.title("📉 Who's Leaving, and Why")
+st.markdown(
+    "Turnover isn't spread evenly across hubs. This page isolates *where* it's "
+    "concentrated and whether pay or tenure explain it — before pointing at any "
+    "one location."
+)
+
+# SIDEBAR FILTER
+st.sidebar.header("Filter")
+selected_location = st.sidebar.multiselect(
+    "Regional hub:", options=sorted(df["Location"].unique()), default=sorted(df["Location"].unique())
+)
+filtered_df = df[df["Location"].isin(selected_location)]
+active = filtered_df[filtered_df["Status"] == "Active"]
+left = filtered_df[filtered_df["Status"] == "Left"]
+
+total_headcount = len(active)
+attrition_count = len(left)
+pool = total_headcount + attrition_count
+turnover_rate = (attrition_count / pool * 100) if pool else 0
+avg_salary = active["Salary"].mean() if total_headcount else 0
+avg_tenure_leavers = left["TenureYears"].mean() if attrition_count else 0
+
+st.markdown("---")
+k1, k2, k3, k4 = st.columns(4)
+with k1:
+    theme.kpi_card("Active Headcount", f"{total_headcount:,}")
+with k2:
+    theme.kpi_card("Turnover Rate", f"{turnover_rate:.1f}%", f"{attrition_count} left", tone="alert")
+with k3:
+    theme.kpi_card("Avg Salary (Active)", f"KES {avg_salary:,.0f}", "Annual")
+with k4:
+    theme.kpi_card("Avg Tenure at Exit", f"{avg_tenure_leavers:.1f} yrs")
+
+st.markdown("---")
+
+if total_headcount == 0:
+    st.info("Select at least one hub from the sidebar to see the story.")
+    st.stop()
+
+# ---------------------------------------------------------------------------
+# HERO: turnover rate by hub, click to drill into leaver roster
+# ---------------------------------------------------------------------------
+theme.section_header(
+    "The Hero Chart", "Turnover rate by hub", "Click a bar to see who left from that hub."
+)
+
+hub_summary = (
+    filtered_df.groupby("Location")["Status"].value_counts().unstack(fill_value=0)
+)
+hub_summary["Total"] = hub_summary.sum(axis=1)
+hub_summary["TurnoverRate"] = (hub_summary.get("Left", 0) / hub_summary["Total"] * 100).round(1)
+hub_summary = hub_summary.reset_index().sort_values("TurnoverRate")
+
+worst_hub = hub_summary.sort_values("TurnoverRate", ascending=False).iloc[0]
+best_hub = hub_summary.sort_values("TurnoverRate", ascending=True).iloc[0]
+
+fig_hero = px.bar(
+    hub_summary,
+    x="TurnoverRate",
+    y="Location",
+    orientation="h",
+    text="TurnoverRate",
+    color="Location",
+    color_discrete_map=theme.HUB_COLORS,
+)
+fig_hero.update_traces(texttemplate="%{text}%", textposition="outside")
+fig_hero = theme.style_fig(fig_hero, height=320, legend=False)
+fig_hero.update_layout(xaxis_title="Turnover rate (%)", yaxis_title="")
+
+clicked_hub = theme.clickable_chart(fig_hero, key="hub_turnover_click", height=320)
+
+theme.insight_box(
+    f"<b>{worst_hub['Location']}</b> runs the highest turnover at "
+    f"<b>{worst_hub['TurnoverRate']}%</b> versus <b>{best_hub['Location']}</b>'s "
+    f"<b>{best_hub['TurnoverRate']}%</b>. Check the salary comparison below before "
+    "assuming it's pay-driven — the gap between hubs is smaller than the turnover "
+    "gap, which usually points to management or workload factors instead.",
+    tone="alert",
+)
+
+if clicked_hub:
+    st.markdown(f"#### Who left — {clicked_hub}")
+    hub_leavers = left[left["Location"] == clicked_hub][
+        ["EmployeeID", "FullName", "Department", "JobTitle", "TerminationType", "TenureYears", "Salary"]
+    ].sort_values("TenureYears")
+    st.dataframe(
+        hub_leavers.style.format({"Salary": "KES {:,.0f}", "TenureYears": "{:.1f} yrs"}),
+        use_container_width=True,
+        hide_index=True,
+    )
+else:
+    st.caption("Tip: click a bar above to see the individual departure records.")
+
+st.markdown("---")
+
+# ---------------------------------------------------------------------------
+# SUPPORTING VISUALS (secondary — smaller, side by side)
+# ---------------------------------------------------------------------------
+theme.section_header("Supporting Detail", "Does pay or tenure explain the gap?")
+
+s1, s2 = st.columns(2)
+
+with s1:
+    st.markdown("**Average salary by hub**")
+    hub_pay = active.groupby("Location")["Salary"].mean().reset_index()
+    fig_pay = px.bar(
+        hub_pay, x="Salary", y="Location", orientation="h", color="Location",
+        color_discrete_map=theme.HUB_COLORS, text="Salary",
+    )
+    fig_pay.update_traces(texttemplate="KES %{text:,.0f}", textposition="outside")
+    fig_pay = theme.style_fig(fig_pay, height=260, legend=False)
+    fig_pay.update_layout(xaxis_title="KES", yaxis_title="")
+    st.plotly_chart(fig_pay, use_container_width=True, config={"displayModeBar": False})
+
+with s2:
+    st.markdown("**Tenure vs. salary, by hub**")
+    hub_rel = active.groupby("Location").agg(
+        Average_Tenure_Years=("TenureYears", "mean"),
+        Average_Salary=("Salary", "mean"),
+        Employee_Count=("EmployeeID", "count"),
+    ).reset_index()
+    fig_rel = px.scatter(
+        hub_rel, x="Average_Tenure_Years", y="Average_Salary", color="Location",
+        color_discrete_map=theme.HUB_COLORS, text="Location", size="Employee_Count", size_max=28,
+    )
+    fig_rel.update_traces(textposition="top center")
+    fig_rel = theme.style_fig(fig_rel, height=260, legend=False)
+    fig_rel.update_layout(xaxis_title="Avg tenure (yrs)", yaxis_title="Avg salary (KES)")
+    st.plotly_chart(fig_rel, use_container_width=True, config={"displayModeBar": False})
+
+s3, s4 = st.columns(2)
+with s3:
+    st.markdown("**Headcount distribution**")
+    fig_donut = px.pie(
+        hub_summary, values="Total", names="Location", hole=0.5,
+        color="Location", color_discrete_map=theme.HUB_COLORS,
+    )
+    fig_donut.update_traces(textinfo="percent", textfont=dict(size=12, color=theme.WHITE))
+    fig_donut = theme.style_fig(fig_donut, height=260)
+    st.plotly_chart(fig_donut, use_container_width=True, config={"displayModeBar": False})
+
+with s4:
+    st.markdown("**Hub locations**")
+    geo_coords = {
+        "Nairobi": {"lat": -1.2921, "lon": 36.8219},
+        "Mombasa": {"lat": -4.0435, "lon": 39.6682},
+        "Kisumu": {"lat": -0.1022, "lon": 34.7617},
+        "Nakuru": {"lat": -0.3031, "lon": 36.0800},
+    }
+    hub_summary["lat"] = hub_summary["Location"].map(lambda x: geo_coords.get(x, {}).get("lat", 0.0))
+    hub_summary["lon"] = hub_summary["Location"].map(lambda x: geo_coords.get(x, {}).get("lon", 0.0))
+    fig_map = px.scatter_map(
+        hub_summary, lat="lat", lon="lon", text="Location", size="Total",
+        color="Location", color_discrete_map=theme.HUB_COLORS, zoom=4.6,
+    )
+    fig_map.update_layout(
+        map_style="carto-positron", map_center={"lat": -2.1, "lon": 37.3},
+        height=260, showlegend=False, margin=dict(l=0, r=0, t=0, b=0),
+        paper_bgcolor="rgba(0,0,0,0)",
+    )
+    st.plotly_chart(fig_map, use_container_width=True)
+
+st.markdown("---")
+
+# ---------------------------------------------------------------------------
+# FULL ROSTER
+# ---------------------------------------------------------------------------
+theme.section_header("Reference", "Full employee roster")
+selected_status = st.segmented_control(
+    "Filter by status:", options=["All Staff", "Active Only", "Left Only"], default="All Staff"
+)
+display_df = filtered_df.copy()
+if selected_status == "Active Only":
+    display_df = display_df[display_df["Status"] == "Active"]
+elif selected_status == "Left Only":
+    display_df = display_df[display_df["Status"] == "Left"]
+
+display_cols = ["EmployeeID", "FullName", "Status", "Gender", "Age", "Department", "JobTitle", "Location", "TerminationType", "Salary"]
+display_df = display_df[[c for c in display_cols if c in display_df.columns]]
+st.dataframe(
+    display_df.style.format({"Salary": "KES {:,.0f}"}),
+    use_container_width=True,
+    hide_index=True,
+)
+
+theme.signature()
