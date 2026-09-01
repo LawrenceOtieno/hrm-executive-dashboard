@@ -31,7 +31,7 @@ for i in range(num_employees):
     last_name = fake.last_name()
     name = f"{first_name} {last_name}"
     
-    gender = random.choice(['Male', 'Female', 'Non-binary'])
+    gender = random.choice(['Male', 'Female'])
     age = random.randint(22, 60)
     
     max_tenure = max(1, age - 21)
@@ -45,16 +45,18 @@ for i in range(num_employees):
         'Engineering': 120000, 'Sales': 85000, 'Marketing': 80000,
         'Finance': 95000, 'Human Resources': 75000, 'Operations': 70000
     }
-    salary = int(base_salary_map[dept] * random.uniform(0.8, 1.4) + (tenure_years * 2500))
+    monthly_salary = int(base_salary_map[dept] * random.uniform(0.8, 1.4) + (tenure_years * 2500))
+    salary = monthly_salary * 12  # store as annual, to match the dashboard's labeling
     
     performance_rating = random.choice(['Needs Improvement', 'Meets Expectations', 'Exceeds Expectations', 'Outstanding'])
     
     flight_risk_score = 0
-    if salary < base_salary_map[dept]: flight_risk_score += 35
+    if monthly_salary < base_salary_map[dept]: flight_risk_score += 35
     if performance_rating == 'Needs Improvement': flight_risk_score += 25
     if tenure_years > 4 and random.random() > 0.7: flight_risk_score += 20
     
     attrition = 'Yes' if random.randint(0, 100) < flight_risk_score else 'No'
+    status = 'Left' if attrition == 'Yes' else 'Active'
     
     term_type = 'N/A'
     if attrition == 'Yes':
@@ -72,6 +74,7 @@ for i in range(num_employees):
         'Salary': salary,
         'PerformanceRating': performance_rating,
         'Attrition': attrition,
+        'Status': status,
         'TerminationType': term_type,
         'TrainingHours': random.randint(4, 40)
     })
