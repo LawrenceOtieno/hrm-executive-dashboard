@@ -20,12 +20,13 @@ def load_data():
         df = pd.read_csv(csv_path)
     except:
         # Fallback generation matching active and attrition staff with annual salary figures
+        # Fallback generation matching active and attrition staff with annual salary figures
         data = []
         hubs = {
-            "Mombasa": (156, 116075.1 * 12, 6.2),
-            "Kisumu": (120, 111381.3 * 12, 6.0),
-            "Nakuru": (115, 118649.9 * 12, 6.8),
-            "Nairobi": (109, 115964.5 * 12, 7.0)
+            "Mombasa": (156, 1392901, 6.2),
+            "Kisumu": (120, 1336575, 6.0),
+            "Nakuru": (115, 1423798, 6.8),
+            "Nairobi": (109, 1391574, 7.0)
         }
         # Generate the 500 active employees
         for hub, (count, sal, ten) in hubs.items():
