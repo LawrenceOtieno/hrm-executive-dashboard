@@ -1,10 +1,16 @@
 import streamlit as st
 
-# Define your multi-page layout cleanly using separate target scripts
-pg_main = st.Page("pages/HRM_General_app.py", title="📊 HRM General", default=True)
-pg_dept = st.Page("pages/Departmental_Insights.py", title="🏢 Departmental Insights")
-pg_regional = st.Page("pages/Regional_Pay_Analysis.py", title="📍 Regional Pay Analysis")
+st.set_page_config(
+    page_title="HRM Executive Dashboard",
+    page_icon="🧭",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
 
-# Run navigation smoothly without element collisions
-pg = st.navigation([pg_main, pg_dept, pg_regional])
+pg_story = st.Page("pages/1_The_Story.py", title="🧭 The Story", default=True)
+pg_attrition = st.Page("pages/2_Who_Is_Leaving.py", title="📉 Who's Leaving & Why")
+pg_dept = st.Page("pages/3_Departmental_Insights.py", title="🏢 Departmental Insights")
+pg_regional = st.Page("pages/4_Regional_Pay_Equity.py", title="📍 Regional Pay Equity")
+
+pg = st.navigation([pg_story, pg_attrition, pg_dept, pg_regional])
 pg.run()
