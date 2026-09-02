@@ -90,8 +90,14 @@ fig_hero = px.bar(
     color="Location",
     color_discrete_map=theme.HUB_COLORS,
 )
-fig_hero.update_traces(texttemplate="%{text}%", textposition="outside")
-fig_hero = theme.style_fig(fig_hero, height=320, legend=False)
+fig_hero.update_traces(texttemplate="%{text}%", textposition="outside", cliponaxis=False)
+fig_hero = theme.style_fig(
+    fig_hero,
+    title="Turnover rate by hub",
+    height=320,
+    legend=False,
+    x_values=hub_summary["TurnoverRate"].tolist(),
+)
 fig_hero.update_layout(xaxis_title="Turnover rate (%)", yaxis_title="")
 
 clicked_hub = theme.clickable_chart(fig_hero, key="hub_turnover_click", height=320)
@@ -128,19 +134,20 @@ theme.section_header("Supporting Detail", "Does pay or tenure explain the gap?")
 s1, s2 = st.columns(2)
 
 with s1:
-    st.markdown("**Average salary by hub**")
-    hub_pay = active.groupby("Location")["Salary"].mean().reset_index()
+    hub_pay = active.groupby("Location")["Salary"].mean().reset_index().sort_values("Salary")
     fig_pay = px.bar(
         hub_pay, x="Salary", y="Location", orientation="h", color="Location",
         color_discrete_map=theme.HUB_COLORS, text="Salary",
     )
-    fig_pay.update_traces(texttemplate="KES %{text:,.0f}", textposition="outside")
-    fig_pay = theme.style_fig(fig_pay, height=260, legend=False)
+    fig_pay.update_traces(texttemplate="KES %{text:,.0f}", textposition="outside", cliponaxis=False)
+    fig_pay = theme.style_fig(
+        fig_pay, title="Average salary by hub", height=270, legend=False,
+        x_values=hub_pay["Salary"].tolist(), pad_frac=0.35,
+    )
     fig_pay.update_layout(xaxis_title="KES", yaxis_title="")
-    st.plotly_chart(fig_pay, use_container_width=True, config={"displayModeBar": False})
+    st.plotly_chart(fig_pay, use_container_width=True, config={"displayModeBar": False}, key="salary_by_hub_chart")
 
 with s2:
-    st.markdown("**Tenure vs. salary, by hub**")
     hub_rel = active.groupby("Location").agg(
         Average_Tenure_Years=("TenureYears", "mean"),
         Average_Salary=("Salary", "mean"),
@@ -151,23 +158,24 @@ with s2:
         color_discrete_map=theme.HUB_COLORS, text="Location", size="Employee_Count", size_max=28,
     )
     fig_rel.update_traces(textposition="top center")
-    fig_rel = theme.style_fig(fig_rel, height=260, legend=False)
+    fig_rel = theme.style_fig(
+        fig_rel, title="Tenure vs. salary, by hub", height=270, legend=False,
+        y_values=hub_rel["Average_Salary"].tolist(), pad_frac=0.15,
+    )
     fig_rel.update_layout(xaxis_title="Avg tenure (yrs)", yaxis_title="Avg salary (KES)")
-    st.plotly_chart(fig_rel, use_container_width=True, config={"displayModeBar": False})
+    st.plotly_chart(fig_rel, use_container_width=True, config={"displayModeBar": False}, key="tenure_salary_chart")
 
 s3, s4 = st.columns(2)
 with s3:
-    st.markdown("**Headcount distribution**")
     fig_donut = px.pie(
         hub_summary, values="Total", names="Location", hole=0.5,
         color="Location", color_discrete_map=theme.HUB_COLORS,
     )
     fig_donut.update_traces(textinfo="percent", textfont=dict(size=12, color=theme.WHITE))
-    fig_donut = theme.style_fig(fig_donut, height=260)
-    st.plotly_chart(fig_donut, use_container_width=True, config={"displayModeBar": False})
+    fig_donut = theme.style_fig(fig_donut, title="Headcount distribution", height=270)
+    st.plotly_chart(fig_donut, use_container_width=True, config={"displayModeBar": False}, key="headcount_donut_chart")
 
 with s4:
-    st.markdown("**Hub locations**")
     geo_coords = {
         "Nairobi": {"lat": -1.2921, "lon": 36.8219},
         "Mombasa": {"lat": -4.0435, "lon": 39.6682},
@@ -176,16 +184,10 @@ with s4:
     }
     hub_summary["lat"] = hub_summary["Location"].map(lambda x: geo_coords.get(x, {}).get("lat", 0.0))
     hub_summary["lon"] = hub_summary["Location"].map(lambda x: geo_coords.get(x, {}).get("lon", 0.0))
-    fig_map = px.scatter_map(
-        hub_summary, lat="lat", lon="lon", text="Location", size="Total",
-        color="Location", color_discrete_map=theme.HUB_COLORS, zoom=4.6,
+    fig_map = theme.build_hub_map(
+        hub_summary, color_map=theme.HUB_COLORS, zoom=4.6, height=270,
     )
-    fig_map.update_layout(
-        map_style="carto-positron", map_center={"lat": -2.1, "lon": 37.3},
-        height=260, showlegend=False, margin=dict(l=0, r=0, t=0, b=0),
-        paper_bgcolor="rgba(0,0,0,0)",
-    )
-    st.plotly_chart(fig_map, use_container_width=True)
+    st.plotly_chart(fig_map, use_container_width=True, key="hub_locations_map")
 
 st.markdown("---")
 
