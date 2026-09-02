@@ -7,11 +7,10 @@ One place for colour, chart styling and small UI components (KPI cards,
 insight callouts, section intros) so every page looks like it came from
 the same hand instead of being three separately-generated charts stapled
 together.
-
-Maintained by Lawrence.
 """
 
 import streamlit as st
+import plotly.express as px
 import plotly.graph_objects as go
 
 try:
@@ -22,7 +21,7 @@ except ImportError:
 
 
 # ---------------------------------------------------------------------------
-# PALETTE  (from Lawrence's brand sheet)
+# PALETTE
 # ---------------------------------------------------------------------------
 NAVY = "#06283D"
 NAVY_MID = "#0A3D5C"
@@ -42,19 +41,12 @@ TEXT_MID = "#3D6680"
 TEXT_LIGHT = "#D0E8F2"
 GRID = "#DCE7EF"
 
-# Semantic aliases. Use these in chart code rather than raw hex so that
-# colour keeps a consistent MEANING across every page:
-#   orange  -> "this needs attention" (attrition, risk, negative deltas)
-#   teal    -> "this is healthy"      (retention, positive deltas)
-#   navy    -> neutral / structural
 COLOR_ALERT = ORANGE
 COLOR_ALERT_DARK = ORANGE_DARK
 COLOR_GOOD = TEAL
 COLOR_NEUTRAL = NAVY_LIGHT
 COLOR_TEXT = NAVY
 
-# Categorical palettes — deliberately avoid orange here, it's reserved
-# for "pay attention" so it doesn't get diluted as just "one of four hubs".
 HUB_COLORS = {
     "Nairobi": NAVY,
     "Mombasa": NAVY_LIGHT,
@@ -80,7 +72,7 @@ def inject_css():
         h1, h2, h3, h4 {{ color: {NAVY} !important; }}
         p, li, span, label {{ color: {TEXT_MID}; }}
 
-        /* KPI cards */
+        /* KPI cards -- lift slightly on hover so they read as interactive */
         .kpi-card {{
             background: {WHITE};
             border-radius: 10px;
@@ -88,6 +80,11 @@ def inject_css():
             border-left: 5px solid {NAVY_LIGHT};
             box-shadow: 0 1px 3px rgba(6,40,61,0.08);
             height: 100%;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }}
+        .kpi-card:hover {{
+            transform: translateY(-4px);
+            box-shadow: 0 10px 18px rgba(6,40,61,0.16);
         }}
         .kpi-card.alert {{ border-left-color: {ORANGE}; }}
         .kpi-card.good {{ border-left-color: {TEAL}; }}
@@ -143,20 +140,114 @@ def inject_css():
 # ---------------------------------------------------------------------------
 # PLOTLY STYLING
 # ---------------------------------------------------------------------------
-def style_fig(fig: go.Figure, height: int = 340, legend: bool = True) -> go.Figure:
-    """Apply the house look to any plotly figure: fonts, gridlines, backgrounds."""
-    fig.update_layout(
+def style_fig(
+    fig: go.Figure,
+    title: str = None,
+    height: int = 340,
+    legend: bool = True,
+    legend_pos: str = "bottom",
+    x_values=None,
+    y_values=None,
+    tickangle: int = None,
+    pad_frac: float = 0.22,
+):
+    """
+    Apply the house look to any plotly figure AND make sure it actually fits:
+      - a real, explicit chart title (never left blank -> never 'undefined')
+      - automargin on both axes so long category labels are never clipped
+      - optional numeric-axis padding so 'outside' text labels aren't cut off
+      - optional tick rotation + legend repositioning for crowded category axes
+    """
+    layout_update = dict(
         height=height,
-        font=dict(family="Helvetica, Arial, sans-serif", color=NAVY, size=13),
-        title_font=dict(size=15, color=NAVY),
+        font=dict(family="Helvetica, Arial, sans-serif", color=NAVY, size=12),
         plot_bgcolor=WHITE,
         paper_bgcolor="rgba(0,0,0,0)",
-        margin=dict(l=10, r=10, t=40, b=10),
         showlegend=legend,
-        legend=dict(orientation="h", yanchor="bottom", y=-0.25, xanchor="center", x=0.5),
     )
-    fig.update_xaxes(showgrid=True, gridcolor=GRID, zeroline=False)
-    fig.update_yaxes(showgrid=True, gridcolor=GRID, zeroline=False)
+    if title:
+        layout_update["title"] = dict(
+            text=title, font=dict(size=15, color=NAVY), x=0.01, xanchor="left"
+        )
+        top_margin = 55
+    else:
+        layout_update["title"] = dict(text="")
+        top_margin = 20
+
+    if legend:
+        if legend_pos == "top":
+            layout_update["legend"] = dict(
+                orientation="h", yanchor="bottom", y=1.05, xanchor="left", x=0
+            )
+            bottom_margin = 70
+        else:
+            layout_update["legend"] = dict(
+                orientation="h", yanchor="top", y=-0.32, xanchor="center", x=0.5
+            )
+            bottom_margin = 90
+    else:
+        bottom_margin = 45
+
+    layout_update["margin"] = dict(l=10, r=25, t=top_margin, b=bottom_margin)
+    fig.update_layout(**layout_update)
+
+    fig.update_xaxes(showgrid=True, gridcolor=GRID, zeroline=False, automargin=True)
+    fig.update_yaxes(showgrid=True, gridcolor=GRID, zeroline=False, automargin=True)
+
+    if tickangle is not None:
+        fig.update_xaxes(tickangle=tickangle)
+
+    # Give numeric axes headroom so labels drawn "outside" the bar/marker
+    # never get clipped by the edge of the plotting area.
+    if x_values is not None and len(x_values):
+        vmax = max(x_values)
+        vmin = min(0, min(x_values))
+        if vmax > 0:
+            fig.update_xaxes(range=[vmin, vmax * (1 + pad_frac)])
+    if y_values is not None and len(y_values):
+        vmax = max(y_values)
+        vmin = min(0, min(y_values))
+        if vmax > 0:
+            fig.update_yaxes(range=[vmin, vmax * (1 + pad_frac)])
+
+    return fig
+
+
+def build_hub_map(df, lat_col="lat", lon_col="lon", text_col="Location",
+                   size_col="Total", color_col="Location", color_map=None,
+                   zoom=4.6, height=280):
+    """
+    Build the Kenya hub map in a way that works across Plotly versions.
+    Newer Plotly (>=5.24) uses px.scatter_map (MapLibre, no token needed).
+    Older Plotly uses px.scatter_mapbox (also no token needed with the
+    'open-street-map' / 'carto-positron' base styles). Pick whichever the
+    installed version actually supports instead of hard-coding one, so this
+    doesn't break again on a different machine/environment.
+    """
+    if hasattr(px, "scatter_map"):
+        fig = px.scatter_map(
+            df, lat=lat_col, lon=lon_col, text=text_col, size=size_col,
+            color=color_col, color_discrete_map=color_map, zoom=zoom,
+        )
+        fig.update_layout(
+            map=dict(style="carto-positron", center={"lat": -2.1, "lon": 37.3}, zoom=zoom)
+        )
+    else:
+        fig = px.scatter_mapbox(
+            df, lat=lat_col, lon=lon_col, text=text_col, size=size_col,
+            color=color_col, color_discrete_map=color_map, zoom=zoom,
+        )
+        fig.update_layout(
+            mapbox=dict(style="open-street-map", center={"lat": -2.1, "lon": 37.3}, zoom=zoom)
+        )
+
+    fig.update_layout(
+        height=height,
+        showlegend=False,
+        margin=dict(l=0, r=0, t=40, b=0),
+        paper_bgcolor="rgba(0,0,0,0)",
+        title=dict(text="Hub locations", font=dict(size=15, color=NAVY), x=0.01, xanchor="left"),
+    )
     return fig
 
 
@@ -178,7 +269,6 @@ def kpi_card(label: str, value: str, sub: str = "", tone: str = "neutral"):
 
 
 def insight_box(text: str, tone: str = "neutral", label: str = None):
-    """A short callout that states the takeaway/decision, not just the data."""
     default_labels = {"alert": "Why this matters", "good": "What's working", "neutral": "Note"}
     label = label or default_labels.get(tone, "Note")
     st.markdown(
@@ -206,6 +296,23 @@ def signature(note: str = ""):
     )
 
 
+def gender_pay_gap(df):
+    """
+    Returns (gap_pct, higher_label) where gap_pct is always a positive
+    number and higher_label ('Men' / 'Women') says who actually earns
+    more -- avoids a misleading negative percentage on the KPI card.
+    """
+    means = df.groupby("Gender")["Salary"].mean()
+    male = float(means.get("Male", 0))
+    female = float(means.get("Female", 0))
+    if male == 0 or female == 0:
+        return 0.0, "N/A"
+    higher = "Men" if male >= female else "Women"
+    lower = min(male, female)
+    gap_pct = abs(male - female) / lower * 100
+    return round(gap_pct, 1), higher
+
+
 # ---------------------------------------------------------------------------
 # DRILL-DOWN HELPER
 # ---------------------------------------------------------------------------
@@ -217,7 +324,7 @@ def clickable_chart(fig: go.Figure, key: str, height: int = 360):
     static chart in that case).
     """
     if not HAS_PLOTLY_EVENTS:
-        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
+        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False}, key=key + "_static")
         st.caption(
             "Click-to-drill-down needs the `streamlit-plotly-events` package "
             "(`pip install streamlit-plotly-events`). Showing a static chart for now."
@@ -231,9 +338,9 @@ def clickable_chart(fig: go.Figure, key: str, height: int = 360):
         select_event=False,
         key=key,
         override_height=height,
+        override_width="100%",
     )
     if clicked:
-        point = clicked[0],
-        # bar/scatter clicks carry the category or value in 'x'
+        point = clicked[0]
         return point.get("x")
     return None
