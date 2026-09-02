@@ -28,23 +28,19 @@ total_headcount = len(active)
 total_departures = len(left)
 turnover_rate = total_departures / (total_headcount + total_departures) * 100
 involuntary_share = (left["TerminationType"] == "Involuntary").mean() * 100
-gender_gap = (
-    (active.groupby("Gender")["Salary"].mean()["Male"] - active.groupby("Gender")["Salary"].mean()["Female"])
-    / active.groupby("Gender")["Salary"].mean()["Female"]
-    * 100
-)
+gap_pct, gap_higher = theme.gender_pay_gap(active)
 
 # ---------------------------------------------------------------------------
 # HEADER
 # ---------------------------------------------------------------------------
 st.markdown(
-    f"<div class='section-kicker'>Workforce Analytics &middot; FY Snapshot</div>",
+    "<div class='section-kicker'>Workforce Analytics &middot; FY Snapshot</div>",
     unsafe_allow_html=True,
 )
 st.title("The Workforce Story")
 st.markdown(
-    "<p style='font-size:16px;'>A note from Lawrence — I pulled apart this year's headcount, "
-    "pay and attrition numbers to find the signal, not just chart everything we have. "
+    "<p style='font-size:16px;'>I pulled apart this year's headcount, pay and "
+    "attrition numbers to find the signal, not just chart everything we have. "
     "Here's the short version, and the pages alongside this one dig into each thread.</p>",
     unsafe_allow_html=True,
 )
@@ -73,9 +69,9 @@ with k3:
 with k4:
     theme.kpi_card(
         "Gender Pay Gap",
-        f"{gender_gap:.1f}%",
-        "Men paid more, on average",
-        tone="alert" if gender_gap > 3 else "neutral",
+        f"{gap_pct:.1f}%",
+        f"{gap_higher} paid more, on average",
+        tone="alert" if gap_pct > 3 else "neutral",
     )
 
 # ---------------------------------------------------------------------------
@@ -123,9 +119,15 @@ fig_hero = px.bar(
     color="TurnoverRate",
     color_continuous_scale=[theme.TEAL, theme.NAVY_LIGHT, theme.ORANGE, theme.ORANGE_DARK],
 )
-fig_hero.update_traces(texttemplate="%{text}%", textposition="outside")
+fig_hero.update_traces(texttemplate="%{text}%", textposition="outside", cliponaxis=False)
 fig_hero.update_coloraxes(showscale=False)
-fig_hero = theme.style_fig(fig_hero, height=380, legend=False)
+fig_hero = theme.style_fig(
+    fig_hero,
+    title="Turnover rate by department",
+    height=380,
+    legend=False,
+    x_values=dept_summary["TurnoverRate"].tolist(),
+)
 fig_hero.update_layout(xaxis_title="Turnover rate (%)", yaxis_title="")
 
 clicked_dept = theme.clickable_chart(fig_hero, key="hero_dept_click", height=380)
