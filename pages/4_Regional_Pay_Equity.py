@@ -35,10 +35,7 @@ hub_pay = active_df.groupby("Location")["Salary"].agg(["mean", "max", "min"]).re
 hub_pay.columns = ["Location", "Average", "Highest", "Lowest"]
 hub_pay = hub_pay.sort_values("Average", ascending=False)
 
-overall_gap = (
-    (active_df.groupby("Gender")["Salary"].mean()["Male"] - active_df.groupby("Gender")["Salary"].mean()["Female"])
-    / active_df.groupby("Gender")["Salary"].mean()["Female"] * 100
-)
+overall_gap_pct, overall_gap_higher = theme.gender_pay_gap(active_df)
 
 st.markdown("---")
 k1, k2, k3 = st.columns(3)
@@ -48,8 +45,10 @@ with k2:
     theme.kpi_card("Lowest-Paying Hub", hub_pay.iloc[-1]["Location"], f"KES {hub_pay.iloc[-1]['Average']:,.0f} avg")
 with k3:
     theme.kpi_card(
-        "Company-wide Gender Pay Gap", f"{overall_gap:.1f}%", "Men vs. women, average annual salary",
-        tone="alert" if overall_gap > 3 else "good",
+        "Company-wide Gender Pay Gap",
+        f"{overall_gap_pct:.1f}%",
+        f"{overall_gap_higher} earn more, on average",
+        tone="alert" if overall_gap_pct > 3 else "good",
     )
 
 st.markdown("---")
@@ -65,8 +64,14 @@ fig_hero = px.bar(
     hub_pay, x="Average", y="Location", orientation="h", color="Location",
     color_discrete_map=theme.HUB_COLORS, text="Average",
 )
-fig_hero.update_traces(texttemplate="KES %{text:,.0f}", textposition="inside", textfont_color=theme.WHITE)
-fig_hero = theme.style_fig(fig_hero, height=300, legend=False)
+fig_hero.update_traces(
+    texttemplate="KES %{text:,.0f}", textposition="inside", insidetextanchor="end",
+    textfont_color=theme.WHITE, cliponaxis=False,
+)
+fig_hero = theme.style_fig(
+    fig_hero, title="Average annual pay by hub", height=300, legend=False,
+    x_values=hub_pay["Average"].tolist(), pad_frac=0.08,
+)
 fig_hero.update_layout(xaxis_title="Average annual salary (KES)", yaxis_title="")
 
 clicked_hub = theme.clickable_chart(fig_hero, key="hub_pay_click", height=300)
@@ -107,26 +112,32 @@ theme.section_header("Supporting Detail", "Is the gender pay gap consistent acro
 
 s1, s2 = st.columns(2)
 with s1:
-    st.markdown("**Average salary by hub and gender**")
     gender_hub = active_df.groupby(["Location", "Gender"])["Salary"].mean().reset_index()
     fig_gender_hub = px.bar(
         gender_hub, x="Location", y="Salary", color="Gender", barmode="group",
         color_discrete_map=theme.GENDER_COLORS, text_auto=".2s",
     )
-    fig_gender_hub = theme.style_fig(fig_gender_hub, height=300)
+    fig_gender_hub.update_traces(cliponaxis=False)
+    fig_gender_hub = theme.style_fig(
+        fig_gender_hub, title="Average salary by hub and gender", height=320,
+        legend_pos="top", tickangle=0, y_values=gender_hub["Salary"].tolist(), pad_frac=0.2,
+    )
     fig_gender_hub.update_layout(xaxis_title="", yaxis_title="Avg salary (KES)")
-    st.plotly_chart(fig_gender_hub, use_container_width=True, config={"displayModeBar": False})
+    st.plotly_chart(fig_gender_hub, use_container_width=True, config={"displayModeBar": False}, key="salary_by_hub_gender_chart")
 
 with s2:
-    st.markdown("**Pay ceiling vs. floor by hub**")
     extremes_df = hub_pay.melt(id_vars=["Location"], value_vars=["Highest", "Lowest"], var_name="Boundary", value_name="Salary")
     fig_extremes = px.bar(
         extremes_df, x="Location", y="Salary", color="Boundary", barmode="group",
         color_discrete_map={"Highest": theme.NAVY, "Lowest": theme.TEAL}, text_auto=".2s",
     )
-    fig_extremes = theme.style_fig(fig_extremes, height=300)
+    fig_extremes.update_traces(cliponaxis=False)
+    fig_extremes = theme.style_fig(
+        fig_extremes, title="Pay ceiling vs. floor by hub", height=320,
+        legend_pos="top", tickangle=0, y_values=extremes_df["Salary"].tolist(), pad_frac=0.2,
+    )
     fig_extremes.update_layout(xaxis_title="", yaxis_title="Salary (KES)")
-    st.plotly_chart(fig_extremes, use_container_width=True, config={"displayModeBar": False})
+    st.plotly_chart(fig_extremes, use_container_width=True, config={"displayModeBar": False}, key="pay_ceiling_floor_chart")
 
 with st.expander("See exact figures by hub"):
     display_hub_pay = hub_pay.copy()
