@@ -233,7 +233,7 @@ def clickable_chart(fig: go.Figure, key: str, height: int = 360):
         override_height=height,
     )
     if clicked:
-        point = clicked[0]
+        point = clicked[0],
         # bar/scatter clicks carry the category or value in 'x'
         return point.get("x")
     return None
