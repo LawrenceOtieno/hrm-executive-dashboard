@@ -63,9 +63,15 @@ fig_hero = px.bar(
     dept_term, x="InvoluntaryPct", y="Department", orientation="h", text="InvoluntaryPct",
     color="InvoluntaryPct", color_continuous_scale=[theme.TEAL, theme.NAVY_LIGHT, theme.ORANGE, theme.ORANGE_DARK],
 )
-fig_hero.update_traces(texttemplate="%{text}%", textposition="outside")
+fig_hero.update_traces(texttemplate="%{text}%", textposition="outside", cliponaxis=False)
 fig_hero.update_coloraxes(showscale=False)
-fig_hero = theme.style_fig(fig_hero, height=340, legend=False)
+fig_hero = theme.style_fig(
+    fig_hero,
+    title="Involuntary share of exits, by department",
+    height=340,
+    legend=False,
+    x_values=dept_term["InvoluntaryPct"].tolist(),
+)
 fig_hero.update_layout(xaxis_title="Involuntary share of exits (%)", yaxis_title="")
 
 clicked_dept = theme.clickable_chart(fig_hero, key="dept_invol_click", height=340)
@@ -97,19 +103,21 @@ theme.section_header("Supporting Detail", "Composition of the active workforce")
 s1, s2 = st.columns(2)
 
 with s1:
-    st.markdown("**Gender mix by department**")
     if not active_df.empty:
         gender_dept = active_df.groupby(["Department", "Gender"]).size().reset_index(name="Count")
         fig_gender = px.bar(
             gender_dept, x="Department", y="Count", color="Gender", barmode="group",
             color_discrete_map=theme.GENDER_COLORS, text_auto=True,
         )
-        fig_gender = theme.style_fig(fig_gender, height=300)
+        fig_gender.update_traces(cliponaxis=False)
+        fig_gender = theme.style_fig(
+            fig_gender, title="Gender mix by department", height=340,
+            legend_pos="top", tickangle=-20, y_values=gender_dept["Count"].tolist(), pad_frac=0.2,
+        )
         fig_gender.update_layout(xaxis_title="", yaxis_title="Employees")
-        st.plotly_chart(fig_gender, use_container_width=True, config={"displayModeBar": False})
+        st.plotly_chart(fig_gender, use_container_width=True, config={"displayModeBar": False}, key="gender_mix_chart")
 
 with s2:
-    st.markdown("**Age profile by department**")
     if not active_df.empty and "Age" in active_df.columns:
         age_bins = [0, 29, 39, 49, 100]
         age_labels = ["Under 30", "30-39", "40-49", "50+"]
@@ -120,22 +128,29 @@ with s2:
             age_summary, x="Department", y="Count", color="Age Group", barmode="stack",
             color_discrete_sequence=theme.DEPT_COLOR_SEQUENCE, text_auto=True,
         )
-        fig_age = theme.style_fig(fig_age, height=300)
-        fig_age.update_layout(xaxis_title="", yaxis_title="Employees", legend_title="Age band")
-        st.plotly_chart(fig_age, use_container_width=True, config={"displayModeBar": False})
+        fig_age.update_traces(cliponaxis=False)
+        dept_totals = age_summary.groupby("Department")["Count"].sum().tolist()
+        fig_age = theme.style_fig(
+            fig_age, title="Age profile by department", height=340,
+            legend_pos="top", tickangle=-20, y_values=dept_totals, pad_frac=0.2,
+        )
+        fig_age.update_layout(xaxis_title="", yaxis_title="Employees")
+        st.plotly_chart(fig_age, use_container_width=True, config={"displayModeBar": False}, key="age_profile_chart")
 
-st.markdown("**Average pay by department**")
 if not active_df.empty:
     salary_dept = active_df.groupby("Department")["Salary"].mean().reset_index().sort_values("Salary")
     fig_salary = px.bar(
         salary_dept, x="Salary", y="Department", orientation="h", color="Salary",
         color_continuous_scale=[theme.TEAL, theme.NAVY_LIGHT, theme.NAVY], text="Salary",
     )
-    fig_salary.update_traces(texttemplate="KES %{text:,.0f}", textposition="outside")
+    fig_salary.update_traces(texttemplate="KES %{text:,.0f}", textposition="outside", cliponaxis=False)
     fig_salary.update_coloraxes(showscale=False)
-    fig_salary = theme.style_fig(fig_salary, height=280, legend=False)
+    fig_salary = theme.style_fig(
+        fig_salary, title="Average pay by department", height=290, legend=False,
+        x_values=salary_dept["Salary"].tolist(), pad_frac=0.3,
+    )
     fig_salary.update_layout(xaxis_title="Average annual salary (KES)", yaxis_title="")
-    st.plotly_chart(fig_salary, use_container_width=True, config={"displayModeBar": False})
+    st.plotly_chart(fig_salary, use_container_width=True, config={"displayModeBar": False}, key="avg_pay_dept_chart")
 
     with st.expander("See exact figures"):
         salary_table = active_df.groupby("Department")["Salary"].agg(["mean", "max", "min"]).reset_index()
