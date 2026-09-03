@@ -119,7 +119,7 @@ with s1:
     )
     fig_gender_hub.update_traces(cliponaxis=False)
     fig_gender_hub = theme.style_fig(
-        fig_gender_hub, title="Average salary by hub and gender", height=320,
+        fig_gender_hub, title="Average salary by hub and gender", height=360,
         legend_pos="top", tickangle=0, y_values=gender_hub["Salary"].tolist(), pad_frac=0.2,
     )
     fig_gender_hub.update_layout(xaxis_title="", yaxis_title="Avg salary (KES)")
@@ -133,7 +133,7 @@ with s2:
     )
     fig_extremes.update_traces(cliponaxis=False)
     fig_extremes = theme.style_fig(
-        fig_extremes, title="Pay ceiling vs. floor by hub", height=320,
+        fig_extremes, title="Pay ceiling vs. floor by hub", height=360,
         legend_pos="top", tickangle=0, y_values=extremes_df["Salary"].tolist(), pad_frac=0.2,
     )
     fig_extremes.update_layout(xaxis_title="", yaxis_title="Salary (KES)")
