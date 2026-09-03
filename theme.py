@@ -167,25 +167,33 @@ def style_fig(
     )
     if title:
         layout_update["title"] = dict(
-            text=title, font=dict(size=15, color=NAVY), x=0.01, xanchor="left"
+            text=title, font=dict(size=15, color=NAVY),
+            x=0.01, xanchor="left", y=0.98, yanchor="top",
         )
-        top_margin = 55
     else:
         layout_update["title"] = dict(text="")
-        top_margin = 20
 
     if legend:
+        # Drop the auto-generated legend title (e.g. "Gender", "Age Group") --
+        # it's redundant with the item labels and is what was overlapping the
+        # chart title when the legend sat near the top of the chart.
+        layout_update["legend_title_text"] = ""
         if legend_pos == "top":
+            # Push the legend clearly below the chart title, with its own
+            # dedicated band of margin so the two never overlap.
             layout_update["legend"] = dict(
-                orientation="h", yanchor="bottom", y=1.05, xanchor="left", x=0
+                orientation="h", yanchor="bottom", y=1.16, xanchor="left", x=0
             )
-            bottom_margin = 70
+            top_margin = 105 if title else 65
+            bottom_margin = 45
         else:
             layout_update["legend"] = dict(
                 orientation="h", yanchor="top", y=-0.32, xanchor="center", x=0.5
             )
+            top_margin = 55 if title else 20
             bottom_margin = 90
     else:
+        top_margin = 55 if title else 20
         bottom_margin = 45
 
     layout_update["margin"] = dict(l=10, r=25, t=top_margin, b=bottom_margin)
@@ -224,9 +232,14 @@ def build_hub_map(df, lat_col="lat", lon_col="lon", text_col="Location",
     installed version actually supports instead of hard-coding one, so this
     doesn't break again on a different machine/environment.
     """
+    # No on-marker text label here on purpose: the base map tiles already
+    # print each city's name (Kisumu, Nakuru, Nairobi, Mombasa...), and
+    # adding our own text on top of that produced the doubled/garbled
+    # labels. Hubs are instead distinguished by colour + a legend, and the
+    # exact name is available on hover.
     if hasattr(px, "scatter_map"):
         fig = px.scatter_map(
-            df, lat=lat_col, lon=lon_col, text=text_col, size=size_col,
+            df, lat=lat_col, lon=lon_col, hover_name=text_col, size=size_col,
             color=color_col, color_discrete_map=color_map, zoom=zoom,
         )
         fig.update_layout(
@@ -234,7 +247,7 @@ def build_hub_map(df, lat_col="lat", lon_col="lon", text_col="Location",
         )
     else:
         fig = px.scatter_mapbox(
-            df, lat=lat_col, lon=lon_col, text=text_col, size=size_col,
+            df, lat=lat_col, lon=lon_col, hover_name=text_col, size=size_col,
             color=color_col, color_discrete_map=color_map, zoom=zoom,
         )
         fig.update_layout(
@@ -243,8 +256,10 @@ def build_hub_map(df, lat_col="lat", lon_col="lon", text_col="Location",
 
     fig.update_layout(
         height=height,
-        showlegend=False,
-        margin=dict(l=0, r=0, t=40, b=0),
+        showlegend=True,
+        legend=dict(orientation="h", yanchor="bottom", y=-0.15, xanchor="center", x=0.5),
+        legend_title_text="",
+        margin=dict(l=0, r=0, t=40, b=40),
         paper_bgcolor="rgba(0,0,0,0)",
         title=dict(text="Hub locations", font=dict(size=15, color=NAVY), x=0.01, xanchor="left"),
     )
@@ -331,13 +346,19 @@ def clickable_chart(fig: go.Figure, key: str, height: int = 360):
         )
         return None
 
+    # override_height sets the *container's* pixel height. If it exactly
+    # matches the figure's own height, tiny rendering overhead (borders,
+    # rounding) can clip the bottom few pixels -- which is exactly what was
+    # cutting off the x-axis title on these charts. Giving the container
+    # some slack beyond the figure's own height fixes that without
+    # changing the figure's own proportions.
     clicked = plotly_events(
         fig,
         click_event=True,
         hover_event=False,
         select_event=False,
         key=key,
-        override_height=height,
+        override_height=height + 45,
         override_width="100%",
     )
     if clicked:
