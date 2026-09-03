@@ -131,6 +131,35 @@ def inject_css():
 
         [data-testid="stSidebar"] {{ background-color: {NAVY}; }}
         [data-testid="stSidebar"] * {{ color: {TEXT_LIGHT} !important; }}
+
+        /* Compact KPI tiles for the "At a Glance" grid */
+        .mini-kpi {{
+            background: {WHITE};
+            border-radius: 8px;
+            padding: 10px 14px;
+            border-left: 4px solid {NAVY_LIGHT};
+            box-shadow: 0 1px 3px rgba(6,40,61,0.08);
+            height: 100%;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }}
+        .mini-kpi:hover {{ transform: translateY(-2px); box-shadow: 0 6px 12px rgba(6,40,61,0.14); }}
+        .mini-kpi.alert {{ border-left-color: {ORANGE}; }}
+        .mini-kpi.good {{ border-left-color: {TEAL}; }}
+        .mini-label {{
+            font-size: 10.5px; font-weight: 700; letter-spacing: .03em;
+            color: {TEXT_MID}; text-transform: uppercase; margin-bottom: 2px;
+        }}
+        .mini-value {{ font-size: 21px; font-weight: 700; color: {NAVY}; line-height: 1.1; }}
+
+        /* Tile wrapper so the dense grid has visible card boundaries,
+           like a Power BI canvas */
+        .glance-tile {{
+            background: {WHITE};
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(6,40,61,0.08);
+            padding: 6px 6px 0 6px;
+            margin-bottom: 14px;
+        }}
         </style>
         """,
         unsafe_allow_html=True,
@@ -269,6 +298,29 @@ def build_hub_map(df, lat_col="lat", lon_col="lon", text_col="Location",
 # ---------------------------------------------------------------------------
 # UI COMPONENTS
 # ---------------------------------------------------------------------------
+def style_mini_fig(fig: go.Figure, title: str = None, height: int = 200):
+    """
+    Compact styling for small multi-tile 'at a glance' dashboards --
+    minimal chrome (no gridlines, no axis titles, small fonts, tight
+    margins) so 6-8 of these can sit on one screen Power-BI style.
+    """
+    fig.update_layout(
+        height=height,
+        font=dict(family="Helvetica, Arial, sans-serif", color=NAVY, size=10),
+        plot_bgcolor=WHITE,
+        paper_bgcolor="rgba(0,0,0,0)",
+        showlegend=False,
+        margin=dict(l=5, r=15, t=34, b=22),
+        title=dict(
+            text=title or "", font=dict(size=12, color=NAVY),
+            x=0.03, xanchor="left", y=0.96, yanchor="top",
+        ),
+    )
+    fig.update_xaxes(showgrid=False, zeroline=False, automargin=True, title=None, tickfont=dict(size=9))
+    fig.update_yaxes(showgrid=False, zeroline=False, automargin=True, title=None, tickfont=dict(size=9))
+    return fig
+
+
 def kpi_card(label: str, value: str, sub: str = "", tone: str = "neutral"):
     tone_class = tone if tone in ("alert", "good") else ""
     st.markdown(
@@ -277,6 +329,20 @@ def kpi_card(label: str, value: str, sub: str = "", tone: str = "neutral"):
             <div class="kpi-label">{label}</div>
             <div class="kpi-value">{value}</div>
             <div class="kpi-sub">{sub}</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def mini_kpi_card(label: str, value: str, tone: str = "neutral"):
+    """Compact KPI tile for the dense 'At a Glance' grid."""
+    tone_class = tone if tone in ("alert", "good") else ""
+    st.markdown(
+        f"""
+        <div class="mini-kpi {tone_class}">
+            <div class="mini-label">{label}</div>
+            <div class="mini-value">{value}</div>
         </div>
         """,
         unsafe_allow_html=True,
@@ -329,14 +395,67 @@ def gender_pay_gap(df):
 
 
 # ---------------------------------------------------------------------------
+# NAME PRIVACY
+# ---------------------------------------------------------------------------
+def redact_name(full_name: str) -> str:
+    """
+    Redact a name to 'first letter + block characters', e.g.
+    'Wainaina Joseph' -> 'W████████ J██████'. Keeps the same visual length
+    as the real name (so the table doesn't look suspiciously uniform) while
+    revealing nothing beyond the first initial of each word.
+    """
+    if not isinstance(full_name, str) or not full_name.strip():
+        return full_name
+    words = full_name.split(" ")
+    redacted = [w[0] + "█" * (len(w) - 1) if len(w) > 1 else w for w in words]
+    return " ".join(redacted)
+
+
+def analyst_name_unlock(key: str) -> bool:
+    """
+    Lightweight passcode gate for revealing sensitive fields (employee
+    names). Checks st.secrets['ANALYST_CODE'] if you've configured it in
+    .streamlit/secrets.toml; otherwise falls back to a placeholder code and
+    says so, rather than silently using an insecure default.
+
+    This is a basic deterrent for a public-facing demo/report, not real
+    authentication -- anyone who has the code (or reads this source file)
+    can unlock it. For real access control, look at Streamlit's built-in
+    authentication support before deploying this with genuine PII.
+    """
+    default_code = "letmein123"
+    try:
+        real_code = st.secrets.get("ANALYST_CODE", default_code)
+    except Exception:
+        real_code = default_code
+
+    with st.expander("🔒 Analyst access — reveal employee names"):
+        if real_code == default_code:
+            st.caption(
+                "No custom access code configured yet — using a placeholder. "
+                "Add `ANALYST_CODE = \"your-code-here\"` to "
+                "`.streamlit/secrets.toml` to set your own, and it'll be used "
+                "automatically instead of this placeholder."
+            )
+        entered = st.text_input("Access code", type="password", key=key)
+    return bool(entered) and entered == real_code
+
+
+# ---------------------------------------------------------------------------
 # DRILL-DOWN HELPER
 # ---------------------------------------------------------------------------
-def clickable_chart(fig: go.Figure, key: str, height: int = 360):
+def clickable_chart(fig: go.Figure, key: str, height: int = 360, category_axis: str = "y"):
     """
     Render a plotly chart that supports click-to-drill-down.
-    Returns the clicked point's x-category (str) or None if nothing clicked
-    yet / streamlit-plotly-events isn't installed (falls back to a plain
-    static chart in that case).
+    Returns the clicked point's category value (str) or None if nothing
+    clicked yet / streamlit-plotly-events isn't installed (falls back to a
+    plain static chart in that case).
+
+    category_axis: which axis carries the category to drill into. All four
+    hero charts in this app are horizontal bars (orientation='h'), so the
+    category (Department/Location) lives on the Y axis and the number lives
+    on X -- category_axis defaults to "y" accordingly. Pass "x" instead if
+    a future chart uses vertical bars with the category on the X axis.
     """
     if not HAS_PLOTLY_EVENTS:
         st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False}, key=key + "_static")
@@ -363,5 +482,5 @@ def clickable_chart(fig: go.Figure, key: str, height: int = 360):
     )
     if clicked:
         point = clicked[0]
-        return point.get("x")
+        return point.get(category_axis)
     return None
