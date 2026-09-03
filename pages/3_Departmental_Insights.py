@@ -111,7 +111,7 @@ with s1:
         )
         fig_gender.update_traces(cliponaxis=False)
         fig_gender = theme.style_fig(
-            fig_gender, title="Gender mix by department", height=340,
+            fig_gender, title="Gender mix by department", height=380,
             legend_pos="top", tickangle=-20, y_values=gender_dept["Count"].tolist(), pad_frac=0.2,
         )
         fig_gender.update_layout(xaxis_title="", yaxis_title="Employees")
@@ -131,7 +131,7 @@ with s2:
         fig_age.update_traces(cliponaxis=False)
         dept_totals = age_summary.groupby("Department")["Count"].sum().tolist()
         fig_age = theme.style_fig(
-            fig_age, title="Age profile by department", height=340,
+            fig_age, title="Age profile by department", height=380,
             legend_pos="top", tickangle=-20, y_values=dept_totals, pad_frac=0.2,
         )
         fig_age.update_layout(xaxis_title="", yaxis_title="Employees")
