@@ -206,6 +206,19 @@ elif selected_status == "Left Only":
 
 display_cols = ["EmployeeID", "FullName", "Status", "Gender", "Age", "Department", "JobTitle", "Location", "TerminationType", "Salary"]
 display_df = display_df[[c for c in display_cols if c in display_df.columns]]
+
+# Names are the only field masked by default -- everything else here is
+# fine for anyone to see. Analyst can unlock the real names with a
+# passcode (set in .streamlit/secrets.toml -- see theme.analyst_name_unlock).
+names_unlocked = theme.analyst_name_unlock(key="roster_name_unlock")
+if "FullName" in display_df.columns:
+    if names_unlocked:
+        st.caption("🔓 Names unlocked for this session.")
+    else:
+        display_df = display_df.copy()
+        display_df["FullName"] = display_df["FullName"].apply(theme.redact_name)
+        st.caption("🔒 Employee names are redacted. Enter the analyst access code above to reveal them.")
+
 st.dataframe(
     display_df.style.format({"Salary": "KES {:,.0f}"}),
     use_container_width=True,
