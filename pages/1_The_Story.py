@@ -8,6 +8,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import theme
 
 theme.inject_css()
+theme.render_analyst_sidebar_unlock()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -149,6 +150,9 @@ if clicked_dept:
     dept_leavers = left[left["Department"] == clicked_dept][
         ["EmployeeID", "FullName", "JobTitle", "Location", "TerminationType", "TenureYears", "Salary"]
     ].sort_values("TenureYears")
+    dept_leavers = theme.masked_names(dept_leavers)
+    if not theme.names_unlocked():
+        st.caption("🔒 Names redacted — unlock in the sidebar (Analyst access) to reveal.")
     st.dataframe(
         dept_leavers.style.format({"Salary": "KES {:,.0f}", "TenureYears": "{:.1f} yrs"}),
         use_container_width=True,
