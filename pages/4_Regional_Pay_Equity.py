@@ -7,8 +7,8 @@ import streamlit as st
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import theme
 
-st.set_page_config(page_title="Regional Pay Equity", layout="wide")
 theme.inject_css()
+theme.render_analyst_sidebar_unlock()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -96,6 +96,9 @@ if audit_hub:
     extremes = hub_df[(hub_df["Salary"] == max_sal) | (hub_df["Salary"] == min_sal)].copy()
     extremes["Pay Tier"] = extremes["Salary"].apply(lambda x: "📈 Top Earner" if x == max_sal else "📉 Bottom Earner")
     cols = ["Pay Tier", "EmployeeID", "FullName", "Gender", "Department", "JobTitle", "Salary"]
+    extremes = theme.masked_names(extremes)
+    if not theme.names_unlocked():
+        st.caption("🔒 Names redacted — unlock in the sidebar (Analyst access) to reveal.")
     st.dataframe(
         extremes[[c for c in cols if c in extremes.columns]].sort_values("Salary", ascending=False)
         .style.format({"Salary": "KES {:,.0f}"}),
