@@ -86,9 +86,11 @@ with st.expander("⬇️ Download & share this dashboard", expanded=False):
         except Exception:
             st.button("🖼️ Download as PNG image", disabled=True, use_container_width=True)
             st.caption(
-                "PNG export needs Google Chrome installed on this machine (used behind the "
-                "scenes to render the image) — it isn't available here. The HTML download "
-                "on the left works everywhere and needs no extra setup."
+                "PNG export needs a one-time setup: open a terminal in this project and run "
+                "`plotly_get_chrome -y` — it downloads a small headless Chrome just for "
+                "generating images (not a full browser install, no admin rights needed). "
+                "Then restart the app and this button will work. Until then, the HTML "
+                "download on the left works with no setup at all."
             )
 
 st.markdown("---")
