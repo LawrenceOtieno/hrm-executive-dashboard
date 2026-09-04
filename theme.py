@@ -10,6 +10,7 @@ together.
 """
 
 import streamlit as st
+import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
@@ -411,17 +412,46 @@ def redact_name(full_name: str) -> str:
     return " ".join(redacted)
 
 
+def masked_names(df, col: str = "FullName"):
+    """
+    Returns a copy of df with `col` redacted, unless the analyst has
+    already unlocked names for this session (see names_unlocked()) -- in
+    which case the real names pass through untouched. Use this on every
+    table that shows employee names.
+    """
+    if col not in df.columns:
+        return df
+    df = df.copy()
+    if not names_unlocked():
+        df[col] = df[col].apply(redact_name)
+    return df
+
+
 def analyst_name_unlock(key: str) -> bool:
     """
-    Lightweight passcode gate for revealing sensitive fields (employee
-    names). Checks st.secrets['ANALYST_CODE'] if you've configured it in
-    .streamlit/secrets.toml; otherwise falls back to a placeholder code and
-    says so, rather than silently using an insecure default.
+    DEPRECATED shim -- kept so nothing breaks if called directly.
+    Use render_analyst_sidebar_unlock() + names_unlocked() instead, which
+    share one passcode entry across every page for the whole session.
+    """
+    return names_unlocked()
 
-    This is a basic deterrent for a public-facing demo/report, not real
-    authentication -- anyone who has the code (or reads this source file)
-    can unlock it. For real access control, look at Streamlit's built-in
-    authentication support before deploying this with genuine PII.
+
+def names_unlocked() -> bool:
+    """Whether the analyst has unlocked names for this session."""
+    return bool(st.session_state.get("analyst_names_unlocked", False))
+
+
+def render_analyst_sidebar_unlock():
+    """
+    Renders the single, shared name-unlock control in the sidebar. Call
+    this once near the top of every page. Unlocking here (with the
+    ANALYST_CODE passcode) reveals redacted employee names everywhere in
+    the app for the rest of the session -- on drill-down tables, the pay
+    extremes audit, and the full roster alike -- so the analyst only has
+    to enter the code once, not on every table separately.
+
+    See analyst_name_unlock()'s docstring for the security caveat: this is
+    a lightweight deterrent for a public-facing report, not real auth.
     """
     default_code = "letmein123"
     try:
@@ -429,21 +459,183 @@ def analyst_name_unlock(key: str) -> bool:
     except Exception:
         real_code = default_code
 
-    with st.expander("🔒 Analyst access — reveal employee names"):
-        if real_code == default_code:
-            st.caption(
-                "No custom access code configured yet — using a placeholder. "
-                "Add `ANALYST_CODE = \"your-code-here\"` to "
-                "`.streamlit/secrets.toml` to set your own, and it'll be used "
-                "automatically instead of this placeholder."
-            )
-        entered = st.text_input("Access code", type="password", key=key)
-    return bool(entered) and entered == real_code
+    st.sidebar.markdown("---")
+    if names_unlocked():
+        st.sidebar.success("🔓 Employee names unlocked")
+        if st.sidebar.button("Re-lock names", use_container_width=True):
+            st.session_state["analyst_names_unlocked"] = False
+            st.rerun()
+    else:
+        with st.sidebar.expander("🔒 Analyst access"):
+            if real_code == default_code:
+                st.caption(
+                    "No custom access code configured — using a placeholder. "
+                    "Add `ANALYST_CODE = \"your-code\"` to "
+                    "`.streamlit/secrets.toml` to set your own."
+                )
+            entered = st.text_input("Code to reveal employee names", type="password", key="analyst_unlock_sidebar_input")
+            if entered and entered == real_code:
+                st.session_state["analyst_names_unlocked"] = True
+                st.rerun()
+            elif entered:
+                st.error("Incorrect code.")
 
 
 # ---------------------------------------------------------------------------
 # DRILL-DOWN HELPER
 # ---------------------------------------------------------------------------
+def build_export_dashboard(df):
+    """
+    Builds ONE composite Plotly figure that mirrors the 'At a Glance' page --
+    5 KPI tiles + 8 chart tiles -- so it can be exported as a single
+    downloadable/shareable PNG. Kept as its own self-contained figure
+    (rather than reusing the live page's individual chart objects) so it
+    renders identically regardless of how the live page is laid out.
+    """
+    from plotly.subplots import make_subplots
+
+    active = df[df["Status"] == "Active"]
+    left = df[df["Status"] == "Left"]
+
+    total_headcount = len(active)
+    total_departures = len(left)
+    turnover_rate = total_departures / (total_headcount + total_departures) * 100
+    involuntary_share = (left["TerminationType"] == "Involuntary").mean() * 100
+    avg_salary = active["Salary"].mean()
+    gap_pct, gap_higher = gender_pay_gap(active)
+
+    specs = [
+        [{"type": "indicator"}] * 5,
+        [{"type": "xy"}, {"type": "xy"}, {"type": "domain"}, {"type": "domain"}, None],
+        [{"type": "xy"}, {"type": "xy"}, {"type": "xy"}, {"type": "xy"}, None],
+    ]
+    fig = make_subplots(
+        rows=3, cols=5, specs=specs,
+        row_heights=[0.18, 0.41, 0.41],
+        horizontal_spacing=0.045, vertical_spacing=0.10,
+        subplot_titles=[
+            "", "", "", "", "",
+            "Turnover % by Dept", "Turnover % by Hub", "Gender Split", "Exit Type", "",
+            "Avg Salary by Hub", "Avg Salary by Dept", "Active Age Bands", "Headcount by Dept", "",
+        ],
+    )
+
+    # --- Row 1: KPI indicators (rendered as styled text, not real Plotly
+    # number indicators, so the formatting -- "KES 1.4M", "%", etc. --
+    # matches the live page exactly instead of Plotly's own number format) ---
+    kpis = [
+        ("Headcount", f"{total_headcount:,}", NAVY),
+        ("Turnover", f"{turnover_rate:.1f}%", ORANGE_DARK),
+        ("Involuntary Exits", f"{involuntary_share:.0f}%", ORANGE_DARK),
+        ("Avg Annual Salary", f"KES {avg_salary/1_000_000:.2f}M", NAVY),
+        ("Gender Pay Gap", f"{gap_pct:.1f}%", ORANGE_DARK if gap_pct > 3 else TEAL),
+    ]
+    for i, (label, value, color) in enumerate(kpis, start=1):
+        fig.add_trace(
+            go.Indicator(
+                mode="number",
+                value=0,
+                number={"font": {"size": 1}},
+                title={
+                    "text": (
+                        f"<span style='font-size:12px;color:{TEXT_MID}'>{label.upper()}</span>"
+                        f"<br><span style='font-size:26px;color:{color};font-weight:700'>{value}</span>"
+                    )
+                },
+            ),
+            row=1, col=i,
+        )
+
+    # --- Row 2 ---
+    dept_summary = df.groupby("Department")["Status"].value_counts().unstack(fill_value=0)
+    dept_summary["Total"] = dept_summary.sum(axis=1)
+    dept_summary["TurnoverRate"] = (dept_summary.get("Left", 0) / dept_summary["Total"] * 100).round(1)
+    dept_summary = dept_summary.reset_index().sort_values("TurnoverRate")
+    fig.add_trace(
+        go.Bar(x=dept_summary["TurnoverRate"], y=dept_summary["Department"], orientation="h",
+               marker_color=ORANGE_DARK, showlegend=False),
+        row=2, col=1,
+    )
+
+    hub_summary = df.groupby("Location")["Status"].value_counts().unstack(fill_value=0)
+    hub_summary["Total"] = hub_summary.sum(axis=1)
+    hub_summary["TurnoverRate"] = (hub_summary.get("Left", 0) / hub_summary["Total"] * 100).round(1)
+    hub_summary = hub_summary.reset_index().sort_values("TurnoverRate")
+    fig.add_trace(
+        go.Bar(x=hub_summary["TurnoverRate"], y=hub_summary["Location"], orientation="h",
+               marker_color=[HUB_COLORS.get(l, NAVY_LIGHT) for l in hub_summary["Location"]], showlegend=False),
+        row=2, col=2,
+    )
+
+    gender_split = active["Gender"].value_counts()
+    fig.add_trace(
+        go.Pie(labels=gender_split.index, values=gender_split.values, hole=0.55,
+               marker=dict(colors=[GENDER_COLORS.get(g, NAVY_LIGHT) for g in gender_split.index]),
+               textinfo="percent", showlegend=False),
+        row=2, col=3,
+    )
+
+    term_split = left["TerminationType"].value_counts()
+    fig.add_trace(
+        go.Pie(labels=term_split.index, values=term_split.values, hole=0.55,
+               marker=dict(colors=[TERMINATION_COLORS.get(t, NAVY_LIGHT) for t in term_split.index]),
+               textinfo="percent", showlegend=False),
+        row=2, col=4,
+    )
+
+    # --- Row 3 ---
+    hub_pay = active.groupby("Location")["Salary"].mean().reset_index().sort_values("Salary")
+    fig.add_trace(
+        go.Bar(x=hub_pay["Salary"], y=hub_pay["Location"], orientation="h",
+               marker_color=[HUB_COLORS.get(l, NAVY_LIGHT) for l in hub_pay["Location"]], showlegend=False),
+        row=3, col=1,
+    )
+
+    dept_pay = active.groupby("Department")["Salary"].mean().reset_index().sort_values("Salary")
+    fig.add_trace(
+        go.Bar(x=dept_pay["Salary"], y=dept_pay["Department"], orientation="h",
+               marker_color=NAVY_LIGHT, showlegend=False),
+        row=3, col=2,
+    )
+
+    age_bins = [0, 29, 39, 49, 100]
+    age_labels = ["Under 30", "30-39", "40-49", "50+"]
+    age_df = active.copy()
+    age_df["Age Group"] = pd.cut(age_df["Age"], bins=age_bins, labels=age_labels)
+    age_counts = age_df["Age Group"].value_counts().reindex(age_labels)
+    fig.add_trace(
+        go.Bar(x=age_counts.index.astype(str), y=age_counts.values,
+               marker_color=DEPT_COLOR_SEQUENCE[: len(age_counts)], showlegend=False),
+        row=3, col=3,
+    )
+
+    dept_headcount = active["Department"].value_counts().reset_index()
+    dept_headcount.columns = ["Department", "Count"]
+    dept_headcount = dept_headcount.sort_values("Count")
+    fig.add_trace(
+        go.Bar(x=dept_headcount["Count"], y=dept_headcount["Department"], orientation="h",
+               marker_color=DEPT_COLOR_SEQUENCE[: len(dept_headcount)], showlegend=False),
+        row=3, col=4,
+    )
+
+    fig.update_xaxes(showgrid=False, zeroline=False, tickfont=dict(size=9))
+    fig.update_yaxes(showgrid=False, zeroline=False, tickfont=dict(size=9))
+    fig.update_annotations(font=dict(size=13, color=NAVY))
+
+    fig.update_layout(
+        width=1500, height=820,
+        paper_bgcolor=OFF_WHITE,
+        plot_bgcolor=WHITE,
+        font=dict(family="Helvetica, Arial, sans-serif", color=NAVY),
+        margin=dict(l=30, r=30, t=90, b=40),
+        title=dict(
+            text="<b>HRM Executive Dashboard — At a Glance</b>",
+            font=dict(size=22, color=NAVY), x=0.02, xanchor="left",
+        ),
+    )
+    return fig
+
+
 def clickable_chart(fig: go.Figure, key: str, height: int = 360, category_axis: str = "y"):
     """
     Render a plotly chart that supports click-to-drill-down.
