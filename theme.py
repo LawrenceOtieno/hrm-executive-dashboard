@@ -511,8 +511,8 @@ def build_export_dashboard(df):
     ]
     fig = make_subplots(
         rows=3, cols=5, specs=specs,
-        row_heights=[0.18, 0.41, 0.41],
-        horizontal_spacing=0.045, vertical_spacing=0.10,
+        row_heights=[0.22, 0.39, 0.39],
+        horizontal_spacing=0.045, vertical_spacing=0.12,
         subplot_titles=[
             "", "", "", "", "",
             "Turnover % by Dept", "Turnover % by Hub", "Gender Split", "Exit Type", "",
@@ -520,28 +520,29 @@ def build_export_dashboard(df):
         ],
     )
 
-    # --- Row 1: KPI indicators (rendered as styled text, not real Plotly
-    # number indicators, so the formatting -- "KES 1.4M", "%", etc. --
-    # matches the live page exactly instead of Plotly's own number format) ---
-    kpis = [
-        ("Headcount", f"{total_headcount:,}", NAVY),
-        ("Turnover", f"{turnover_rate:.1f}%", ORANGE_DARK),
-        ("Involuntary Exits", f"{involuntary_share:.0f}%", ORANGE_DARK),
-        ("Avg Annual Salary", f"KES {avg_salary/1_000_000:.2f}M", NAVY),
-        ("Gender Pay Gap", f"{gap_pct:.1f}%", ORANGE_DARK if gap_pct > 3 else TEAL),
+    # --- Row 1: KPI indicators. Use Plotly's own number+title zones (not
+    # a single hand-built HTML string with mixed font sizes) -- that's
+    # what was causing the label and value text to overlap each other in
+    # both the HTML and PNG exports. This is the pattern Plotly's own
+    # layout engine actually spaces correctly.
+    kpi_specs = [
+        ("HEADCOUNT", total_headcount, {"valueformat": ",.0f"}, NAVY),
+        ("TURNOVER", turnover_rate, {"valueformat": ".1f", "suffix": "%"}, ORANGE_DARK),
+        ("INVOLUNTARY EXITS", involuntary_share, {"valueformat": ".0f", "suffix": "%"}, ORANGE_DARK),
+        ("AVG ANNUAL SALARY", avg_salary / 1_000_000, {"valueformat": ".2f", "prefix": "KES ", "suffix": "M"}, NAVY),
+        (
+            f"GENDER PAY GAP ({gap_higher} higher)", gap_pct, {"valueformat": ".1f", "suffix": "%"},
+            ORANGE_DARK if gap_pct > 3 else TEAL,
+        ),
     ]
-    for i, (label, value, color) in enumerate(kpis, start=1):
+    for i, (label, value, number_fmt, color) in enumerate(kpi_specs, start=1):
         fig.add_trace(
             go.Indicator(
                 mode="number",
-                value=0,
-                number={"font": {"size": 1}},
-                title={
-                    "text": (
-                        f"<span style='font-size:12px;color:{TEXT_MID}'>{label.upper()}</span>"
-                        f"<br><span style='font-size:26px;color:{color};font-weight:700'>{value}</span>"
-                    )
-                },
+                value=value,
+                number={**number_fmt, "font": {"size": 30, "color": color}},
+                title={"text": label, "font": {"size": 12, "color": TEXT_MID}},
+                domain={"row": 0, "column": i - 1},
             ),
             row=1, col=i,
         )
@@ -623,11 +624,11 @@ def build_export_dashboard(df):
     fig.update_annotations(font=dict(size=13, color=NAVY))
 
     fig.update_layout(
-        width=1500, height=820,
+        width=1500, height=860,
         paper_bgcolor=OFF_WHITE,
         plot_bgcolor=WHITE,
         font=dict(family="Helvetica, Arial, sans-serif", color=NAVY),
-        margin=dict(l=30, r=30, t=90, b=40),
+        margin=dict(l=30, r=30, t=95, b=40),
         title=dict(
             text="<b>HRM Executive Dashboard — At a Glance</b>",
             font=dict(size=22, color=NAVY), x=0.02, xanchor="left",
