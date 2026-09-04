@@ -42,6 +42,12 @@ TEXT_MID = "#3D6680"
 TEXT_LIGHT = "#D0E8F2"
 GRID = "#DCE7EF"
 
+# Segoe UI matches Power BI's own default (and needs no setup on Windows,
+# which this app is built for). Inter is the fallback for anyone opening
+# it on a machine without Segoe UI installed -- it's a similar-feeling UI
+# font, loaded from Google Fonts so it renders identically everywhere.
+FONT_STACK = "'Segoe UI', Inter, Arial, sans-serif"
+
 COLOR_ALERT = ORANGE
 COLOR_ALERT_DARK = ORANGE_DARK
 COLOR_GOOD = TEAL
@@ -69,9 +75,12 @@ def inject_css():
     st.markdown(
         f"""
         <style>
-        .stApp {{ background-color: {OFF_WHITE}; }}
-        h1, h2, h3, h4 {{ color: {NAVY} !important; }}
-        p, li, span, label {{ color: {TEXT_MID}; }}
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        html, body, [class*="css"] {{ font-family: {FONT_STACK}; }}
+        .stApp {{ background-color: {OFF_WHITE}; font-family: {FONT_STACK}; }}
+        h1, h2, h3, h4 {{ color: {NAVY} !important; font-family: {FONT_STACK}; }}
+        p, li, span, label {{ color: {TEXT_MID}; font-family: {FONT_STACK}; }}
 
         /* KPI cards -- lift slightly on hover so they read as interactive */
         .kpi-card {{
@@ -190,7 +199,7 @@ def style_fig(
     """
     layout_update = dict(
         height=height,
-        font=dict(family="Helvetica, Arial, sans-serif", color=NAVY, size=12),
+        font=dict(family=FONT_STACK, color=NAVY, size=12),
         plot_bgcolor=WHITE,
         paper_bgcolor="rgba(0,0,0,0)",
         showlegend=legend,
@@ -307,7 +316,7 @@ def style_mini_fig(fig: go.Figure, title: str = None, height: int = 200):
     """
     fig.update_layout(
         height=height,
-        font=dict(family="Helvetica, Arial, sans-serif", color=NAVY, size=10),
+        font=dict(family=FONT_STACK, color=NAVY, size=10),
         plot_bgcolor=WHITE,
         paper_bgcolor="rgba(0,0,0,0)",
         showlegend=False,
@@ -627,7 +636,7 @@ def build_export_dashboard(df):
         width=1500, height=860,
         paper_bgcolor=OFF_WHITE,
         plot_bgcolor=WHITE,
-        font=dict(family="Helvetica, Arial, sans-serif", color=NAVY),
+        font=dict(family=FONT_STACK, color=NAVY),
         margin=dict(l=30, r=30, t=95, b=40),
         title=dict(
             text="<b>HRM Executive Dashboard — At a Glance</b>",
