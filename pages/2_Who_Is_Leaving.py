@@ -7,8 +7,8 @@ import streamlit as st
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import theme
 
-st.set_page_config(page_title="Who's Leaving & Why", layout="wide")
 theme.inject_css()
+theme.render_analyst_sidebar_unlock()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -116,6 +116,9 @@ if clicked_hub:
     hub_leavers = left[left["Location"] == clicked_hub][
         ["EmployeeID", "FullName", "Department", "JobTitle", "TerminationType", "TenureYears", "Salary"]
     ].sort_values("TenureYears")
+    hub_leavers = theme.masked_names(hub_leavers)
+    if not theme.names_unlocked():
+        st.caption("🔒 Names redacted — unlock in the sidebar (Analyst access) to reveal.")
     st.dataframe(
         hub_leavers.style.format({"Salary": "KES {:,.0f}", "TenureYears": "{:.1f} yrs"}),
         use_container_width=True,
@@ -208,16 +211,13 @@ display_cols = ["EmployeeID", "FullName", "Status", "Gender", "Age", "Department
 display_df = display_df[[c for c in display_cols if c in display_df.columns]]
 
 # Names are the only field masked by default -- everything else here is
-# fine for anyone to see. Analyst can unlock the real names with a
-# passcode (set in .streamlit/secrets.toml -- see theme.analyst_name_unlock).
-names_unlocked = theme.analyst_name_unlock(key="roster_name_unlock")
-if "FullName" in display_df.columns:
-    if names_unlocked:
-        st.caption("🔓 Names unlocked for this session.")
-    else:
-        display_df = display_df.copy()
-        display_df["FullName"] = display_df["FullName"].apply(theme.redact_name)
-        st.caption("🔒 Employee names are redacted. Enter the analyst access code above to reveal them.")
+# fine for anyone to see. Unlock once in the sidebar (Analyst access) and
+# real names show on every table across the whole app for this session.
+display_df = theme.masked_names(display_df)
+if theme.names_unlocked():
+    st.caption("🔓 Names unlocked for this session.")
+else:
+    st.caption("🔒 Employee names are redacted. Unlock in the sidebar (Analyst access) to reveal them.")
 
 st.dataframe(
     display_df.style.format({"Salary": "KES {:,.0f}"}),
