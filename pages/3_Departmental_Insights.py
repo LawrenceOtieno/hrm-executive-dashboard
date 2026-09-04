@@ -7,8 +7,8 @@ import streamlit as st
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import theme
 
-st.set_page_config(page_title="Departmental Insights", layout="wide")
 theme.inject_css()
+theme.render_analyst_sidebar_unlock()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -89,6 +89,9 @@ if clicked_dept:
     detail = left_df[left_df["Department"] == clicked_dept][
         ["EmployeeID", "FullName", "JobTitle", "Location", "TerminationType", "TenureYears", "PerformanceRating"]
     ]
+    detail = theme.masked_names(detail)
+    if not theme.names_unlocked():
+        st.caption("🔒 Names redacted — unlock in the sidebar (Analyst access) to reveal.")
     st.dataframe(detail, use_container_width=True, hide_index=True)
 else:
     st.caption("Tip: click a bar above to see individual departure records for that department.")
