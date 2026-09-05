@@ -73,25 +73,15 @@ with st.expander("⬇️ Download & share this dashboard", expanded=False):
         )
 
     with d2:
-        try:
-            png_bytes = export_fig.to_image(format="png", scale=2)
-            st.download_button(
-                "🖼️ Download as PNG image",
-                data=png_bytes,
-                file_name="hrm_dashboard_at_a_glance.png",
-                mime="image/png",
-                use_container_width=True,
-                help="A flat image — easiest to drop into a slide, email, or Slack message.",
-            )
-        except Exception:
-            st.button("🖼️ Download as PNG image", disabled=True, use_container_width=True)
-            st.caption(
-                "PNG export needs a one-time setup: open a terminal in this project and run "
-                "`plotly_get_chrome -y` — it downloads a small headless Chrome just for "
-                "generating images (not a full browser install, no admin rights needed). "
-                "Then restart the app and this button will work. Until then, the HTML "
-                "download on the left works with no setup at all."
-            )
+        png_bytes = theme.build_export_png(df)
+        st.download_button(
+            "🖼️ Download as PNG image",
+            data=png_bytes,
+            file_name="hrm_dashboard_at_a_glance.png",
+            mime="image/png",
+            use_container_width=True,
+            help="A flat image — easiest to drop into a slide, email, or Slack message.",
+        )
 
 st.markdown("---")
 
