@@ -103,11 +103,12 @@ fig_hero.update_layout(xaxis_title="Turnover rate (%)", yaxis_title="")
 clicked_hub = theme.clickable_chart(fig_hero, key="hub_turnover_click", height=320)
 
 theme.insight_box(
-    f"<b>{worst_hub['Location']}</b> runs the highest turnover at "
-    f"<b>{worst_hub['TurnoverRate']}%</b> versus <b>{best_hub['Location']}</b>'s "
-    f"<b>{best_hub['TurnoverRate']}%</b>. Check the salary comparison below before "
-    "assuming it's pay-driven — the gap between hubs is smaller than the turnover "
-    "gap, which usually points to management or workload factors instead.",
+    f"<b>{worst_hub['Location']}</b> loses staff faster than any other city, at "
+    f"<b>{worst_hub['TurnoverRate']}%</b>, compared with <b>{best_hub['Location']}</b>'s "
+    f"<b>{best_hub['TurnoverRate']}%</b>. Before assuming this is about pay, look at the salary "
+    "chart below — the pay gap between cities is much smaller than the gap in how many people "
+    "leave. That usually means the real cause is how the office is run or how heavy the workload "
+    "is, not how much people are paid.",
     tone="alert",
 )
 
