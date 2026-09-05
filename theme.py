@@ -71,18 +71,25 @@ def inject_css():
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-        html, body, [class*="css"], [class^="st-"], [class*=" st-"],
-        .stApp, .stMarkdown, .stMarkdown p, .stMarkdown li,
+        html, body, .stApp,
+        .stMarkdown, .stMarkdown p, .stMarkdown li,
         .stButton button, .stDownloadButton button,
         .stTextInput input, .stSelectbox, .stMultiSelect,
         .stDataFrame, table, th, td,
         [data-testid="stMetricValue"], [data-testid="stMetricLabel"],
-        [data-testid="stWidgetLabel"], [data-testid="stSidebarNav"] {{
+        [data-testid="stWidgetLabel"], [data-testid="stSidebarNav"],
+        [data-testid="stExpander"] summary span:not([data-testid="stIconMaterial"]) {{
             font-family: {FONT_STACK} !important;
         }}
+        /* Never touch Streamlit's own icon glyphs (expander arrows, lock
+           icons, etc.) -- they render via a special icon font where the
+           text content IS the icon (e.g. "arrow_right"). Overriding their
+           font-family breaks the glyph and shows that raw text instead,
+           overlapping the real label next to it. */
+        [data-testid="stIconMaterial"] {{ font-family: inherit !important; }}
         .stApp {{ background-color: {OFF_WHITE}; }}
         h1, h2, h3, h4 {{ color: {NAVY} !important; font-family: {FONT_STACK} !important; }}
-        p, li, span, label {{ color: {TEXT_MID}; font-family: {FONT_STACK} !important; }}
+        p, li, label {{ color: {TEXT_MID}; font-family: {FONT_STACK} !important; }}
 
         /* KPI cards -- lift slightly on hover so they read as interactive */
         .kpi-card {{
@@ -480,9 +487,13 @@ def render_analyst_sidebar_unlock():
         with st.sidebar.expander("🔒 Analyst access"):
             if real_code == default_code:
                 st.caption(
-                    "No custom access code configured — using a placeholder. "
-                    "Add `ANALYST_CODE = \"your-code\"` to "
-                    "`.streamlit/secrets.toml` to set your own."
+                    "No custom access code found — using a placeholder. If you've set "
+                    "`ANALYST_CODE` in a local `.streamlit/secrets.toml` file, note that "
+                    "file never gets deployed to Streamlit Community Cloud (it's meant to "
+                    "stay out of your GitHub repo for safety). On Cloud, set it instead via "
+                    "your app's **Settings → Secrets** panel, in the same format: "
+                    "`ANALYST_CODE = \"your-code\"` — then save, which reboots the app "
+                    "automatically."
                 )
             entered = st.text_input("Code to reveal employee names", type="password", key="analyst_unlock_sidebar_input")
             if entered and entered == real_code:
@@ -495,6 +506,135 @@ def render_analyst_sidebar_unlock():
 # ---------------------------------------------------------------------------
 # DRILL-DOWN HELPER
 # ---------------------------------------------------------------------------
+def build_export_png(df) -> bytes:
+    """
+    Builds the same 'At a Glance' summary (5 KPIs + 8 charts) as a static
+    PNG, using matplotlib instead of Plotly/Kaleido.
+
+    Why matplotlib and not fig.to_image(): Kaleido needs an actual Chrome
+    browser to render images, and getting that installed is a one-time
+    manual step (plotly_get_chrome) run in a terminal -- which works
+    locally, but there's no terminal to run it in on Streamlit Community
+    Cloud once deployed, so it can never complete there. matplotlib has no
+    such dependency: it's pure Python plus bundled C extensions, renders
+    identically wherever pip works, and needs no post-install setup step
+    at all. This keeps the interactive HTML export (which uses Plotly
+    directly, unaffected) working exactly as before, and makes the PNG
+    button work everywhere too, including on Cloud.
+    """
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from io import BytesIO
+
+    active = df[df["Status"] == "Active"]
+    left = df[df["Status"] == "Left"]
+
+    total_headcount = len(active)
+    total_departures = len(left)
+    turnover_rate = total_departures / (total_headcount + total_departures) * 100
+    involuntary_share = (left["TerminationType"] == "Involuntary").mean() * 100
+    avg_salary = active["Salary"].mean()
+    gap_pct, gap_higher = gender_pay_gap(active)
+
+    fig = plt.figure(figsize=(15, 8.6), dpi=150)
+    fig.patch.set_facecolor(OFF_WHITE)
+    gs = fig.add_gridspec(3, 4, height_ratios=[0.7, 1, 1], hspace=0.55, wspace=0.45,
+                           left=0.075, right=0.98, top=0.90, bottom=0.05)
+
+    fig.suptitle("HRM Executive Dashboard — At a Glance", fontsize=19, fontweight="bold",
+                 color=NAVY, x=0.04, ha="left")
+
+    # --- Row 1: KPI tiles (plain text, drawn directly -- no chart needed) ---
+    kpis = [
+        ("HEADCOUNT", f"{total_headcount:,}", NAVY),
+        ("TURNOVER", f"{turnover_rate:.1f}%", ORANGE_DARK),
+        ("INVOLUNTARY EXITS", f"{involuntary_share:.0f}%", ORANGE_DARK),
+        ("AVG ANNUAL SALARY", f"KES {avg_salary/1_000_000:.2f}M", NAVY),
+    ]
+    for i, (label, value, color) in enumerate(kpis):
+        ax = fig.add_subplot(gs[0, i])
+        ax.axis("off")
+        ax.text(0.0, 0.62, value, fontsize=24, fontweight="bold", color=color, va="center")
+        ax.text(0.0, 0.18, label, fontsize=10, color=TEXT_MID, va="center")
+
+    def style_ax(ax, title):
+        ax.set_title(title, loc="left", fontsize=12, fontweight="bold", color=NAVY, pad=8)
+        ax.tick_params(colors=NAVY, labelsize=7.5)
+        ax.spines[["top", "right"]].set_visible(False)
+        ax.set_facecolor(WHITE)
+
+    # --- Row 2 ---
+    dept_summary = df.groupby("Department")["Status"].value_counts().unstack(fill_value=0)
+    dept_summary["Total"] = dept_summary.sum(axis=1)
+    dept_summary["TurnoverRate"] = (dept_summary.get("Left", 0) / dept_summary["Total"] * 100).round(1)
+    dept_summary = dept_summary.reset_index().sort_values("TurnoverRate")
+    ax = fig.add_subplot(gs[1, 0])
+    ax.barh(dept_summary["Department"], dept_summary["TurnoverRate"], color=ORANGE_DARK)
+    style_ax(ax, "Turnover % by Dept")
+
+    hub_summary = df.groupby("Location")["Status"].value_counts().unstack(fill_value=0)
+    hub_summary["Total"] = hub_summary.sum(axis=1)
+    hub_summary["TurnoverRate"] = (hub_summary.get("Left", 0) / hub_summary["Total"] * 100).round(1)
+    hub_summary = hub_summary.reset_index().sort_values("TurnoverRate")
+    ax = fig.add_subplot(gs[1, 1])
+    ax.barh(hub_summary["Location"], hub_summary["TurnoverRate"],
+            color=[HUB_COLORS.get(l, NAVY_LIGHT) for l in hub_summary["Location"]])
+    style_ax(ax, "Turnover % by Hub")
+
+    ax = fig.add_subplot(gs[1, 2])
+    gender_split = active["Gender"].value_counts()
+    ax.pie(gender_split.values, labels=gender_split.index,
+           colors=[GENDER_COLORS.get(g, NAVY_LIGHT) for g in gender_split.index],
+           autopct="%1.0f%%", wedgeprops=dict(width=0.5, edgecolor=WHITE),
+           textprops=dict(fontsize=8, color=NAVY))
+    ax.set_title("Gender Split", loc="left", fontsize=12, fontweight="bold", color=NAVY, pad=8)
+
+    ax = fig.add_subplot(gs[1, 3])
+    term_split = left["TerminationType"].value_counts()
+    ax.pie(term_split.values, labels=term_split.index,
+           colors=[TERMINATION_COLORS.get(t, NAVY_LIGHT) for t in term_split.index],
+           autopct="%1.0f%%", wedgeprops=dict(width=0.5, edgecolor=WHITE),
+           textprops=dict(fontsize=8, color=NAVY))
+    ax.set_title("Exit Type", loc="left", fontsize=12, fontweight="bold", color=NAVY, pad=8)
+
+    # --- Row 3 ---
+    hub_pay = active.groupby("Location")["Salary"].mean().reset_index().sort_values("Salary")
+    ax = fig.add_subplot(gs[2, 0])
+    ax.barh(hub_pay["Location"], hub_pay["Salary"],
+            color=[HUB_COLORS.get(l, NAVY_LIGHT) for l in hub_pay["Location"]])
+    style_ax(ax, "Avg Salary by Hub")
+
+    dept_pay = active.groupby("Department")["Salary"].mean().reset_index().sort_values("Salary")
+    ax = fig.add_subplot(gs[2, 1])
+    ax.barh(dept_pay["Department"], dept_pay["Salary"], color=NAVY_LIGHT)
+    style_ax(ax, "Avg Salary by Dept")
+
+    age_bins = [0, 29, 39, 49, 100]
+    age_labels = ["Under 30", "30-39", "40-49", "50+"]
+    age_df = active.copy()
+    age_df["Age Group"] = pd.cut(age_df["Age"], bins=age_bins, labels=age_labels)
+    age_counts = age_df["Age Group"].value_counts().reindex(age_labels)
+    ax = fig.add_subplot(gs[2, 2])
+    ax.bar(age_counts.index.astype(str), age_counts.values,
+           color=DEPT_COLOR_SEQUENCE[: len(age_counts)])
+    style_ax(ax, "Active Age Bands")
+
+    dept_headcount = active["Department"].value_counts().reset_index()
+    dept_headcount.columns = ["Department", "Count"]
+    dept_headcount = dept_headcount.sort_values("Count")
+    ax = fig.add_subplot(gs[2, 3])
+    ax.barh(dept_headcount["Department"], dept_headcount["Count"],
+            color=DEPT_COLOR_SEQUENCE[: len(dept_headcount)])
+    style_ax(ax, "Headcount by Dept")
+
+    buf = BytesIO()
+    fig.savefig(buf, format="png", facecolor=fig.get_facecolor())
+    plt.close(fig)
+    buf.seek(0)
+    return buf.getvalue()
+
+
 def build_export_dashboard(df):
     """
     Builds ONE composite Plotly figure that mirrors the 'At a Glance' page --
