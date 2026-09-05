@@ -14,12 +14,6 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-try:
-    from streamlit_plotly_events import plotly_events
-    HAS_PLOTLY_EVENTS = True
-except ImportError:
-    HAS_PLOTLY_EVENTS = False
-
 
 # ---------------------------------------------------------------------------
 # PALETTE
@@ -77,10 +71,18 @@ def inject_css():
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-        html, body, [class*="css"] {{ font-family: {FONT_STACK}; }}
-        .stApp {{ background-color: {OFF_WHITE}; font-family: {FONT_STACK}; }}
-        h1, h2, h3, h4 {{ color: {NAVY} !important; font-family: {FONT_STACK}; }}
-        p, li, span, label {{ color: {TEXT_MID}; font-family: {FONT_STACK}; }}
+        html, body, [class*="css"], [class^="st-"], [class*=" st-"],
+        .stApp, .stMarkdown, .stMarkdown p, .stMarkdown li,
+        .stButton button, .stDownloadButton button,
+        .stTextInput input, .stSelectbox, .stMultiSelect,
+        .stDataFrame, table, th, td,
+        [data-testid="stMetricValue"], [data-testid="stMetricLabel"],
+        [data-testid="stWidgetLabel"], [data-testid="stSidebarNav"] {{
+            font-family: {FONT_STACK} !important;
+        }}
+        .stApp {{ background-color: {OFF_WHITE}; }}
+        h1, h2, h3, h4 {{ color: {NAVY} !important; font-family: {FONT_STACK} !important; }}
+        p, li, span, label {{ color: {TEXT_MID}; font-family: {FONT_STACK} !important; }}
 
         /* KPI cards -- lift slightly on hover so they read as interactive */
         .kpi-card {{
@@ -648,41 +650,37 @@ def build_export_dashboard(df):
 
 def clickable_chart(fig: go.Figure, key: str, height: int = 360, category_axis: str = "y"):
     """
-    Render a plotly chart that supports click-to-drill-down.
-    Returns the clicked point's category value (str) or None if nothing
-    clicked yet / streamlit-plotly-events isn't installed (falls back to a
-    plain static chart in that case).
+    Render a plotly chart that supports click-to-drill-down, using
+    Streamlit's own built-in chart-selection support (available since
+    Streamlit 1.35) -- no third-party package involved.
 
-    category_axis: which axis carries the category to drill into. All four
-    hero charts in this app are horizontal bars (orientation='h'), so the
-    category (Department/Location) lives on the Y axis and the number lives
-    on X -- category_axis defaults to "y" accordingly. Pass "x" instead if
-    a future chart uses vertical bars with the category on the X axis.
+    This deliberately does NOT use the `streamlit-plotly-events` package.
+    That package bundles its own old, unmaintained copy of the JS charting
+    library, which doesn't reliably understand the JSON that current
+    Plotly versions produce -- on a fresh install (e.g. Streamlit
+    Community Cloud, which always installs the latest Plotly), that
+    mismatch silently breaks colours and text templates. Streamlit's own
+    on_select support doesn't have this problem: it's maintained by
+    Streamlit itself and stays in sync with whatever charting engine
+    Streamlit ships, so there's no separate JS library version to drift
+    out of sync with Plotly's Python output.
+
+    category_axis: which axis carries the category to drill into. All
+    four hero charts in this app are horizontal bars (orientation='h'),
+    so the category (Department/Location) lives on the Y axis and the
+    number lives on X -- category_axis defaults to "y" accordingly. Pass
+    "x" instead if a future chart uses vertical bars with the category on
+    the X axis.
     """
-    if not HAS_PLOTLY_EVENTS:
-        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False}, key=key + "_static")
-        st.caption(
-            "Click-to-drill-down needs the `streamlit-plotly-events` package "
-            "(`pip install streamlit-plotly-events`). Showing a static chart for now."
-        )
-        return None
-
-    # override_height sets the *container's* pixel height. If it exactly
-    # matches the figure's own height, tiny rendering overhead (borders,
-    # rounding) can clip the bottom few pixels -- which is exactly what was
-    # cutting off the x-axis title on these charts. Giving the container
-    # some slack beyond the figure's own height fixes that without
-    # changing the figure's own proportions.
-    clicked = plotly_events(
+    event = st.plotly_chart(
         fig,
-        click_event=True,
-        hover_event=False,
-        select_event=False,
+        use_container_width=True,
+        config={"displayModeBar": False},
+        on_select="rerun",
+        selection_mode="points",
         key=key,
-        override_height=height + 45,
-        override_width="100%",
     )
-    if clicked:
-        point = clicked[0]
-        return point.get(category_axis)
+    points = (event or {}).get("selection", {}).get("points", [])
+    if points:
+        return points[0].get(category_axis)
     return None
