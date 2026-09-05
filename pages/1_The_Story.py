@@ -79,11 +79,12 @@ with k4:
 # HEADLINE INSIGHT
 # ---------------------------------------------------------------------------
 theme.insight_box(
-    f"Overall turnover sits at <b>{turnover_rate:.1f}%</b>, which sounds manageable on its own. "
-    f"But <b>{involuntary_share:.0f}% of exits were involuntary</b> — meaning this is mostly a "
-    "<b>performance and fit problem, not a retention problem</b>. That changes the fix: exit "
-    "interviews and pay reviews will tell you less here than a look at hiring quality and "
-    "manager decisions in the departments below.",
+    f"About <b>{turnover_rate:.1f} in every 100 staff</b> left this year — on its own, that "
+    f"sounds fine. But <b>{involuntary_share:.0f}% of those people were let go</b>, not choosing "
+    "to leave. So this is mainly about <b>hiring and performance decisions</b>, not staff not "
+    "wanting to stay. Asking people why they're quitting, or reviewing pay, won't help much here "
+    "— a closer look at how hiring and management decisions are made in the departments below is "
+    "a better place to start.",
     tone="alert",
     label="The headline",
 )
@@ -134,12 +135,11 @@ fig_hero.update_layout(xaxis_title="Turnover rate (%)", yaxis_title="")
 clicked_dept = theme.clickable_chart(fig_hero, key="hero_dept_click", height=380)
 
 theme.insight_box(
-    f"<b>{worst_dept['Department']}</b> has the highest turnover at "
-    f"<b>{worst_dept['TurnoverRate']}%</b>, more than double "
+    f"<b>{worst_dept['Department']}</b> loses staff faster than any other department, at "
+    f"<b>{worst_dept['TurnoverRate']}%</b> — more than double "
     f"<b>{best_dept['Department']}</b>'s <b>{best_dept['TurnoverRate']}%</b>. "
-    "Recommended next step: start with a review of the last 12 months of performance "
-    "ratings and manager decisions in the highest-turnover departments before assuming "
-    "it's a pay or culture issue company-wide.",
+    "A good next step: look closely at how staff have been rated and managed in this department "
+    "over the last year, before assuming it's about pay or workplace culture everywhere.",
     tone="neutral",
     label="So what",
 )
