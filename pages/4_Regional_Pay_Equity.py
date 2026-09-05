@@ -78,11 +78,10 @@ clicked_hub = theme.clickable_chart(fig_hero, key="hub_pay_click", height=300)
 
 spread = hub_pay["Average"].max() - hub_pay["Average"].min()
 theme.insight_box(
-    f"The gap between the highest- and lowest-paying hub is about "
-    f"<b>KES {spread:,.0f}</b> a year — roughly "
-    f"{spread / hub_pay['Average'].min() * 100:.1f}% of the lowest hub's average. "
-    "That's a modest spread, which supports the earlier finding that pay alone doesn't "
-    "explain why turnover varies so much by location.",
+    f"The best-paying city and the lowest-paying city differ by about "
+    f"<b>KES {spread:,.0f}</b> a year — only about "
+    f"{spread / hub_pay['Average'].min() * 100:.1f}% more. That's a small difference, which backs "
+    "up what we saw earlier: pay alone doesn't explain why some cities lose more staff than others.",
     tone="neutral",
 )
 
