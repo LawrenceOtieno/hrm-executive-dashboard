@@ -77,10 +77,11 @@ fig_hero.update_layout(xaxis_title="Involuntary share of exits (%)", yaxis_title
 clicked_dept = theme.clickable_chart(fig_hero, key="dept_invol_click", height=340)
 
 theme.insight_box(
-    f"<b>{high_invol['Department']}</b> exits are <b>{high_invol['InvoluntaryPct']}% involuntary</b> — "
-    f"a performance-management story. <b>{low_invol['Department']}</b> sits at just "
-    f"<b>{low_invol['InvoluntaryPct']}%</b>, meaning most of its departures are voluntary — "
-    "worth a closer look at whether it's losing people to competitors.",
+    f"In <b>{high_invol['Department']}</b>, about <b>{high_invol['InvoluntaryPct']:.0f} out of "
+    f"every 100 people who left were let go</b> — this is mainly about hiring and performance "
+    f"decisions. In <b>{low_invol['Department']}</b>, it's the opposite: only "
+    f"<b>{low_invol['InvoluntaryPct']:.0f}%</b> were let go, so most people there chose to leave "
+    "on their own — worth checking whether the company is losing good staff to other employers.",
     tone="alert",
 )
 
