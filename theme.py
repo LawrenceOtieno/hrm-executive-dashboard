@@ -77,10 +77,18 @@ def inject_css():
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-        html, body, [class*="css"] {{ font-family: {FONT_STACK}; }}
-        .stApp {{ background-color: {OFF_WHITE}; font-family: {FONT_STACK}; }}
-        h1, h2, h3, h4 {{ color: {NAVY} !important; font-family: {FONT_STACK}; }}
-        p, li, span, label {{ color: {TEXT_MID}; font-family: {FONT_STACK}; }}
+        html, body, [class*="css"], [class^="st-"], [class*=" st-"],
+        .stApp, .stMarkdown, .stMarkdown p, .stMarkdown li,
+        .stButton button, .stDownloadButton button,
+        .stTextInput input, .stSelectbox, .stMultiSelect,
+        .stDataFrame, table, th, td,
+        [data-testid="stMetricValue"], [data-testid="stMetricLabel"],
+        [data-testid="stWidgetLabel"], [data-testid="stSidebarNav"] {{
+            font-family: {FONT_STACK} !important;
+        }}
+        .stApp {{ background-color: {OFF_WHITE}; }}
+        h1, h2, h3, h4 {{ color: {NAVY} !important; font-family: {FONT_STACK} !important; }}
+        p, li, span, label {{ color: {TEXT_MID}; font-family: {FONT_STACK} !important; }}
 
         /* KPI cards -- lift slightly on hover so they read as interactive */
         .kpi-card {{
