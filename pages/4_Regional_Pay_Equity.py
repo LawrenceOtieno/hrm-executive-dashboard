@@ -16,7 +16,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 @st.cache_data
 def load_data():
     df = pd.read_csv(os.path.join(BASE_DIR, "hrm_mock_data.csv"))
-    if "Status" not in df.columns:
+    if "Status"not in df.columns:
         df["Status"] = "Active"
     return df
 
@@ -25,7 +25,7 @@ df = load_data()
 active_df = df[df["Status"] == "Active"]
 
 st.markdown("<div class='section-kicker'>Chapter 3</div>", unsafe_allow_html=True)
-st.title("📍 Regional Pay Equity")
+st.title("Regional Pay Equity")
 st.markdown(
     "If turnover isn't purely pay-driven (see Chapter 1), is pay itself fair — across "
     "hubs, and across gender within each hub? This page checks both."
@@ -48,7 +48,7 @@ with k3:
         "Company-wide Gender Pay Gap",
         f"{overall_gap_pct:.1f}%",
         f"{overall_gap_higher} earn more, on average",
-        tone="alert" if overall_gap_pct > 3 else "good",
+        tone="alert"if overall_gap_pct > 3 else "good",
     )
 
 st.markdown("---")
@@ -93,11 +93,11 @@ if audit_hub:
     hub_df = active_df[active_df["Location"] == audit_hub]
     max_sal, min_sal = hub_df["Salary"].max(), hub_df["Salary"].min()
     extremes = hub_df[(hub_df["Salary"] == max_sal) | (hub_df["Salary"] == min_sal)].copy()
-    extremes["Pay Tier"] = extremes["Salary"].apply(lambda x: "📈 Top Earner" if x == max_sal else "📉 Bottom Earner")
+    extremes["Pay Tier"] = extremes["Salary"].apply(lambda x: "Top Earner"if x == max_sal else "Bottom Earner")
     cols = ["Pay Tier", "EmployeeID", "FullName", "Gender", "Department", "JobTitle", "Salary"]
     extremes = theme.masked_names(extremes)
     if not theme.names_unlocked():
-        st.caption("🔒 Names redacted — unlock in the sidebar (Analyst access) to reveal.")
+        st.caption("Names redacted — unlock in the sidebar (Analyst access) to reveal.")
     st.dataframe(
         extremes[[c for c in cols if c in extremes.columns]].sort_values("Salary", ascending=False)
         .style.format({"Salary": "KES {:,.0f}"}),
