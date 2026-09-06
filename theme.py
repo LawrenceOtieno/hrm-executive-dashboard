@@ -72,24 +72,22 @@ def inject_css():
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
         html, body, .stApp,
-        .stMarkdown, .stMarkdown p, .stMarkdown li,
-        .stButton button, .stDownloadButton button,
-        .stTextInput input, .stSelectbox, .stMultiSelect,
-        .stDataFrame, table, th, td,
-        [data-testid="stMetricValue"], [data-testid="stMetricLabel"],
-        [data-testid="stWidgetLabel"], [data-testid="stSidebarNav"],
-        [data-testid="stExpander"] summary span:not([data-testid="stIconMaterial"]) {{
+        .stMarkdown, .stMarkdown p, .stMarkdown li {{
             font-family: {FONT_STACK} !important;
         }}
-        /* Never touch Streamlit's own icon glyphs (expander arrows, lock
-           icons, etc.) -- they render via a special icon font where the
-           text content IS the icon (e.g. "arrow_right"). Overriding their
-           font-family breaks the glyph and shows that raw text instead,
-           overlapping the real label next to it. */
-        [data-testid="stIconMaterial"] {{ font-family: inherit !important; }}
+        /* Deliberately NOT touching Streamlit's native widget chrome here
+           (buttons, expanders, inputs, dataframes, sidebar nav). Those
+           elements render their own icons (expand/collapse arrows, lock
+           icons, etc.) using a special icon font, where the visible text
+           IS the icon's name (e.g. "arrow_right"). A font-family override
+           anywhere in that DOM region -- even one that looks safely
+           scoped -- can end up applying to those icon elements too and
+           breaking the glyph into raw visible text. Limiting our font
+           changes to plain content we write ourselves (markdown, headings)
+           avoids that risk entirely. */
         .stApp {{ background-color: {OFF_WHITE}; }}
         h1, h2, h3, h4 {{ color: {NAVY} !important; font-family: {FONT_STACK} !important; }}
-        p, li, label {{ color: {TEXT_MID}; font-family: {FONT_STACK} !important; }}
+        p, li {{ color: {TEXT_MID}; font-family: {FONT_STACK} !important; }}
 
         /* KPI cards -- lift slightly on hover so they read as interactive */
         .kpi-card {{
@@ -151,7 +149,7 @@ def inject_css():
         [data-testid="stSidebar"] {{ background-color: {NAVY}; }}
         [data-testid="stSidebar"] * {{ color: {TEXT_LIGHT} !important; }}
 
-        /* Compact KPI tiles for the "At a Glance" grid */
+        /* Compact KPI tiles for the "At a Glance"grid */
         .mini-kpi {{
             background: {WHITE};
             border-radius: 8px;
@@ -253,7 +251,7 @@ def style_fig(
     if tickangle is not None:
         fig.update_xaxes(tickangle=tickangle)
 
-    # Give numeric axes headroom so labels drawn "outside" the bar/marker
+    # Give numeric axes headroom so labels drawn "outside"the bar/marker
     # never get clipped by the edge of the plotting area.
     if x_values is not None and len(x_values):
         vmax = max(x_values)
@@ -407,7 +405,7 @@ def gender_pay_gap(df):
     female = float(means.get("Female", 0))
     if male == 0 or female == 0:
         return 0.0, "N/A"
-    higher = "Men" if male >= female else "Women"
+    higher = "Men"if male >= female else "Women"
     lower = min(male, female)
     gap_pct = abs(male - female) / lower * 100
     return round(gap_pct, 1), higher
@@ -479,22 +477,34 @@ def render_analyst_sidebar_unlock():
 
     st.sidebar.markdown("---")
     if names_unlocked():
-        st.sidebar.success("🔓 Employee names unlocked")
+        st.sidebar.success("Employee names unlocked")
         if st.sidebar.button("Re-lock names", use_container_width=True):
             st.session_state["analyst_names_unlocked"] = False
             st.rerun()
     else:
-        with st.sidebar.expander("🔒 Analyst access"):
+        with st.sidebar.expander("Analyst access"):
             if real_code == default_code:
                 st.caption(
                     "No custom access code found — using a placeholder. If you've set "
                     "`ANALYST_CODE` in a local `.streamlit/secrets.toml` file, note that "
                     "file never gets deployed to Streamlit Community Cloud (it's meant to "
                     "stay out of your GitHub repo for safety). On Cloud, set it instead via "
-                    "your app's **Settings → Secrets** panel, in the same format: "
-                    "`ANALYST_CODE = \"your-code\"` — then save, which reboots the app "
-                    "automatically."
+                    "your app's **Settings → Secrets** panel, in the same format shown "
+                    "below, then save — that triggers an automatic reboot."
                 )
+                st.code('ANALYST_CODE = "your-code-here"', language="toml")
+                try:
+                    detected_keys = list(st.secrets.keys())
+                except Exception:
+                    detected_keys = []
+                if detected_keys:
+                    st.caption(f"Secret keys currently detected: {detected_keys}")
+                else:
+                    st.caption(
+                        "No secrets are visible to the app at all right now — this means "
+                        "the Settings → Secrets panel on Streamlit Cloud is still empty, "
+                        "or a save/reboot hasn't completed yet."
+                    )
             entered = st.text_input("Code to reveal employee names", type="password", key="analyst_unlock_sidebar_input")
             if entered and entered == real_code:
                 st.session_state["analyst_names_unlocked"] = True
@@ -808,8 +818,8 @@ def clickable_chart(fig: go.Figure, key: str, height: int = 360, category_axis: 
     category_axis: which axis carries the category to drill into. All
     four hero charts in this app are horizontal bars (orientation='h'),
     so the category (Department/Location) lives on the Y axis and the
-    number lives on X -- category_axis defaults to "y" accordingly. Pass
-    "x" instead if a future chart uses vertical bars with the category on
+    number lives on X -- category_axis defaults to "y"accordingly. Pass
+    "x"instead if a future chart uses vertical bars with the category on
     the X axis.
     """
     event = st.plotly_chart(
