@@ -16,7 +16,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 @st.cache_data
 def load_data():
     df = pd.read_csv(os.path.join(BASE_DIR, "hrm_mock_data.csv"))
-    if "Status" not in df.columns:
+    if "Status"not in df.columns:
         df["Status"] = "Active"
     return df
 
@@ -24,7 +24,7 @@ def load_data():
 df = load_data()
 
 st.markdown("<div class='section-kicker'>Chapter 2</div>", unsafe_allow_html=True)
-st.title("🏢 Departmental Insights")
+st.title("Departmental Insights")
 st.markdown(
     "Company-wide turnover hides a more useful split: **why** people are leaving each "
     "department. A department losing people to resignations needs a different response "
@@ -92,7 +92,7 @@ if clicked_dept:
     ]
     detail = theme.masked_names(detail)
     if not theme.names_unlocked():
-        st.caption("🔒 Names redacted — unlock in the sidebar (Analyst access) to reveal.")
+        st.caption("Names redacted — unlock in the sidebar (Analyst access) to reveal.")
     st.dataframe(detail, use_container_width=True, hide_index=True)
 else:
     st.caption("Tip: click a bar above to see individual departure records for that department.")
@@ -122,7 +122,7 @@ with s1:
         st.plotly_chart(fig_gender, use_container_width=True, config={"displayModeBar": False}, key="gender_mix_chart")
 
 with s2:
-    if not active_df.empty and "Age" in active_df.columns:
+    if not active_df.empty and "Age"in active_df.columns:
         age_bins = [0, 29, 39, 49, 100]
         age_labels = ["Under 30", "30-39", "40-49", "50+"]
         age_df = active_df.copy()
