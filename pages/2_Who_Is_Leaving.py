@@ -16,7 +16,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 @st.cache_data
 def load_data():
     df = pd.read_csv(os.path.join(BASE_DIR, "hrm_mock_data.csv"))
-    if "Status" not in df.columns:
+    if "Status"not in df.columns:
         df["Status"] = "Active"
     return df
 
@@ -24,7 +24,7 @@ def load_data():
 df = load_data()
 
 st.markdown("<div class='section-kicker'>Chapter 1</div>", unsafe_allow_html=True)
-st.title("📉 Who's Leaving, and Why")
+st.title("Who's Leaving, and Why")
 st.markdown(
     "Turnover isn't spread evenly across hubs. This page isolates *where* it's "
     "concentrated and whether pay or tenure explain it — before pointing at any "
@@ -119,7 +119,7 @@ if clicked_hub:
     ].sort_values("TenureYears")
     hub_leavers = theme.masked_names(hub_leavers)
     if not theme.names_unlocked():
-        st.caption("🔒 Names redacted — unlock in the sidebar (Analyst access) to reveal.")
+        st.caption("Names redacted — unlock in the sidebar (Analyst access) to reveal.")
     st.dataframe(
         hub_leavers.style.format({"Salary": "KES {:,.0f}", "TenureYears": "{:.1f} yrs"}),
         use_container_width=True,
@@ -216,9 +216,9 @@ display_df = display_df[[c for c in display_cols if c in display_df.columns]]
 # real names show on every table across the whole app for this session.
 display_df = theme.masked_names(display_df)
 if theme.names_unlocked():
-    st.caption("🔓 Names unlocked for this session.")
+    st.caption("Names unlocked for this session.")
 else:
-    st.caption("🔒 Employee names are redacted. Unlock in the sidebar (Analyst access) to reveal them.")
+    st.caption("Employee names are redacted. Unlock in the sidebar (Analyst access) to reveal them.")
 
 st.dataframe(
     display_df.style.format({"Salary": "KES {:,.0f}"}),
