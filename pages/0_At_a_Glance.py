@@ -16,7 +16,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 @st.cache_data
 def load_data():
     df = pd.read_csv(os.path.join(BASE_DIR, "hrm_mock_data.csv"))
-    if "Status" not in df.columns:
+    if "Status"not in df.columns:
         df["Status"] = "Active"
     return df
 
@@ -38,7 +38,7 @@ gap_pct, gap_higher = theme.gender_pay_gap(active)
 h1, h2 = st.columns([3, 1])
 with h1:
     st.markdown("<div class='section-kicker'>Single-Screen Overview</div>", unsafe_allow_html=True)
-    st.title("📊 At a Glance")
+    st.title("At a Glance")
     st.markdown(
         "Every headline number and chart on one screen. Head to **The Story** for the "
         "narrative behind these numbers, with drill-down into individual records."
@@ -53,7 +53,7 @@ st.markdown("---")
 # ---------------------------------------------------------------------------
 # DOWNLOAD & SHARE
 # ---------------------------------------------------------------------------
-with st.expander("⬇️ Download & share this dashboard", expanded=False):
+with st.expander("Download & share this dashboard", expanded=False):
     st.caption(
         "Share a single file that visually summarizes this analysis — no need to send "
         "someone a link to the live app."
@@ -64,7 +64,7 @@ with st.expander("⬇️ Download & share this dashboard", expanded=False):
     with d1:
         html_bytes = export_fig.to_html(include_plotlyjs=True, full_html=True).encode("utf-8")
         st.download_button(
-            "📄 Download as HTML (recommended)",
+            "Download as HTML (recommended)",
             data=html_bytes,
             file_name="hrm_dashboard_at_a_glance.html",
             mime="text/html",
@@ -75,7 +75,7 @@ with st.expander("⬇️ Download & share this dashboard", expanded=False):
     with d2:
         png_bytes = theme.build_export_png(df)
         st.download_button(
-            "🖼️ Download as PNG image",
+            "Download as PNG image",
             data=png_bytes,
             file_name="hrm_dashboard_at_a_glance.png",
             mime="image/png",
@@ -99,7 +99,7 @@ with k4:
     theme.mini_kpi_card("Avg Annual Salary", f"KES {avg_salary/1_000_000:.2f}M")
 with k5:
     theme.mini_kpi_card(
-        "Gender Pay Gap", f"{gap_pct:.1f}%", tone="alert" if gap_pct > 3 else "good"
+        "Gender Pay Gap", f"{gap_pct:.1f}%", tone="alert"if gap_pct > 3 else "good"
     )
 
 st.markdown("<br>", unsafe_allow_html=True)
