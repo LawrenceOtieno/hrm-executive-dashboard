@@ -16,7 +16,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 @st.cache_data
 def load_data():
     df = pd.read_csv(os.path.join(BASE_DIR, "hrm_mock_data.csv"))
-    if "Status" not in df.columns:
+    if "Status"not in df.columns:
         df["Status"] = "Active"
     return df
 
@@ -72,7 +72,7 @@ with k4:
         "Gender Pay Gap",
         f"{gap_pct:.1f}%",
         f"{gap_higher} paid more, on average",
-        tone="alert" if gap_pct > 3 else "neutral",
+        tone="alert"if gap_pct > 3 else "neutral",
     )
 
 # ---------------------------------------------------------------------------
@@ -152,7 +152,7 @@ if clicked_dept:
     ].sort_values("TenureYears")
     dept_leavers = theme.masked_names(dept_leavers)
     if not theme.names_unlocked():
-        st.caption("🔒 Names redacted — unlock in the sidebar (Analyst access) to reveal.")
+        st.caption("Names redacted — unlock in the sidebar (Analyst access) to reveal.")
     st.dataframe(
         dept_leavers.style.format({"Salary": "KES {:,.0f}", "TenureYears": "{:.1f} yrs"}),
         use_container_width=True,
@@ -170,19 +170,19 @@ theme.section_header("Keep Reading", "Where each page picks up the thread")
 
 c1, c2, c3 = st.columns(3)
 with c1:
-    st.markdown("**📉 Who's Leaving & Why**")
+    st.markdown("** Who's Leaving & Why**")
     st.caption(
         "Regional breakdown of departures, salary vs. tenure patterns, and the full roster "
         "with drill-down."
     )
 with c2:
-    st.markdown("**🏢 Departmental Insights**")
+    st.markdown("** Departmental Insights**")
     st.caption(
         "Gender and age composition by department, and where involuntary exits are "
         "clustered."
     )
 with c3:
-    st.markdown("**📍 Regional Pay Equity**")
+    st.markdown("** Regional Pay Equity**")
     st.caption(
         "Hub-by-hub pay benchmarking, plus the gender pay gap by location."
     )
