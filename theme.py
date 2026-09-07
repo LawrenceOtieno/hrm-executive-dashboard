@@ -35,6 +35,7 @@ OFF_WHITE = "#F4F8FB"
 TEXT_MID = "#3D6680"
 TEXT_LIGHT = "#D0E8F2"
 GRID = "#DCE7EF"
+GRAY_MUTED = "#C7D1D9"  # de-emphasized bars, so one highlighted bar reads as THE point of the chart
 
 # Segoe UI matches Power BI's own default (and needs no setup on Windows,
 # which this app is built for). Inter is the fallback for anyone opening
@@ -269,7 +270,7 @@ def style_fig(
 
 def build_hub_map(df, lat_col="lat", lon_col="lon", text_col="Location",
                    size_col="Total", color_col="Location", color_map=None,
-                   zoom=4.6, height=280):
+                   zoom=4.6, height=280, title=None):
     """
     Build the Kenya hub map in a way that works across Plotly versions.
     Newer Plotly (>=5.24) uses px.scatter_map (MapLibre, no token needed).
@@ -277,6 +278,11 @@ def build_hub_map(df, lat_col="lat", lon_col="lon", text_col="Location",
     'open-street-map' / 'carto-positron' base styles). Pick whichever the
     installed version actually supports instead of hard-coding one, so this
     doesn't break again on a different machine/environment.
+
+    size_col controls what the circle sizes actually represent -- e.g.
+    pass "Left" to size circles by departures (tells "who's leaving"),
+    or "Total" to size them by overall headcount instead. The circles are
+    deliberately NOT equal size: that visual difference IS the story.
     """
     # No on-marker text label here on purpose: the base map tiles already
     # print each city's name (Kisumu, Nakuru, Nairobi, Mombasa...), and
@@ -307,7 +313,7 @@ def build_hub_map(df, lat_col="lat", lon_col="lon", text_col="Location",
         legend_title_text="",
         margin=dict(l=0, r=0, t=40, b=40),
         paper_bgcolor="rgba(0,0,0,0)",
-        title=dict(text="Hub locations", font=dict(size=15, color=NAVY), x=0.01, xanchor="left"),
+        title=dict(text=title or "Where departures are concentrated", font=dict(size=15, color=NAVY), x=0.01, xanchor="left"),
     )
     return fig
 
