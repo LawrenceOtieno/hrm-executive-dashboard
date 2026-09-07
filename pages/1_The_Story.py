@@ -16,7 +16,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 @st.cache_data
 def load_data():
     df = pd.read_csv(os.path.join(BASE_DIR, "hrm_mock_data.csv"))
-    if "Status"not in df.columns:
+    if "Status" not in df.columns:
         df["Status"] = "Active"
     return df
 
@@ -31,6 +31,18 @@ turnover_rate = total_departures / (total_headcount + total_departures) * 100
 involuntary_share = (left["TerminationType"] == "Involuntary").mean() * 100
 gap_pct, gap_higher = theme.gender_pay_gap(active)
 
+dept_summary = (
+    df.groupby("Department")["Status"]
+    .value_counts()
+    .unstack(fill_value=0)
+)
+dept_summary["Total"] = dept_summary.sum(axis=1)
+dept_summary["TurnoverRate"] = (dept_summary.get("Left", 0) / dept_summary["Total"] * 100).round(1)
+dept_summary = dept_summary.reset_index().sort_values("TurnoverRate", ascending=True)
+
+worst_dept = dept_summary.sort_values("TurnoverRate", ascending=False).iloc[0]
+best_dept = dept_summary.sort_values("TurnoverRate", ascending=True).iloc[0]
+
 # ---------------------------------------------------------------------------
 # HEADER
 # ---------------------------------------------------------------------------
@@ -39,17 +51,54 @@ st.markdown(
     unsafe_allow_html=True,
 )
 st.title("The Workforce Story")
-st.markdown(
-    "<p style='font-size:16px;'>I pulled apart this year's headcount, pay and "
-    "attrition numbers to find the signal, not just chart everything we have. "
-    "Here's the short version, and the pages alongside this one dig into each thread.</p>",
-    unsafe_allow_html=True,
-)
-st.markdown("---")
 
 # ---------------------------------------------------------------------------
-# KPI ROW
+# 1. WHO WE ARE
 # ---------------------------------------------------------------------------
+st.markdown("#### About SimbaNet Solutions")
+st.markdown(
+    "<p style='font-size:15.5px;'>SimbaNet Solutions builds and runs fibre-optic internet and "
+    "telecom connections across Kenya. The company employs engineers, sales and support teams "
+    "out of four regional hubs — Nairobi, Mombasa, Kisumu, and Nakuru — to lay cable, sign up "
+    "customers, and keep the network running.</p>",
+    unsafe_allow_html=True,
+)
+
+# ---------------------------------------------------------------------------
+# 2. THE PROBLEM
+# ---------------------------------------------------------------------------
+theme.insight_box(
+    f"Staff are leaving SimbaNet at a rate leadership can no longer ignore. "
+    f"About <b>{turnover_rate:.0f} out of every 100 people</b> left in the last year. In a "
+    "technical business like this one, every departure takes hard-to-replace know-how out the "
+    "door with it — and drives up the cost and time it takes to hire and train someone new.",
+    tone="alert",
+    label="The problem",
+)
+
+# ---------------------------------------------------------------------------
+# 3. THE KEY FINDING (the hook)
+# ---------------------------------------------------------------------------
+st.markdown(
+    f"""
+    <div class="insight-box alert" style="font-size:17px; padding:20px 24px;">
+        <div class="insight-label">The key finding</div>
+        Leadership's first guess was pay. The data says otherwise.
+        <b>{worst_dept['Department']}</b> loses staff faster than any other team at SimbaNet —
+        and company-wide, most people who left <b>weren't choosing to go. They were let go.</b>
+        That's not a "people don't want to work here" problem. That's a hiring and
+        performance-management problem, and it points to a very different fix.
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.markdown("&nbsp;", unsafe_allow_html=True)
+
+# ---------------------------------------------------------------------------
+# 4. THE EVIDENCE — KPI ROW
+# ---------------------------------------------------------------------------
+st.markdown("#### The numbers behind that finding")
 k1, k2, k3, k4 = st.columns(4)
 with k1:
     theme.kpi_card("Active Headcount", f"{total_headcount:,}", "Across 4 hubs")
@@ -72,45 +121,31 @@ with k4:
         "Gender Pay Gap",
         f"{gap_pct:.1f}%",
         f"{gap_higher} paid more, on average",
-        tone="alert"if gap_pct > 3 else "neutral",
+        tone="alert" if gap_pct > 3 else "neutral",
     )
 
-# ---------------------------------------------------------------------------
-# HEADLINE INSIGHT
-# ---------------------------------------------------------------------------
-theme.insight_box(
-    f"About <b>{turnover_rate:.1f} in every 100 staff</b> left this year — on its own, that "
-    f"sounds fine. But <b>{involuntary_share:.0f}% of those people were let go</b>, not choosing "
-    "to leave. So this is mainly about <b>hiring and performance decisions</b>, not staff not "
-    "wanting to stay. Asking people why they're quitting, or reviewing pay, won't help much here "
-    "— a closer look at how hiring and management decisions are made in the departments below is "
-    "a better place to start.",
-    tone="alert",
-    label="The headline",
-)
-
-st.markdown("&nbsp;", unsafe_allow_html=True)
+st.markdown("---")
 
 # ---------------------------------------------------------------------------
 # HERO CHART — turnover rate by department, click to drill into who left
+# Decluttered: every bar is grey except the one that matters, which is
+# highlighted and annotated directly, so the chart makes the point on its
+# own instead of needing to be read carefully.
 # ---------------------------------------------------------------------------
 theme.section_header(
     "The Hero Chart",
     "Where is turnover actually concentrated?",
-    "Click a bar to see who left from that department.",
+)
+st.markdown(
+    "<p style='font-size:14.5px; margin-top:-8px;'>Here's what it looks like when we open up "
+    "the company team by team. Click a bar to see exactly who left from that team.</p>",
+    unsafe_allow_html=True,
 )
 
-dept_summary = (
-    df.groupby("Department")["Status"]
-    .value_counts()
-    .unstack(fill_value=0)
-)
-dept_summary["Total"] = dept_summary.sum(axis=1)
-dept_summary["TurnoverRate"] = (dept_summary.get("Left", 0) / dept_summary["Total"] * 100).round(1)
-dept_summary = dept_summary.reset_index().sort_values("TurnoverRate", ascending=True)
-
-worst_dept = dept_summary.sort_values("TurnoverRate", ascending=False).iloc[0]
-best_dept = dept_summary.sort_values("TurnoverRate", ascending=True).iloc[0]
+bar_colors = [
+    theme.ORANGE_DARK if d == worst_dept["Department"] else theme.GRAY_MUTED
+    for d in dept_summary["Department"]
+]
 
 fig_hero = px.bar(
     dept_summary,
@@ -118,11 +153,11 @@ fig_hero = px.bar(
     y="Department",
     orientation="h",
     text="TurnoverRate",
-    color="TurnoverRate",
-    color_continuous_scale=[theme.TEAL, theme.NAVY_LIGHT, theme.ORANGE, theme.ORANGE_DARK],
 )
-fig_hero.update_traces(texttemplate="%{text}%", textposition="outside", cliponaxis=False)
-fig_hero.update_coloraxes(showscale=False)
+fig_hero.update_traces(
+    marker_color=bar_colors,
+    texttemplate="%{text}%", textposition="outside", cliponaxis=False,
+)
 fig_hero = theme.style_fig(
     fig_hero,
     title="Turnover rate by department",
@@ -131,6 +166,14 @@ fig_hero = theme.style_fig(
     x_values=dept_summary["TurnoverRate"].tolist(),
 )
 fig_hero.update_layout(xaxis_title="Turnover rate (%)", yaxis_title="")
+fig_hero.add_annotation(
+    x=worst_dept["TurnoverRate"],
+    y=worst_dept["Department"],
+    text="Highest turnover — start here",
+    showarrow=True, arrowhead=2, arrowcolor=theme.ORANGE_DARK,
+    ax=55, ay=-32,
+    font=dict(color=theme.ORANGE_DARK, size=12, family=theme.FONT_STACK),
+)
 
 clicked_dept = theme.clickable_chart(fig_hero, key="hero_dept_click", height=380)
 
@@ -170,19 +213,19 @@ theme.section_header("Keep Reading", "Where each page picks up the thread")
 
 c1, c2, c3 = st.columns(3)
 with c1:
-    st.markdown("** Who's Leaving & Why**")
+    st.markdown("**Who's Leaving & Why**")
     st.caption(
         "Regional breakdown of departures, salary vs. tenure patterns, and the full roster "
         "with drill-down."
     )
 with c2:
-    st.markdown("** Departmental Insights**")
+    st.markdown("**Departmental Insights**")
     st.caption(
         "Gender and age composition by department, and where involuntary exits are "
         "clustered."
     )
 with c3:
-    st.markdown("** Regional Pay Equity**")
+    st.markdown("**Regional Pay Equity**")
     st.caption(
         "Hub-by-hub pay benchmarking, plus the gender pay gap by location."
     )
