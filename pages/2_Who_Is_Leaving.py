@@ -189,9 +189,10 @@ with s4:
     hub_summary["lat"] = hub_summary["Location"].map(lambda x: geo_coords.get(x, {}).get("lat", 0.0))
     hub_summary["lon"] = hub_summary["Location"].map(lambda x: geo_coords.get(x, {}).get("lon", 0.0))
     fig_map = theme.build_hub_map(
-        hub_summary, color_map=theme.HUB_COLORS, zoom=4.6, height=270,
+        hub_summary, size_col="Left", color_map=theme.HUB_COLORS, zoom=4.6, height=270,
     )
     st.plotly_chart(fig_map, use_container_width=True, key="hub_locations_map")
+    st.caption("Circle size = number of people who left that hub. Bigger circle, bigger problem.")
 
 st.markdown("---")
 
