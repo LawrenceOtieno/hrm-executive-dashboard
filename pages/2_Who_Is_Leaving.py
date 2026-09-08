@@ -16,7 +16,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 @st.cache_data
 def load_data():
     df = pd.read_csv(os.path.join(BASE_DIR, "hrm_mock_data.csv"))
-    if "Status"not in df.columns:
+    if "Status" not in df.columns:
         df["Status"] = "Active"
     return df
 
@@ -25,6 +25,7 @@ df = load_data()
 
 st.markdown("<div class='section-kicker'>Chapter 1</div>", unsafe_allow_html=True)
 st.title("Who's Leaving, and Why")
+theme.story_banner(theme.core_story_facts(df))
 st.markdown(
     "Turnover isn't spread evenly across hubs. This page isolates *where* it's "
     "concentrated and whether pay or tenure explain it — before pointing at any "
@@ -81,22 +82,33 @@ hub_summary = hub_summary.reset_index().sort_values("TurnoverRate")
 worst_hub = hub_summary.sort_values("TurnoverRate", ascending=False).iloc[0]
 best_hub = hub_summary.sort_values("TurnoverRate", ascending=True).iloc[0]
 
+bar_colors = [
+    theme.ORANGE_DARK if h == worst_hub["Location"] else theme.GRAY_MUTED
+    for h in hub_summary["Location"]
+]
+
 fig_hero = px.bar(
     hub_summary,
     x="TurnoverRate",
     y="Location",
     orientation="h",
     text="TurnoverRate",
-    color="Location",
-    color_discrete_map=theme.HUB_COLORS,
 )
-fig_hero.update_traces(texttemplate="%{text}%", textposition="outside", cliponaxis=False)
+fig_hero.update_traces(
+    marker_color=bar_colors,
+    texttemplate="%{text}%", textposition="outside", cliponaxis=False,
+)
 fig_hero = theme.style_fig(
     fig_hero,
     title="Turnover rate by hub",
     height=320,
     legend=False,
     x_values=hub_summary["TurnoverRate"].tolist(),
+)
+fig_hero.add_annotation(
+    x=worst_hub["TurnoverRate"], y=worst_hub["Location"],
+    text="Highest turnover", showarrow=True, arrowhead=2, arrowcolor=theme.ORANGE_DARK,
+    ax=50, ay=-28, font=dict(color=theme.ORANGE_DARK, size=12, family=theme.FONT_STACK),
 )
 fig_hero.update_layout(xaxis_title="Turnover rate (%)", yaxis_title="")
 

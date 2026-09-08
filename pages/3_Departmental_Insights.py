@@ -16,7 +16,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 @st.cache_data
 def load_data():
     df = pd.read_csv(os.path.join(BASE_DIR, "hrm_mock_data.csv"))
-    if "Status"not in df.columns:
+    if "Status" not in df.columns:
         df["Status"] = "Active"
     return df
 
@@ -25,6 +25,7 @@ df = load_data()
 
 st.markdown("<div class='section-kicker'>Chapter 2</div>", unsafe_allow_html=True)
 st.title("Departmental Insights")
+theme.story_banner(theme.core_story_facts(df))
 st.markdown(
     "Company-wide turnover hides a more useful split: **why** people are leaving each "
     "department. A department losing people to resignations needs a different response "
@@ -59,12 +60,18 @@ dept_term = dept_term.reset_index().sort_values("InvoluntaryPct")
 high_invol = dept_term.sort_values("InvoluntaryPct", ascending=False).iloc[0]
 low_invol = dept_term.sort_values("InvoluntaryPct", ascending=True).iloc[0]
 
+bar_colors = [
+    theme.ORANGE_DARK if d == high_invol["Department"] else theme.GRAY_MUTED
+    for d in dept_term["Department"]
+]
+
 fig_hero = px.bar(
     dept_term, x="InvoluntaryPct", y="Department", orientation="h", text="InvoluntaryPct",
-    color="InvoluntaryPct", color_continuous_scale=[theme.TEAL, theme.NAVY_LIGHT, theme.ORANGE, theme.ORANGE_DARK],
 )
-fig_hero.update_traces(texttemplate="%{text}%", textposition="outside", cliponaxis=False)
-fig_hero.update_coloraxes(showscale=False)
+fig_hero.update_traces(
+    marker_color=bar_colors,
+    texttemplate="%{text}%", textposition="outside", cliponaxis=False,
+)
 fig_hero = theme.style_fig(
     fig_hero,
     title="Involuntary share of exits, by department",
@@ -73,6 +80,11 @@ fig_hero = theme.style_fig(
     x_values=dept_term["InvoluntaryPct"].tolist(),
 )
 fig_hero.update_layout(xaxis_title="Involuntary share of exits (%)", yaxis_title="")
+fig_hero.add_annotation(
+    x=high_invol["InvoluntaryPct"], y=high_invol["Department"],
+    text="Mostly the company's decision", showarrow=True, arrowhead=2, arrowcolor=theme.ORANGE_DARK,
+    ax=60, ay=-28, font=dict(color=theme.ORANGE_DARK, size=12, family=theme.FONT_STACK),
+)
 
 clicked_dept = theme.clickable_chart(fig_hero, key="dept_invol_click", height=340)
 
@@ -122,7 +134,7 @@ with s1:
         st.plotly_chart(fig_gender, use_container_width=True, config={"displayModeBar": False}, key="gender_mix_chart")
 
 with s2:
-    if not active_df.empty and "Age"in active_df.columns:
+    if not active_df.empty and "Age" in active_df.columns:
         age_bins = [0, 29, 39, 49, 100]
         age_labels = ["Under 30", "30-39", "40-49", "50+"]
         age_df = active_df.copy()

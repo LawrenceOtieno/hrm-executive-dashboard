@@ -16,7 +16,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 @st.cache_data
 def load_data():
     df = pd.read_csv(os.path.join(BASE_DIR, "hrm_mock_data.csv"))
-    if "Status"not in df.columns:
+    if "Status" not in df.columns:
         df["Status"] = "Active"
     return df
 
@@ -47,6 +47,8 @@ with h2:
     st.markdown("<div style='height:22px'></div>", unsafe_allow_html=True)
     st.caption(f"Snapshot as of {datetime.date.today().strftime('%d %b %Y')}")
     st.caption(f"{total_headcount + total_departures} employee records")
+
+theme.story_banner(theme.core_story_facts(df))
 
 st.markdown("---")
 
@@ -99,7 +101,7 @@ with k4:
     theme.mini_kpi_card("Avg Annual Salary", f"KES {avg_salary/1_000_000:.2f}M")
 with k5:
     theme.mini_kpi_card(
-        "Gender Pay Gap", f"{gap_pct:.1f}%", tone="alert"if gap_pct > 3 else "good"
+        "Gender Pay Gap", f"{gap_pct:.1f}%", tone="alert" if gap_pct > 3 else "good"
     )
 
 st.markdown("<br>", unsafe_allow_html=True)
@@ -119,11 +121,13 @@ with row1[0]:
         dept_summary["Total"] = dept_summary.sum(axis=1)
         dept_summary["TurnoverRate"] = (dept_summary.get("Left", 0) / dept_summary["Total"] * 100).round(1)
         dept_summary = dept_summary.reset_index().sort_values("TurnoverRate")
-        fig = px.bar(
-            dept_summary, x="TurnoverRate", y="Department", orientation="h",
-            color="TurnoverRate", color_continuous_scale=[theme.TEAL, theme.NAVY_LIGHT, theme.ORANGE, theme.ORANGE_DARK],
-        )
-        fig.update_coloraxes(showscale=False)
+        worst_dept_tile = dept_summary.sort_values("TurnoverRate", ascending=False).iloc[0]
+        bar_colors = [
+            theme.ORANGE_DARK if d == worst_dept_tile["Department"] else theme.GRAY_MUTED
+            for d in dept_summary["Department"]
+        ]
+        fig = px.bar(dept_summary, x="TurnoverRate", y="Department", orientation="h")
+        fig.update_traces(marker_color=bar_colors)
         fig = theme.style_mini_fig(fig, title="Turnover % by Dept")
         st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False}, key="glance_dept_turnover")
 
@@ -134,10 +138,13 @@ with row1[1]:
         hub_summary["Total"] = hub_summary.sum(axis=1)
         hub_summary["TurnoverRate"] = (hub_summary.get("Left", 0) / hub_summary["Total"] * 100).round(1)
         hub_summary = hub_summary.reset_index().sort_values("TurnoverRate")
-        fig = px.bar(
-            hub_summary, x="TurnoverRate", y="Location", orientation="h",
-            color="Location", color_discrete_map=theme.HUB_COLORS,
-        )
+        worst_hub_tile = hub_summary.sort_values("TurnoverRate", ascending=False).iloc[0]
+        bar_colors = [
+            theme.ORANGE_DARK if h == worst_hub_tile["Location"] else theme.GRAY_MUTED
+            for h in hub_summary["Location"]
+        ]
+        fig = px.bar(hub_summary, x="TurnoverRate", y="Location", orientation="h")
+        fig.update_traces(marker_color=bar_colors)
         fig = theme.style_mini_fig(fig, title="Turnover % by Hub")
         st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False}, key="glance_hub_turnover")
 

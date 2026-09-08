@@ -52,42 +52,49 @@ st.markdown(
 )
 st.title("The Workforce Story")
 
+facts = theme.core_story_facts(df)
+theme.story_banner(facts)
+
 # ---------------------------------------------------------------------------
-# 1. WHO WE ARE
+# THE NARRATIVE — company context, then the shift, told as a story rather
+# than a spec sheet. Every number here is pulled live from core_story_facts,
+# not written in by hand.
 # ---------------------------------------------------------------------------
-st.markdown("#### About SimbaNet Solutions")
 st.markdown(
-    "<p style='font-size:15.5px;'>SimbaNet Solutions builds and runs fibre-optic internet and "
-    "telecom connections across Kenya. The company employs engineers, sales and support teams "
-    "out of four regional hubs — Nairobi, Mombasa, Kisumu, and Nakuru — to lay cable, sign up "
-    "customers, and keep the network running.</p>",
+    f"""
+    <p style='font-size:16px; line-height:1.7;'>
+    For the better part of a decade, <b>SimbaNet Solutions</b> has been quietly rewiring how
+    Kenya gets online — trenching fibre down streets in Nairobi, Mombasa, Kisumu, and Nakuru,
+    lighting up homes and businesses that never had a reliable connection before. It's slow,
+    technical work, done by engineers who know their section of cable the way a doctor knows a
+    patient's chart, and sales teams who spend months earning a client's trust before a single
+    contract gets signed.
+    </p>
+    <p style='font-size:16px; line-height:1.7;'>
+    But somewhere behind the growth numbers, a quieter pattern took hold. People who understood
+    the network — who'd spent years learning it street by street — started walking out the door.
+    By the end of the year, SimbaNet was losing roughly
+    <b>{facts['turnover_rate']:.0f} out of every 100 people</b> on its payroll. In a business built
+    on institutional memory, that's not a line on a spreadsheet. It's a splice point nobody else
+    knows how to find, a client relationship starting over from zero, and a replacement who won't
+    be fully useful for months.
+    </p>
+    """,
     unsafe_allow_html=True,
 )
 
-# ---------------------------------------------------------------------------
-# 2. THE PROBLEM
-# ---------------------------------------------------------------------------
-theme.insight_box(
-    f"Staff are leaving SimbaNet at a rate leadership can no longer ignore. "
-    f"About <b>{turnover_rate:.0f} out of every 100 people</b> left in the last year. In a "
-    "technical business like this one, every departure takes hard-to-replace know-how out the "
-    "door with it — and drives up the cost and time it takes to hire and train someone new.",
-    tone="alert",
-    label="The problem",
-)
-
-# ---------------------------------------------------------------------------
-# 3. THE KEY FINDING (the hook)
-# ---------------------------------------------------------------------------
 st.markdown(
     f"""
     <div class="insight-box alert" style="font-size:17px; padding:20px 24px;">
         <div class="insight-label">The key finding</div>
-        Leadership's first guess was pay. The data says otherwise.
-        <b>{worst_dept['Department']}</b> loses staff faster than any other team at SimbaNet —
-        and company-wide, most people who left <b>weren't choosing to go. They were let go.</b>
-        That's not a "people don't want to work here" problem. That's a hiring and
-        performance-management problem, and it points to a very different fix.
+        Ask anyone at SimbaNet why people are leaving, and the first guess is almost always pay.
+        The data doesn't agree. <b>{facts['worst_dept']}</b> loses people faster than any team in
+        the company, at <b>{facts['worst_dept_rate']:.0f}%</b> — and look closer, and an
+        uncomfortable pattern shows up: <b>{facts['involuntary_share']:.0f} out of every 100
+        departures</b>, company-wide, weren't resignations. They were the company's decision.
+        That reframes the whole problem. This isn't staff walking away from SimbaNet.
+        It's SimbaNet walking away from staff — and that's a hiring and management story,
+        not a retention one.
     </div>
     """,
     unsafe_allow_html=True,
@@ -96,7 +103,7 @@ st.markdown(
 st.markdown("&nbsp;", unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------------
-# 4. THE EVIDENCE — KPI ROW
+# THE EVIDENCE — KPI ROW
 # ---------------------------------------------------------------------------
 st.markdown("#### The numbers behind that finding")
 k1, k2, k3, k4 = st.columns(4)
