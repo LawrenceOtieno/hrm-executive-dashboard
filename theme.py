@@ -252,7 +252,7 @@ def style_fig(
     if tickangle is not None:
         fig.update_xaxes(tickangle=tickangle)
 
-    # Give numeric axes headroom so labels drawn "outside"the bar/marker
+    # Give numeric axes headroom so labels drawn "outside" the bar/marker
     # never get clipped by the edge of the plotting area.
     if x_values is not None and len(x_values):
         vmax = max(x_values)
@@ -400,6 +400,74 @@ def signature(note: str = ""):
     )
 
 
+def core_story_facts(df):
+    """
+    Computes the handful of numbers the whole app's narrative is built on,
+    in one place, so every page states the same facts the same way instead
+    of each page recalculating (and risking drifting from) its own version.
+    """
+    active = df[df["Status"] == "Active"]
+    left = df[df["Status"] == "Left"]
+
+    total_headcount = len(active)
+    total_departures = len(left)
+    pool = total_headcount + total_departures
+    turnover_rate = (total_departures / pool * 100) if pool else 0.0
+    involuntary_share = (left["TerminationType"] == "Involuntary").mean() * 100 if len(left) else 0.0
+
+    dept_summary = df.groupby("Department")["Status"].value_counts().unstack(fill_value=0)
+    dept_summary["Total"] = dept_summary.sum(axis=1)
+    dept_summary["TurnoverRate"] = (dept_summary.get("Left", 0) / dept_summary["Total"] * 100).round(1)
+    dept_summary = dept_summary.reset_index()
+    worst_dept_row = dept_summary.sort_values("TurnoverRate", ascending=False).iloc[0]
+    best_dept_row = dept_summary.sort_values("TurnoverRate", ascending=True).iloc[0]
+
+    hub_summary = df.groupby("Location")["Status"].value_counts().unstack(fill_value=0)
+    hub_summary["Total"] = hub_summary.sum(axis=1)
+    hub_summary["TurnoverRate"] = (hub_summary.get("Left", 0) / hub_summary["Total"] * 100).round(1)
+    hub_summary = hub_summary.reset_index()
+    worst_hub_row = hub_summary.sort_values("TurnoverRate", ascending=False).iloc[0]
+
+    return {
+        "total_headcount": total_headcount,
+        "total_departures": total_departures,
+        "turnover_rate": turnover_rate,
+        "involuntary_share": involuntary_share,
+        "worst_dept": worst_dept_row["Department"],
+        "worst_dept_rate": worst_dept_row["TurnoverRate"],
+        "best_dept": best_dept_row["Department"],
+        "best_dept_rate": best_dept_row["TurnoverRate"],
+        "worst_hub": worst_hub_row["Location"],
+        "worst_hub_rate": worst_hub_row["TurnoverRate"],
+    }
+
+
+def story_banner(facts):
+    """
+    A slim, consistent strip repeating the core problem + finding on every
+    page, so the throughline of the dashboard's argument is never more
+    than a glance away, whichever page someone lands on first.
+    """
+    st.markdown(
+        f"""
+        <div style="background:{NAVY}; border-left:5px solid {ORANGE}; border-radius:8px;
+                    padding:12px 18px; margin: 4px 0 22px 0;">
+            <span style="font-size:10.5px; font-weight:700; letter-spacing:.08em;
+                         text-transform:uppercase; color:{ORANGE}; margin-right:10px;">
+                The story so far
+            </span>
+            <span style="font-size:14.5px; color:{TEXT_LIGHT};">
+                SimbaNet loses about <b style="color:#fff;">{facts['turnover_rate']:.0f} in every 100
+                people</b> it employs each year — and most of them didn't quit.
+                <b style="color:#fff;">They were let go.</b>
+                <b style="color:#fff;">{facts['worst_dept']}</b> is where it shows up worst.
+            </span>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
 def gender_pay_gap(df):
     """
     Returns (gap_pct, higher_label) where gap_pct is always a positive
@@ -411,7 +479,7 @@ def gender_pay_gap(df):
     female = float(means.get("Female", 0))
     if male == 0 or female == 0:
         return 0.0, "N/A"
-    higher = "Men"if male >= female else "Women"
+    higher = "Men" if male >= female else "Women"
     lower = min(male, female)
     gap_pct = abs(male - female) / lower * 100
     return round(gap_pct, 1), higher
@@ -585,17 +653,26 @@ def build_export_png(df) -> bytes:
     dept_summary["Total"] = dept_summary.sum(axis=1)
     dept_summary["TurnoverRate"] = (dept_summary.get("Left", 0) / dept_summary["Total"] * 100).round(1)
     dept_summary = dept_summary.reset_index().sort_values("TurnoverRate")
+    worst_dept_png = dept_summary.sort_values("TurnoverRate", ascending=False).iloc[0]
+    dept_bar_colors = [
+        ORANGE_DARK if d == worst_dept_png["Department"] else GRAY_MUTED
+        for d in dept_summary["Department"]
+    ]
     ax = fig.add_subplot(gs[1, 0])
-    ax.barh(dept_summary["Department"], dept_summary["TurnoverRate"], color=ORANGE_DARK)
+    ax.barh(dept_summary["Department"], dept_summary["TurnoverRate"], color=dept_bar_colors)
     style_ax(ax, "Turnover % by Dept")
 
     hub_summary = df.groupby("Location")["Status"].value_counts().unstack(fill_value=0)
     hub_summary["Total"] = hub_summary.sum(axis=1)
     hub_summary["TurnoverRate"] = (hub_summary.get("Left", 0) / hub_summary["Total"] * 100).round(1)
     hub_summary = hub_summary.reset_index().sort_values("TurnoverRate")
+    worst_hub_png = hub_summary.sort_values("TurnoverRate", ascending=False).iloc[0]
+    hub_bar_colors = [
+        ORANGE_DARK if h == worst_hub_png["Location"] else GRAY_MUTED
+        for h in hub_summary["Location"]
+    ]
     ax = fig.add_subplot(gs[1, 1])
-    ax.barh(hub_summary["Location"], hub_summary["TurnoverRate"],
-            color=[HUB_COLORS.get(l, NAVY_LIGHT) for l in hub_summary["Location"]])
+    ax.barh(hub_summary["Location"], hub_summary["TurnoverRate"], color=hub_bar_colors)
     style_ax(ax, "Turnover % by Hub")
 
     ax = fig.add_subplot(gs[1, 2])
@@ -824,8 +901,8 @@ def clickable_chart(fig: go.Figure, key: str, height: int = 360, category_axis: 
     category_axis: which axis carries the category to drill into. All
     four hero charts in this app are horizontal bars (orientation='h'),
     so the category (Department/Location) lives on the Y axis and the
-    number lives on X -- category_axis defaults to "y"accordingly. Pass
-    "x"instead if a future chart uses vertical bars with the category on
+    number lives on X -- category_axis defaults to "y" accordingly. Pass
+    "x" instead if a future chart uses vertical bars with the category on
     the X axis.
     """
     event = st.plotly_chart(
