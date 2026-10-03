@@ -2,7 +2,7 @@
 
 A real-time Human Resource Management (HRM) operational insight and workforce analytics application built specifically for managing regional telecommunications hubs across Kenya. 
 
-👉 **[Live Project Demo](https://streamlit.app)**
+👉 **[Live Project Demo](https://lawrenceotieno-hrm-executive-dashboard-app-wggi3y.streamlit.app/)**
 
 ---
 
@@ -10,6 +10,8 @@ A real-time Human Resource Management (HRM) operational insight and workforce an
 For the better part of a decade, SimbaNet Solutions has been quietly rewiring how Kenya gets online—trenching fibre down streets in Nairobi, Mombasa, Kisumu, and Nakuru, lighting up homes and businesses that never had a reliable connection before. Because this slow, technical work relies heavily on institutional memory, managing talent attrition is vital. 
 
 The **SimbaNet Workforce Analytics Dashboard** provides high-level stakeholders with a bird's-eye view of organizational health, departing from generic assumptions to uncover the operational truths behind staff turnover.
+
+![SimbaNet Analytics Dashboard Overview](assets/screenshots/dashboard-at-a-glance.png)
 
 * **Interactive Operational Slicing:** Dynamically filter global metrics, tenure trends, and salary tracking by specific hubs, departments, and exit dynamics.
 * **Geospatial Concentration Mapping:** An interactive GIS mapping interface pinpointing operational focus centers and tracking where attrition pressures are physically concentrated.
