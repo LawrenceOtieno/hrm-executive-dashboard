@@ -87,6 +87,8 @@ Generational brackets across departments point out the distribution of emerging 
 * **Operations:** Under 30: 12 | 30-39: 19 | 40-49: 29 | 50+: 19
 * **Sales:** Under 30: 18 | 30-39: 13 | 40-49: 18 | 50+: 20
 
+![Workforce Age Profiling Distribution Chart](assets/screenshots/age-profiles.png)
+
 ---
 
 ### Remuneration Benchmarks & Financial Baselines
